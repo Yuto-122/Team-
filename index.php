@@ -33,41 +33,9 @@
   <title>ふくおか餃子FES｜公式サイト</title>
 </head>
 
-
 <body>
 
-
-  <header class="l-header" id="pagetop">
-    <div class="c-header__title"><a href="index.html"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
-    <div class="l-header__icons">
-      <ul class="l-sns-list">
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
-        </li>
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_instagram.png" alt="福岡餃子フェス 公式Instagram"></a></li>
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_line.png" alt="福岡餃子フェス 公式LINE"></a>
-        </li>
-      </ul>
-      <div class="c-header__hamburger-menu">
-        <img src="./img/hamburger_menu_open.png" alt="ハンバーガーメニューアイコン">
-      </div>
-    </div>
-    <!-- 仮ハンバーガーメニュー（各ページへのボタンは位置のみ） -->
-    <div class="c-hambueger">
-      <div class="l-hamberger-content">
-        <nav class="c-hambueger__nav">
-          <ul class="c-hambueger__list">
-            <li class="c-hambueger__list-link-item"><a href="menu.html">メニュー</a></li>
-            <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-            <li class="c-hambueger__list-link-item"><a href="news.html">お知らせ</a></li>
-            <li class="c-hambueger__list-link-item"><a href="faq.html">よくある質問</a></li>
-            <li class="c-hambueger__list-link-item"><a href="contact.html">お問い合わせ</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-
+  <?php include('inc/header.php');   ?>
 
 
   <main>
@@ -140,22 +108,22 @@
             <img class="c-menu-card__img" src="./img/menu/menu-01.png" alt="肉汁あふれる焼き餃子" />
             <p class="c-menu-card-price">6個入り&nbsp;580円（税込）</p>
             <p class="c-menu-card-shopname">博多ぎょうざ堂</p>
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>          
+            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
             <a class="c-button-goto-booth" href="./menu-b-01.html">詳細はこちら</a>
           </li>
           <li class="c-menu-card c-menu-card--b02">
             <h3>ふっくら<br class="c-menu-card-break">蒸しあげ餃子</h3>
             <img class="c-menu-card__img" src="./img/menu/menu-02.png" alt="ふっくら蒸しあげ餃子" />
             <p class="c-menu-card-price">5個入り&nbsp;600円（税込）</p>
-            <p class="c-menu-card-shopname">中華食堂&nbsp;蒸々屋</p>           
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>                     
+            <p class="c-menu-card-shopname">中華食堂&nbsp;蒸々屋</p>
+            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
             <a class="c-button-goto-booth" href="./menu-b-02.html">詳細はこちら</a>
           </li>
           <li class="c-menu-card c-menu-card--b03">
             <h3>中華風スープ餃子</h3>
             <img class="c-menu-card__img" src="./img/menu/menu-03.png" alt="中華風スープ餃子" />
             <p class="c-menu-card-price">5個入り&nbsp;680円（税込）</p>
-            <p class="c-menu-card-shopname">餃子茶寮&nbsp;彩香</p>           
+            <p class="c-menu-card-shopname">餃子茶寮&nbsp;彩香</p>
             <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
             <a class="c-button-goto-booth" href="./menu-b-03.html">詳細はこちら</a>
           </li>
@@ -188,10 +156,10 @@
             <img class="c-menu-card__img" src="./img/menu/menu-07.png" alt="しびうまラー油餃子" />
             <p class="c-menu-card-price">6個入り&nbsp;620円（税込）</p>
             <p class="c-menu-card-shopname">辛味房&nbsp;赤龍</p>
-            
+
             <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            
-            
+
+
             <a class="c-button-goto-booth" href="./menu-b-07.html">詳細はこちら</a>
           </li>
         </ul>
@@ -236,24 +204,28 @@
               <div class="l-access-list-flex">
                 <dt class="c-access-list-title">地下鉄天神駅から徒歩10分</dt>
                 <dd>
-                  <a class="c-access-list-button" target="_blank" href="https://maps.app.goo.gl/q6LJtK4AdoUq5qSx7">会場までの経路</a>
+                  <a class="c-access-list-button" target="_blank"
+                    href="https://maps.app.goo.gl/q6LJtK4AdoUq5qSx7">会場までの経路</a>
                 </dd>
               </div>
               <div class="l-access-list-flex">
                 <dt class="c-access-list-title">西鉄天神駅から徒歩10分</dt>
                 <dd>
-                  <a class="c-access-list-button" target="_blank" href="https://maps.app.goo.gl/ggTNmnoiJLQbkfSq5">会場までの経路</a>
+                  <a class="c-access-list-button" target="_blank"
+                    href="https://maps.app.goo.gl/ggTNmnoiJLQbkfSq5">会場までの経路</a>
                 </dd>
               </div>
               <div class="l-access-list-flex">
                 <dt class="c-access-list-title">西鉄バス「長浜一丁目」から徒歩2分</dt>
-                <dd><a class="c-access-list-button" target="_blank" href="https://maps.app.goo.gl/ZwwSuwodm2Z7TvZS9">会場までの経路</a>
+                <dd><a class="c-access-list-button" target="_blank"
+                    href="https://maps.app.goo.gl/ZwwSuwodm2Z7TvZS9">会場までの経路</a>
                 </dd>
               </div>
               <div class="l-access-list-flex">
                 <dt class="c-access-list-title">西鉄バス「福祉センター前(浜の町病院入口)」から徒歩2分</dt>
                 <dd>
-                  <a class="c-access-list-button" target="_blank" href="https://maps.app.goo.gl/RZkppEVMzXW1DBMr7">会場までの経路</a>
+                  <a class="c-access-list-button" target="_blank"
+                    href="https://maps.app.goo.gl/RZkppEVMzXW1DBMr7">会場までの経路</a>
                 </dd>
               </div>
             </dl>
