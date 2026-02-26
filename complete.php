@@ -67,28 +67,11 @@ session_start(); ?>
     </header>
     <main class="l-main-faq-cu">
         <h1 class="c-section-title c-faq-cu" data-sub-title="Contact Us">お問い合わせ</h1>
-        <P class="c-describe">お問い合わせは、以下のメールフォームをご利用ください。</P>
-        <p class="c-caution">※回答に数日を要する場合がございますこと予めご了承ください。</p>
-       
-        <form class="l-form" action="confirm.php" method="post">
-            <div class="l-form-main">
-                <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" placeholder="餃子 太郎" required><br>
-                <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" required><br>
-
-                <!-- メールアドレス -->
-                <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" required><br>
-
-                <!-- 問い合わせ内容 -->
-                <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-
+        <P class="c-describe">送信が完了しました。お問い合わせありがとうございました。</P>
+      
             <!-- 確認ボタン -->
             <div class="c-btn c-btn--yellowred">
-                <button class="c-btn_link c-btn-confirm" type="submit">確認する</button>
+                <a href="index.html"><button class="c-btn_link c-btn-confirm" type="submit">TOPに戻る</button></a>
             </div>
         </form>
     </main>
