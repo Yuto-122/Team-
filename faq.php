@@ -1,24 +1,11 @@
 <?php
-// DBへの接続情報
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ohsho');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-
-function db_connect()
-{
-    $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
-    $db = new PDO($dsn, DB_USER, DB_PASS); //インスタンス化
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); //後付けセキュリティ
-    return $db;
-}
+require_once __DIR__ . '/functions/function.php';
 
 try {
     $db = db_connect();
     $stmt = $db->prepare("SELECT * FROM faq_category");
     $stmt->execute();
     $faq_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
     $stmt_faq = $db->prepare("SELECT * FROM faq");
     $stmt_faq->execute();
@@ -27,8 +14,6 @@ try {
     exit('接続失敗: ' . $e->getMessage());
 }
 ?>
-
-<!-- <?php var_dump($faq); ?> -->
 
 <!DOCTYPE html>
 <html lang="ja">
