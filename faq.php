@@ -1,24 +1,34 @@
 <?php
 // DBへの接続情報
-define('DB_HOST','localhost');
-define('DB_NAME','--------');
-define('DB_USER','-------');
-define('DB_PASS','-------');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'ohsho');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
-//DE接続用変数設定
-// $dsn = 'mysql:host=localhost;dbname=company_db;charset=utf8';
-// $user = 'admin';
-// $pass = 'password';
-
-// DBへ接続する関数
 function db_connect()
 {
     $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
-    $db = new PDO($dsn, DB_USER, DB_PASS);//インスタンス化
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);//後付けセキュリティ
+    $db = new PDO($dsn, DB_USER, DB_PASS); //インスタンス化
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); //後付けセキュリティ
     return $db;
 }
+
+try {
+    $db = db_connect();
+    $stmt = $db->prepare("SELECT * FROM faq_category");
+    $stmt->execute();
+    $faq_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    $stmt_faq = $db->prepare("SELECT * FROM faq");
+    $stmt_faq->execute();
+    $faq = $stmt_faq->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    exit('接続失敗: ' . $e->getMessage());
+}
 ?>
+
+<!-- <?php var_dump($faq); ?> -->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,82 +94,35 @@ function db_connect()
             </div>
         </div>
     </header>
-   <?php $faq_category =[
-                 ["1","来場について","#event"],
-                 ["2","会場について","#venue"],
-                 ["3","その他","#others"]
-                 ];
-            $faq = [
-                    ["1","入場料はかかりますか？","入場は無料です。どなたでもご自由にお楽しみいただけます。飲食の購入は各店舗でお支払いください。","1"],
-                     ["2","開催時間を教えてください。","開催時間は各日10:00〜20:00を予定しています。最終日は終了時間が早まる場合があります。","1"],
-                     ["3","雨天の場合も開催されますか？","雨天決行ですが、荒天の場合は安全を考慮し中止となる場合があります。最新情報はSNSでお知らせします。","1"],
-                     ["4","喫煙所はありますか？","会場内は全面禁煙ですが、敷地外に指定の喫煙エリアを設けています。スタッフの案内に従ってご利用ください。","2"],
-                     ["5","忘れ物をした場合はどうすればよいですか？","会場本部でお預かりしています。イベント終了後は実行委員会までお問い合わせください。","3"],
-                     ];
-             ?>    
+
     <main class="l-main-faq-cu">
         <h1 class="c-section-title c-faq-cu" data-sub-title="FAQ">よくあるご質問</h1>
         <nav class="c-nav-page">
-        <ul class="l-section-list">
-            <?php foreach ($faq_category as $list): ?>
-            <li class="c-section-btn">
-                <a href=<?php echo $list[2]; ?>><?php echo $list[1] . "▼" ;?></a></li>
-                <!-- <li class="c-section-btn"><a href="#venue">会場について▼</a></li>
-                <li class="c-section-btn"><a href="#others">その他▼</a></li> -->
+            <ul class="l-section-list">
+                <?php foreach ($faq_category as $list): ?>
+                    <li class="c-section-btn">
+                        <a href=#<?php echo $list["link_id"]; ?>><?php echo $list["category"] . "▼"; ?></a>
+                    </li>
                 <?php endforeach; ?>
-                <!-- <?php var_dump($list); ?> -->
+
             </ul>
-            
         </nav>
 
-        
-        <section id="event" class="c-section">
-            <h2 class="c-subsection-title">イベントについて</h2>
-            <dl class="l-qa-list">
-                <dt class="c-question"><span class="c-q">Q. </span>入場料はかかりますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>入場は無料です。どなたでもご自由にお楽しみいただけます。飲食の購入は各店舗でお支払いください。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>開催時間を教えてください。</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>平日は16:00 ~ 22:00、土日祝は11:00 ~
-                    22:00です。各日最終入場受付は21:00、ラストオーダーは21:15です。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>雨天の場合も開催されますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>雨天決行ですが、荒天の場合は安全を考慮し中止となる場合があります。最新情報はSNSでお知らせします。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>支払い方法を教えてください。</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>現金のほか、主要な電子マネー・QRコード決済がご利用いただけます。</dd>
-            </dl>
-        </section>
-        <section id="venue" class="c-section">
-            <h2 class="c-subsection-title">会場について</h2>
-            <dl class="l-qa-list">
-                <dt class="c-question"><span class="c-q">Q. </span>喫煙所はありますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>会場内は全面禁煙ですが、敷地外に指定の喫煙エリアを設けています。スタッフの案内に従ってご利用ください。
-                </dd>
-                <dt class="c-question"><span class="c-q">Q. </span>授乳室やおむつ替えスペースはありますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>はい、メインゲート付近に授乳室とおむつ替え台を設置しています。小さなお子様連れでも安心してご利用いただけます。
-                </dd>
-                <dt class="c-question"><span class="c-q">Q. </span>駐車場はありますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>専用駐車場はございません。公共交通機関のご利用をおすすめします。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>ペットを連れて入場できますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>混雑が予想されるため、ペットの同伴はご遠慮ください。ただし補助犬は入場可能です。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>ゴミはどうすればよいですか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>会場内に分別ゴミ箱を設置しています。リサイクルにご協力をお願いします。</dd>
-            </dl>
-        </section>
-        <section id="others" class="c-section">
-            <h2 class="c-subsection-title">その他</h2>
-            <dl class="l-qa-list">
-                <dt class="c-question"><span class="c-q">Q. </span>忘れ物をした場合はどうすればよいですか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>会場本部でお預かりしています。イベント終了後は実行委員会までお問い合わせください。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>トイレはどこにありますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>会場内に複数の仮設トイレを設置しています。マップの「トイレ」アイコンをご確認ください。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>SNSで写真を投稿しても良いですか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>はい、大歓迎です！公式ハッシュタグ「#ふくおか餃子FES」をつけて投稿してください。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>開催中止の場合はどうなりますか？</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>安全を最優先に判断し、中止の場合は公式サイトとSNSでお知らせします。</dd>
-                <dt class="c-question"><span class="c-q">Q. </span>問い合わせ先を教えてください。</dt>
-                <dd class="c-answer"><span class="c-a">A. </span>「お問い合わせ」ページのフォームまたは事務局メール宛にご連絡ください。</dd>
-            </dl>
-        </section>
-        <div class="c-btn c-btn--yellowred">
+        <?php foreach ($faq_category as $list): ?>
+            <section id="<?php echo $list["link_id"]; ?>" class="c-section">
+                <h2 class="c-subsection-title"> <?php echo $list["category"]; ?></h2>
+                <?php foreach ($faq as $text): ?>
+                    <dl class="l-qa-list">
+                        <?php if ($text["type"] === $list["id"]): ?>
+                            <dt class="c-question"><span class="c-q">Q. </span><?php echo $text["question"]; ?></dt>
+                            <dd class="c-answer"><span class="c-a">A. </span><?php echo $text["answer"]; ?></dd>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </dl>
+            </section>
+        <?php endforeach; ?>
+
+       <div class="c-btn c-btn--yellowred">
             <a class="c-btn_link c-contact-btn" href="contact.html">お問い合わせ</a>
         </div>
     </main>
@@ -207,11 +170,11 @@ function db_connect()
         <a href="#pagetop" class="c-pagetop-btn c-pagetop-btn-position"><img src="./img/top.svg" alt="トップへ戻る"></a>
     </div>
     <script src="./js/humberger-menu.js"></script>
-     <!-- js -->
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./js/pagetop-btn.js"></script>
+    <!-- js -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/pagetop-btn.js"></script>
 
 </body>
 
