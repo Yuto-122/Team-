@@ -49,36 +49,8 @@ try {
 </head>
 
 <body class="l-body-sub">
-    <header class="l-header" id="pagetop">
-        <div class="c-header__title"><a href="index.html"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
-        <div class="l-header__icons">
-            <ul class="l-sns-list">
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
-                </li>
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_instagram.png"
-                            alt="福岡餃子フェス 公式Instagram"></a></li>
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_line.png" alt="福岡餃子フェス 公式LINE"></a>
-                </li>
-            </ul>
-            <div class="c-header__hamburger-menu">
-                <img src="./img/hamburger_menu_open.png" alt="ハンバーガーメニューアイコン">
-            </div>
-        </div>
-        <!-- 仮ハンバーガーメニュー（各ページへのボタンは位置のみ） -->
-        <div class="c-hambueger">
-            <div class="l-hamberger-content">
-                <nav class="c-hambueger__nav">
-                    <ul class="c-hambueger__list">
-                        <li class="c-hambueger__list-link-item"><a href="menu.html">メニュー</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="news.html">お知らせ</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="faq.html">よくある質問</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="contact.html">お問い合わせ</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+    
+    <?php include('inc/header.php'); ?>
 
     <main class="l-main-faq-cu">
         <h1 class="c-section-title c-faq-cu" data-sub-title="FAQ">よくあるご質問</h1>
@@ -111,45 +83,9 @@ try {
             <a class="c-btn_link c-contact-btn" href="contact.html">お問い合わせ</a>
         </div>
     </main>
-    <footer class="l-footer">
-        <div class="l-footer__title">
-            <img src="./img/logo_01.png" alt="ふくおか餃子FES">
-            <dl class="l-footer__relevant-parties-list">
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">主催</dt>
-                    <dd class="c-footer__details">ふくおか餃子FES実行委員会</dd>
-                </div>
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">協賛</dt>
-                    <dd class="c-footer__details">九州餃子部</dd>
-                </div>
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">制作協力</dt>
-                    <dd class="c-footer__details">創造社リカレントスクール&nbsp;福岡校</dd>
-                </div>
-            </dl>
-        </div>
-        <div class="l-footer__info">
-            <div class="l-footer__contact">
-                <p class="c-footer__contact-item">ふくおか餃子FES実行委員会</p>
-                <p class="c-footer__contact-item"><a href="tel:000-0000-0000">(tel:)&nbsp;000-0000-0000</a></p>
-                <p class="c-footer__contact-item">xxxxxxxxxxx@xxx.com</p>
-            </div>
-            <ul class="l-sns-list l-sns-list--footer">
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_x.png"
-                            alt="福岡餃子フェス 公式X"></a>
-                </li>
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_instagram.png"
-                            alt="福岡餃子フェス 公式Instagram"></a>
-                </li>
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_line.png"
-                            alt="福岡餃子フェス 公式LINE"></a>
-                </li>
-            </ul>
-        </div>
-        <a href="./privacy.html" class="c-privacy">個人情報保護方針</a>
-        <small class="c-copyright">&copy;Copyright&nbsp;2025&nbsp;ふくおか餃子FES実行委員会</small>
-    </footer>
+
+    <?php include('inc/footer.php'); ?>
+   
     <!-- トップに戻るボタン -->
     <div id="page-top">
         <a href="#pagetop" class="c-pagetop-btn c-pagetop-btn-position"><img src="./img/top.svg" alt="トップへ戻る"></a>
