@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 $db = db_connect();
+// TODO nagata: 結合で取得したけどDB管理的に微妙だったら通常に戻す
 $sql = "SELECT menus.id AS menu_id, menus.name AS menu_name, shops.name AS shop_name FROM menus INNER JOIN shops ON menus.shop_id = shops.id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
