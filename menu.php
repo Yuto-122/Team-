@@ -1,3 +1,20 @@
+<?php
+
+require_once __DIR__ . '/functions/function.php';
+
+// DBに接続
+try {
+    $db = db_connect();
+
+    $sql = 'SELECT menus.name AS menus_name , shops.name AS shop_name, menus.menu_img, menus.amount , menus.price, shops.booth FROM menus INNER JOIN shops ON menus.shop_id = shops.id';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    exit('エラー: ' . $e->getMessage());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -68,19 +85,22 @@
         <div class="menu-wrapper">
             <ul class="l-menu-list l-menu-contents">
                 <li class="c-menu-card c-menu-card--b01">
-                    <h2>
-                        肉汁あふれる<br class="c-menu-card-break">焼き餃子
-                    </h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-01.png" alt="肉汁あふれる焼き餃子">
-                    <p class="c-menu-card-boothnum">B-01</p>
-                    <p class="c-menu-card-price">6個入り 580円（税込）</p>
-                    <p class="c-menu-card-shopname">博多ぎょうざ堂</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-01.html">
-                        詳細はこちら
-                    </a>
+                    <?php foreach ($menus as $list): ?>
+                        <h2>
+                            <?php echo $list['name'] ?>
+                            <!-- 肉汁あふれる<br class="c-menu-card-break">焼き餃子 -->
+                        </h2>
+                        <img class="c-menu-card__img" src="./img/menu/menu-01.png" alt="肉汁あふれる焼き餃子">
+                        <p class="c-menu-card-boothnum">B-01</p>
+                        <p class="c-menu-card-price">6個入り 580円（税込）</p>
+                        <p class="c-menu-card-shopname">博多ぎょうざ堂</p>
+                        <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
+                        <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
+                        <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
+                        <a class="c-button-goto-booth" href="./menu-b-01.html">
+                            詳細はこちら
+                        </a>
+                    <?php endforeach; ?>
                 </li>
 
                 <li class="c-menu-card c-menu-card--b02">
