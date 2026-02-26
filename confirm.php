@@ -1,10 +1,13 @@
-<?php session_start(); 
-//$id = $_POST["id"];
+<?php 
+require_once __DIR__ . "../functions/function.php";
+
+session_start(); 
 $name = $_POST["name"];
 $kana = $_POST["kana"];
 $email = $_POST["email"];
 $message = $_POST["message"];
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -37,6 +40,17 @@ $message = $_POST["message"];
     <link rel="stylesheet" href="css/style.css">
     <title>お問い合わせ｜ふくおか餃子FES</title>
 </head>
+
+<style>
+    .c-btn{
+        display: flex;
+        justify-content: center;
+        gap: 8em;
+    }
+    .l-form-main{
+        background-color: #84848481;
+    }
+</style>
 
 <body class="l-body-sub">
     <header class="l-header" id="pagetop">
@@ -76,23 +90,23 @@ $message = $_POST["message"];
         <form class="l-form" action="send.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" value="<?php echo $name; ?>" disabled><br>
-                <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" value="<?php echo $kana; ?>" disabled><br>
+                <input type="text" id="name" name="name" value="<?php echo h($name); ?>" readonly><br>
+                <label class="c-label" for="kana" ><span class="c-required">必須</span>フリガナ</label><br>
+                <input type="text" id="kana" name="kana" value="<?php echo h($kana); ?>" readonly><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" value="<?php echo $email; ?>" disabled><br>
+                <input type="email" id="email" name="email" value="<?php echo h($email); ?>" readonly><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" disabled><?php echo $message; ?></textarea>
+                <textarea id="message" name="message" readonly><?php echo h($message); ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
             <div class="c-btn c-btn--yellowred">
-                <a href="contact.php"><button class="c-btn_link c-btn-confirm" type="button" onclick="history.back()">入力画面に戻る</button></a>
-                 <a href="send.php"><button class="c-btn_link c-btn-confirm" type="submit">確認する</button></a>
+                <a href="contact.php"><button class="c-btn_link c-btn-confirm" type="button">入力画面に戻る</button></a>
+                 <button class="c-btn_link c-btn-confirm" type="submit" value="送信">送信する</button>
             </div>
         </form>
     </main>
