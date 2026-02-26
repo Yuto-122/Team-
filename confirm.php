@@ -1,3 +1,10 @@
+<?php session_start(); 
+//$id = $_POST["id"];
+$name = $_POST["name"];
+$kana = $_POST["kana"];
+$email = $_POST["email"];
+$message = $_POST["message"];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -64,27 +71,28 @@
     </header>
     <main class="l-main-faq-cu">
         <h1 class="c-section-title c-faq-cu" data-sub-title="Contact Us">お問い合わせ</h1>
-        <P class="c-describe">お問い合わせは、以下のメールフォームをご利用ください。</P>
+        <p class="c-describe"><b>以下の内容で送信してもよろしいですか？</b></p>
         <p class="c-caution">※回答に数日を要する場合がございますこと予めご了承ください。</p>
         <form class="l-form" action="send.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" placeholder="餃子 太郎" required><br>
+                <input type="text" id="name" name="name" value="<?php echo $name; ?>" disabled><br>
                 <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" required><br>
+                <input type="text" id="kana" name="kana" value="<?php echo $kana; ?>" disabled><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" required><br>
+                <input type="email" id="email" name="email" value="<?php echo $email; ?>" disabled><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" required></textarea>
+                <textarea id="message" name="message" disabled><?php echo $message; ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
             <div class="c-btn c-btn--yellowred">
-                <button class="c-btn_link c-btn-confirm" type="submit">確認する</button>
+                <a href="contact.php"><button class="c-btn_link c-btn-confirm" type="button" onclick="history.back()">入力画面に戻る</button></a>
+                 <a href="send.php"><button class="c-btn_link c-btn-confirm" type="submit">確認する</button></a>
             </div>
         </form>
     </main>
