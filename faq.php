@@ -58,7 +58,7 @@ try {
             <ul class="l-section-list">
                 <?php foreach ($faq_category as $list): ?>
                     <li class="c-section-btn">
-                        <a href=#<?php echo $list["link_id"]; ?>><?php echo $list["category"] . "▼"; ?></a>
+                        <a href=#<?php echo h($list["link_id"]); ?>><?php echo h($list["category"]) . "▼"; ?></a>
                     </li>
                 <?php endforeach; ?>
 
@@ -66,13 +66,13 @@ try {
         </nav>
 
         <?php foreach ($faq_category as $list): ?>
-            <section id="<?php echo $list["link_id"]; ?>" class="c-section">
-                <h2 class="c-subsection-title"> <?php echo $list["category"]; ?></h2>
+            <section id="<?php echo h($list["link_id"]); ?>" class="c-section">
+                <h2 class="c-subsection-title"> <?php echo h($list["category"]); ?></h2>
                 <?php foreach ($faq as $text): ?>
                     <dl class="l-qa-list">
                         <?php if ($text["type"] === $list["id"]): ?>
-                            <dt class="c-question"><span class="c-q">Q. </span><?php echo $text["question"]; ?></dt>
-                            <dd class="c-answer"><span class="c-a">A. </span><?php echo $text["answer"]; ?></dd>
+                            <dt class="c-question"><span class="c-q">Q. </span><?php echo h($text["question"]); ?></dt>
+                            <dd class="c-answer"><span class="c-a">A. </span><?php echo nl2br(h($text["answer"])); ?></dd>
                         <?php endif; ?>
                     <?php endforeach; ?>
                     </dl>

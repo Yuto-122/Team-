@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </div>
-        <a href="./privacy.html" class="c-privacy">個人情報保護方針</a>
+        <a href="privacy.php" class="c-privacy">個人情報保護方針</a>
         <small class="c-copyright">
             &copy;Copyright&nbsp;2025&nbsp;ふくおか餃子FES実行委員会
         </small>

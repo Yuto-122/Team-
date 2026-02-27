@@ -53,39 +53,8 @@ try {
 
 <body>
 
-
-  <header class="l-header" id="pagetop">
-    <div class="c-header__title"><a href="index.html"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
-    <div class="l-header__icons">
-      <ul class="l-sns-list">
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
-        </li>
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_instagram.png" alt="福岡餃子フェス 公式Instagram"></a></li>
-        <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_line.png" alt="福岡餃子フェス 公式LINE"></a>
-        </li>
-      </ul>
-      <div class="c-header__hamburger-menu">
-        <img src="./img/hamburger_menu_open.png" alt="ハンバーガーメニューアイコン">
-      </div>
-    </div>
-    <!-- 仮ハンバーガーメニュー（各ページへのボタンは位置のみ） -->
-    <div class="c-hambueger">
-      <div class="l-hamberger-content">
-        <nav class="c-hambueger__nav">
-          <ul class="c-hambueger__list">
-            <li class="c-hambueger__list-link-item"><a href="menu.html">メニュー</a></li>
-            <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-            <li class="c-hambueger__list-link-item"><a href="news.html">お知らせ</a></li>
-            <li class="c-hambueger__list-link-item"><a href="faq.html">よくある質問</a></li>
-            <li class="c-hambueger__list-link-item"><a href="contact.php">お問い合わせ</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-
-
+  <?php include('inc/header.php');
+  ?>
 
   <main>
 
@@ -166,7 +135,7 @@ try {
         <!-- メニュー一覧btn -->
         <div class="l-btn-layout">
           <div class="c-btn c-btn--yellowred">
-            <a class="c-btn_link c-btn_link--yellowred" href="menu.html">メニュー一覧へ</a>
+            <a class="c-btn_link c-btn_link--yellowred" href="menu.php">メニュー一覧へ</a>
           </div>
         </div>
       </div>
@@ -235,19 +204,19 @@ try {
         <h2 class="c-sec-title l-sec-title--news" data-sub-title="News">お知らせ</h2>
         <ul class="l-news-item__list">
           <li class="c-news-list c-news-list--2030.02.25">
-            <a class="c-news-list-content" href="news.html?open=news1">
+            <a class="c-news-list-content" href="news.php?open=news1">
               <time class="c-news-item__data" datetime="2030-02-25">2030.2.25（月）</time>
               <p class="c-news-item__summary">出店者インタビュー&emsp;博多区で人気の「博多ぎょうざ堂」</p>
             </a>
           </li>
           <li class="c-news-list c-news-list--2030.2.23">
-            <a class="c-news-list-content" href="news.html?open=news2">
+            <a class="c-news-list-content" href="news.php?open=news2">
               <time class="c-news-item__data" datetime="2030-02-23">2030.2.23（土）</time>
               <p class="c-news-item__summary">出店企業様募集中！</p>
             </a>
           </li>
           <li class="c-news-list c-news-list--2030.2.16">
-            <a class="c-news-list-content" href="news.html?open=news3">
+            <a class="c-news-list-content" href="news.php?open=news3">
               <time class="c-news-item__data" datetime="2030-02-16">2030.2.16（土）</time>
               <p class="c-news-item__summary">ふくおか餃子FES開催決定！</p>
             </a>
@@ -256,7 +225,7 @@ try {
         <!-- お知らせー一覧btn -->
         <div class="l-btn-layout">
           <div class="c-btn c-btn--whitered">
-            <a class="c-btn_link c-btn_link--whitered" href="news.html">お知らせ一覧へ</a>
+            <a class="c-btn_link c-btn_link--whitered" href="news.php">お知らせ一覧へ</a>
           </div>
         </div>
       </div>
@@ -265,44 +234,9 @@ try {
 
   </main>
 
-  <footer class="l-footer l-footer--top">
-    <div class="l-footer__title">
-      <img src="./img/logo_01.png" alt="ふくおか餃子FES">
-      <dl class="l-footer__relevant-parties-list">
-        <div class="c-footer__relevant-parties-list-item">
-          <dt class="c-footer__term">主催</dt>
-          <dd class="c-footer__details">ふくおか餃子FES実行委員会</dd>
-        </div>
-        <div class="c-footer__relevant-parties-list-item">
-          <dt class="c-footer__term">協賛</dt>
-          <dd class="c-footer__details">九州餃子部</dd>
-        </div>
-        <div class="c-footer__relevant-parties-list-item">
-          <dt class="c-footer__term">制作協力</dt>
-          <dd class="c-footer__details">創造社リカレントスクール&nbsp;福岡校</dd>
-        </div>
-      </dl>
-    </div>
-    <div class="l-footer__info">
-      <div class="l-footer__contact">
-        <p class="c-footer__contact-item">ふくおか餃子FES実行委員会</p>
-        <p class="c-footer__contact-item"><a href="tel:000-0000-0000">(tel:)&nbsp;000-0000-0000</a></p>
-        <p class="c-footer__contact-item">xxxxxxxxxxx@xxx.com</p>
-      </div>
-      <ul class="l-sns-list l-sns-list--footer">
-        <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
-        </li>
-        <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_instagram.png"
-              alt="福岡餃子フェス 公式Instagram"></a>
-        </li>
-        <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_line.png"
-              alt="福岡餃子フェス 公式LINE"></a>
-        </li>
-      </ul>
-    </div>
-    <a href="./privacy.html" class="c-privacy">個人情報保護方針</a>
-    <small class="c-copyright">&copy;Copyright&nbsp;2025&nbsp;ふくおか餃子FES実行委員会</small>
-  </footer>
+  <?php include('inc/footer.php');
+  ?>
+
   <div id="page-top">
     <a href="#pagetop" class="c-pagetop-btn c-pagetop-btn-position"><img src="./img/top.svg" alt="トップへ戻る"></a>
   </div>
