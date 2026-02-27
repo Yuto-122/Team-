@@ -25,7 +25,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">対応状況DB管理画面</h1>
-        <a href="#">
+        <a href="support_status_add.php">
             <p>対応状況DBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
@@ -44,7 +44,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["id"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>
                             <td><?php echo $data["create_date"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><button type="button" class="btn btn-secondary mx-1">編集</button></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
