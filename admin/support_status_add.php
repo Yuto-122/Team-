@@ -16,7 +16,7 @@
         <form action="support_status_add_do.php" method="post" class="mb-3">
             <div class="mb-3">
                 <label for="status" class="form-label">ステータス</label>
-                <input type="text" name="status" id="status" class="form-control" required>
+                <input type="text" name="status" id="status" class="form-control" value="" required>
             </div>
             <div class="mb-3">
                 <input type="submit" value="登録する" class="btn btn-primary">
