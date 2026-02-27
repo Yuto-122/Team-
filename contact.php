@@ -33,6 +33,11 @@ session_start(); ?>
     <link rel="stylesheet" href="css/style.css">
     <title>お問い合わせ｜ふくおか餃子FES</title>
 </head>
+<style>
+    textarea{
+        resize: none;
+    }
+</style>
 
 <body class="l-body-sub">
     <header class="l-header" id="pagetop">
@@ -73,17 +78,17 @@ session_start(); ?>
         <form class="l-form" action="confirm.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" placeholder="餃子 太郎" required><br>
+                <input type="text" id="name" name="name" placeholder="餃子 太郎" value="<?php echo !empty($_SESSION["name"]) ? h($_SESSION["name"]) : ""; ?>" required><br>
                 <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" required><br>
+                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" value="<?php echo !empty($_SESSION["kana"]) ? h($_SESSION["kana"]) : ""; ?>" required><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" required><br>
+                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" value="<?php echo !empty($_SESSION["email"]) ? h($_SESSION["email"]) : ""; ?>"><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" required></textarea>
+                <textarea id="message" name="message" required><?php echo !empty($_SESSION["message"]) ? h($_SESSION["message"]) : ""; ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
@@ -141,6 +146,7 @@ session_start(); ?>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="./js/pagetop-btn.js"></script>
+  <script src="./js/check.js"></script>
 
 </body>
 
