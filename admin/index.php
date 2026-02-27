@@ -17,36 +17,36 @@
 
             <div class="list-group">
                 <a href="admin_menu.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">メニューDB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">メニューDB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_shop.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">企業情報DB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">企業情報DB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_faq_category.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">質問カテゴリDB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">質問カテゴリDB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_faq.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">質問回答DB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">質問回答DB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_info.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">お知らせDB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">お知らせDB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_user.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">ユーザーDB管理画面</p>
-                    <p class="mb-1">（説明を書く）</p>
+                    <p class="mb-1 fs-5 fw-bold">ユーザーDB管理</p>
+                    <p class="mb-1">管理ユーザーのDB管理画面</p>
                 </a>
                 <a href="admin_contact.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">お問い合わせDB管理画面</p>
+                    <p class="mb-1 fs-5 fw-bold">お問い合わせDB管理</p>
                     <p class="mb-1">（説明を書く）</p>
                 </a>
                 <a href="admin_support_status.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">対応状況DB管理画面</p>
-                    <p class="mb-1">（説明を書く）</p>
+                    <p class="mb-1 fs-5 fw-bold">対応状況DB管理</p>
+                    <p class="mb-1">お問い合わせ 対応状況のDB管理画面</p>
                 </a>
             </div>
         </div>
