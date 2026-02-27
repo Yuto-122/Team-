@@ -3,7 +3,7 @@ require_once __DIR__ . "/../functions/function.php";
 
 if (empty($_GET)) {
     // GETが無かったら戻す
-    header("location:admin_support_status");
+    header("location:admin_support_status.php");
     exit();
 }
 
