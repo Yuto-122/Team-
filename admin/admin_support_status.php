@@ -44,7 +44,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["id"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>
                             <td><?php echo $data["create_date"]; ?></td>
-                            <td><button type="button" class="btn btn-secondary mx-1">編集</button></td>
+                            <td><a href="" class="btn btn-secondary mx-1">編集</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
