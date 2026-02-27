@@ -28,34 +28,36 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="#">
             <p>お知らせDBの新規登録はこちら</p>
         </a>
-        <table class="table">
-            <thead>
-                <tr class="table-primary">
-                    <th>id</th>
-                    <th>タイトル</th>
-                    <th>本文</th>
-                    <th>お知らせ画像名</th>
-                    <th>公開日時</th>
-                    <th>更新日時</th>
-                    <th>登録日時</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($datas as $data): ?>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light sticky-top">
                     <tr>
-                        <td><?php echo $data["id"]; ?></td>
-                        <td><?php echo $data["title"]; ?></td>
-                        <td><?php echo $data["body"]; ?></td>
-                        <td><?php echo $data["info_img"]; ?></td>
-                        <td><?php echo $data["public_date"]; ?></td>
-                        <td><?php echo $data["update_date"]; ?></td>
-                        <td><?php echo $data["created_date"]; ?></td>
-                        <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        <th>id</th>
+                        <th>タイトル</th>
+                        <th>本文</th>
+                        <th>お知らせ画像名</th>
+                        <th>公開日時</th>
+                        <th>更新日時</th>
+                        <th>登録日時</th>
+                        <th>操作</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($datas as $data): ?>
+                        <tr>
+                            <td><?php echo $data["id"]; ?></td>
+                            <td><?php echo $data["title"]; ?></td>
+                            <td><?php echo $data["body"]; ?></td>
+                            <td><?php echo $data["info_img"]; ?></td>
+                            <td><?php echo $data["public_date"]; ?></td>
+                            <td><?php echo $data["update_date"]; ?></td>
+                            <td><?php echo $data["created_date"]; ?></td>
+                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 

@@ -28,30 +28,32 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="#">
             <p>質問回答DBの新規登録はこちら</p>
         </a>
-        <table class="table">
-            <thead>
-                <tr class="table-primary">
-                    <th>id</th>
-                    <th>質問</th>
-                    <th>回答</th>
-                    <th>項目種別</th>
-                    <th>登録日時</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($datas as $data): ?>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light sticky-top">
                     <tr>
-                        <td><?php echo $data["id"]; ?></td>
-                        <td><?php echo $data["question"]; ?></td>
-                        <td><?php echo $data["answer"]; ?></td>
-                        <td><?php echo $data["type"]; ?></td>
-                        <td><?php echo $data["create_date"]; ?></td>
-                        <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        <th>id</th>
+                        <th>質問</th>
+                        <th>回答</th>
+                        <th>項目種別</th>
+                        <th>登録日時</th>
+                        <th>操作</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($datas as $data): ?>
+                        <tr>
+                            <td><?php echo $data["id"]; ?></td>
+                            <td><?php echo $data["question"]; ?></td>
+                            <td><?php echo $data["answer"]; ?></td>
+                            <td><?php echo $data["type"]; ?></td>
+                            <td><?php echo $data["create_date"]; ?></td>
+                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 
