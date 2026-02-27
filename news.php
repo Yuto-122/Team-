@@ -1,3 +1,18 @@
+<?php
+require_once __DIR__ . '/functions/function.php';
+
+try {
+    $db = db_connect();
+    $stmt = $db->prepare("SELECT * FROM info ORDER BY public_date DESC");
+    $stmt->execute();
+    $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    exit('接続失敗: ' . $e->getMessage());
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -34,54 +49,39 @@
 
 <body class="l-body-sub">
 
-    <?php include('inc/header.php');
+    <?php 
+    include('inc/header.php');
     ?>
 
     <main class="l-news">
         <section class="l-news-content">
             <h1 class="c-section-title" data-sub-title="News">お知らせ</h1>
             <div class="l-news-item__list">
+
+     <?php foreach ($info as $news): ?>
+        <!-- 曜日取得 -->
+        <?php $week = ["日", "月", "火", "水", "木", "金", "土" ]; ?>
+        <?php $weekday = date('w',strtotime($news["public_date"])); ?>
+
                 <article class="c-news-item">
-                    <p class="c-news-item__data"><time datetime="2030-02-25">2030.2.25（月）</time></p>
+                    <p class="c-news-item__data"><time datetime="<?php echo h(substr($news['public_date'],0,9)); ?>"><?php echo h(date("Y.n.j", strtotime($news['public_date']))) . " (". $week[$weekday] .")" ; ?></time></p>
                     <details class="c-news-item__details" id="news1">
                         <summary class="c-news-item__summary">
-                            <h2 class="c-news-item__title">出店者インタビュー&emsp;博多区で人気の「博多ぎょうざ堂」</h2>
+                            <h2 class="c-news-item__title"><?php echo h($news['title']); ?></h2>
                         </summary>
                         <div class="c-news-item__body">
-                            <p class="c-news-item__text">テキストテキストテキストテキスト</p>
+                            <?php if($news["info_img"] === NULL): echo ""; ?>
+                            <?php else: ?>
+                            <img class="c-news-item__img" src="./img/news/<?php echo h($news['info_img']) ?>" alt="">
+                            <?php endif; ?>
+                            <p class="c-news-item__text">
+                                <?php echo str_replace(['&lt;br&gt;', '&lt;br /&gt;'], '<br>', h($news['body'])); ?>
+                            </p>   
                         </div>
                     </details>
                 </article>
-                <article class="c-news-item">
-                    <p class="c-news-item__data"><time datetime="2023-02-23">2030.2.23（土）</time></p>
-                    <details class="c-news-item__details" id="news2">
-                        <summary class="c-news-item__summary">
-                            <h2 class="c-news-item__title">出店企業様募集中！</h2>
-                        </summary>
-                        <div class="c-news-item__body">
-                            <img class="c-news-item__img" src="./img/news/news-sample-image-s.png" alt="">
-                            <p class="c-news-item__text">テキストテキストテキストテキストテキストテキストテキストテキスト<br>
-                                テキストテキストテキストテキストテキストテキストテキスト<br>
-                                テキストテキストテキストテキストテキスト</p>
-                        </div>
-                    </details>
-                </article>
-                <article class="c-news-item">
-                    <p class="c-news-item__data"><time datetime="2023-02-16">2030.2.16（土）</time></p>
-                    <details class="c-news-item__details" id="news3">
-                        <summary class="c-news-item__summary">
-                            <h2 class="c-news-item__title">ふくおか餃子FES開催決定！</h2>
-                        </summary>
-                        <div class="c-news-item__body">
-                            <img class="c-news-item__img" src="./img/news/news-sample-image-l.png" alt="">
-                            <p class="c-news-item__text">テキストテキストテキストテキストテキストテキストテキストテキスト<br>
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br>
-                                テキストテキストテキストテキストテキストテキストテキスト<br>
-                                テキストテキストテキストテキストテキスト</p>
-                        </div>
-                    </details>
-                </article>
-            </div>
+            <?php endforeach; ?>
+         </div>
         </section>
     </main>
 
