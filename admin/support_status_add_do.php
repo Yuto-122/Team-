@@ -20,6 +20,7 @@ if (!empty($_POST)) {
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
+            // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
             header("location:support_status_add.php");
             exit();
         }
