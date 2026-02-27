@@ -14,10 +14,6 @@ if (!empty($_POST)) {
             $stmt = $db->prepare($sql);
             $stmt->bindParam(":status", $status, PDO::PARAM_STR);
             $stmt->execute();
-
-            // 正常に終わったらadmin_support_status.phpに戻す
-            header("location:admin_support_status.php");
-            exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
@@ -26,3 +22,6 @@ if (!empty($_POST)) {
         }
     }
 }
+
+header("location:admin_support_status.php");
+exit();

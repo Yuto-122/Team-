@@ -3,7 +3,7 @@ require_once __DIR__ . "/../functions/function.php";
 
 if (!empty($_POST)) {
     if (!empty($_POST["id"])) {
-        $id = $_POST["id"];
+        $id = (int)$_POST["id"];
 
         try {
             $db = db_connect();
