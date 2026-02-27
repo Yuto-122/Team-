@@ -1,11 +1,16 @@
-<?php 
+<?php
 require_once __DIR__ . "../functions/function.php";
 
-session_start(); 
+session_start();
 $name = $_POST["name"];
 $kana = $_POST["kana"];
 $email = $_POST["email"];
 $message = $_POST["message"];
+
+$_SESSION["name"] = $name;
+$_SESSION["kana"] = $kana;
+$_SESSION["email"] = $email;
+$_SESSION["message"] = $message;
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +47,22 @@ $message = $_POST["message"];
 </head>
 
 <style>
-    .c-btn{
+    .c-btn {
         display: flex;
         justify-content: center;
         gap: 8em;
     }
-    .l-form-main{
-        background-color: #84848481;
+
+    .c-btn_link {
+        margin: 2em 0 0 0;
+    }
+
+    .l-form-main {
+        background-color: #b8b8b8;
+    }
+
+    #message {
+        background-color: transparent;
     }
 </style>
 
@@ -90,23 +104,26 @@ $message = $_POST["message"];
         <form class="l-form" action="send.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" value="<?php echo h($name); ?>" readonly><br>
-                <label class="c-label" for="kana" ><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" value="<?php echo h($kana); ?>" readonly><br>
+                <input type="hidden" id="name" name="name" value="<?php echo h($name); ?>" readonly>
+                <p><?php echo h($name); ?></p><br>
+                <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
+                <input type="hidden" id="kana" name="kana" value="<?php echo h($kana); ?>" readonly>
+                <p><?php echo h($kana); ?></p><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" value="<?php echo h($email); ?>" readonly><br>
+                <input type="hidden" id="email" name="email" value="<?php echo h($email); ?>" readonly>
+                <p><?php echo h($email); ?></p><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" readonly><?php echo h($message); ?></textarea>
+                <textarea id="message" name="message" readonly><?php echo h($message); ?><?php echo h($message); ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
             <div class="c-btn c-btn--yellowred">
                 <a href="contact.php"><button class="c-btn_link c-btn-confirm" type="button">入力画面に戻る</button></a>
-                 <button class="c-btn_link c-btn-confirm" type="submit" value="送信">送信する</button>
+                <button class="c-btn_link c-btn-confirm" type="submit" value="送信">送信する</button>
             </div>
         </form>
     </main>
@@ -154,11 +171,11 @@ $message = $_POST["message"];
         <a href="#pagetop" class="c-pagetop-btn c-pagetop-btn-position"><img src="./img/top.svg" alt="トップへ戻る"></a>
     </div>
     <script src="./js/humberger-menu.js"></script>
-     <!-- js -->
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./js/pagetop-btn.js"></script>
+    <!-- js -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/pagetop-btn.js"></script>
 
 </body>
 
