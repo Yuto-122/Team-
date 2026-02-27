@@ -29,26 +29,28 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="#">
             <p>メニューDBの新規登録はこちら</p>
         </a>
-        <table class="table">
-            <thead class="table-primary">
-                <tr>
-                    <th>id</th>
-                    <th>商品名</th>
-                    <th>店舗名</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($datas as $data): ?>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light sticky-top">
                     <tr>
-                        <td><?php echo $data["menu_id"]; ?></td>
-                        <td><?php echo $data["menu_name"]; ?></td>
-                        <td><?php echo $data["shop_name"]; ?></td>
-                        <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        <th>id</th>
+                        <th>商品名</th>
+                        <th>店舗名</th>
+                        <th>操作</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($datas as $data): ?>
+                        <tr>
+                            <td><?php echo $data["menu_id"]; ?></td>
+                            <td><?php echo $data["menu_name"]; ?></td>
+                            <td><?php echo $data["shop_name"]; ?></td>
+                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 

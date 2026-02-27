@@ -14,48 +14,41 @@
     <main role="main" class="container" style="padding:60px 15px 0">
         <div>
             <h1 class="my-5">管理者ページTOP</h1>
-            <ul class="list-group my-3">
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_menu.php">
-                        <span class="post-title">メニューDB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_shop.php">
-                        <span class="post-title">企業情報DB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_faq_category.php">
-                        <span class="post-title">質問カテゴリDB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_faq.php">
-                        <span class="post-title">質問回答DB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_info.php">
-                        <span class="post-title">お知らせDB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_user.php">
-                        <span class="post-title">ユーザーDB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_contact.php">
-                        <span class="post-title">お問い合わせDB管理画面</span>
-                    </a>
-                </li>
-                <li class="list-group-item py-3">
-                    <a class="post-link" href="admin_support_status.php">
-                        <span class="post-title">対応状況DB管理画面</span>
-                    </a>
-                </li>
-            </ul>
+
+            <div class="list-group">
+                <a href="admin_menu.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">メニューDB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_shop.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">企業情報DB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_faq_category.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">質問カテゴリDB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_faq.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">質問回答DB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_info.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">お知らせDB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_user.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">ユーザーDB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_contact.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">お問い合わせDB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+                <a href="admin_support_status.php" class="list-group-item list-group-item-action">
+                    <p class="mb-1 fs-5 fw-bold">対応状況DB管理画面</p>
+                    <p class="mb-1">（説明を書く）</p>
+                </a>
+            </div>
         </div>
     </main>
 </body>
