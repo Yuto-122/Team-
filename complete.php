@@ -1,6 +1,3 @@
-<?php 
-require_once __DIR__ . "../functions/function.php";
-session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -71,7 +68,7 @@ session_start(); ?>
       
             <!-- 確認ボタン -->
             <div class="c-btn c-btn--yellowred">
-                <a href="index.html"><button class="c-btn_link c-btn-confirm" type="submit">TOPに戻る</button></a>
+                <a href="index.php"><button class="c-btn_link c-btn-confirm" type="submit">TOPに戻る</button></a>
             </div>
         </form>
     </main>
