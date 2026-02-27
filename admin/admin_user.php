@@ -25,7 +25,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">ユーザーDB管理画面</h1>
-        <a href="#">
+        <a href="user_add.php">
             <p>ユーザーDBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
@@ -34,7 +34,6 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tr class="table-primary">
                         <th>ID</th>
                         <th>ユーザー名</th>
-                        <th>パスワード</th>
                         <th>登録日時</th>
                         <th>操作</th>
                     </tr>
@@ -44,9 +43,8 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo $data["id"]; ?></td>
                             <td><?php echo $data["name"]; ?></td>
-                            <td><?php echo $data["password"]; ?></td>
                             <td><?php echo $data["create_date"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><a href="user_edit.php?id=<?php echo $data["id"]; ?>" class=" btn btn-secondary mx-1">編集</a><a href="user_delete.php?id=<?php echo $data["id"]; ?>" class="btn btn-danger mx-1">削除</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
