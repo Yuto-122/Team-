@@ -6,7 +6,7 @@ session_start();
 if (!empty($_POST)) {
     if (!empty($_POST["status"]) && !empty($_POST["id"])) {
         $status = $_POST["status"];
-        $id = $_POST["id"];
+        $id = (int)$_POST["id"];
 
         // 必須入力のデータがあったのでDB登録処理
         try {
@@ -16,10 +16,6 @@ if (!empty($_POST)) {
             $stmt->bindParam(":status", $status, PDO::PARAM_STR);
             $stmt->bindParam(":id", $id, PDO::PARAM_STR);
             $stmt->execute();
-
-            // 正常に終わったらadmin_support_status.phpに戻す
-            header("location:admin_support_status.php");
-            exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
@@ -28,3 +24,6 @@ if (!empty($_POST)) {
         }
     }
 }
+
+header("location:admin_support_status.php");
+exit();
