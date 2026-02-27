@@ -39,9 +39,6 @@ if (!empty($_POST)) {
             $stmt_2->bindParam(":name", $name, PDO::PARAM_STR);
             $stmt_2->bindParam(":password", $password_h, PDO::PARAM_STR);
             $stmt_2->execute();
-
-            header("location:admin_user.php");
-            exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
@@ -50,3 +47,6 @@ if (!empty($_POST)) {
         }
     }
 }
+
+header("location:admin_user.php");
+exit();
