@@ -1,3 +1,23 @@
+<?php
+
+require_once __DIR__ . '/functions/function.php';
+
+$id = (int)$_GET['id'];
+
+// DBに接続
+try {
+  $db = db_connect();
+
+  $sql = 'SELECT  menus.name AS menus_name , shops.name AS shops_name , menus.id , menus.body , menus.menu_b_pc_img , menus.menu_b_sp_img, menus.amount , menus.price , shops.kana , shops.booth , shops.description FROM menus INNER JOIN shops ON menus.shop_id = shops.id WHERE menus.id=:id';
+  $stmt = $db->prepare($sql);
+  $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  exit('エラー: ' . $e->getMessage());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -41,37 +61,40 @@
   <main class="l-menu-b">
     <article class="c-main-container">
       <div class="c-menu-b-wrapper c-menu-b-card l-menu-b-card">
-        <h1 class="c-menu-b-card-cnt_title l-menu-b-card_text">
-          <span>B-01</span>
-          肉汁あふれる焼き餃子
-        </h1>
-        <div class="c-menu-b-card-cnt_img">
-          <picture>
-            <source media="(min-width: 768px)" srcset="./img/menu-b/menu-b-01.png" />
-            <img src="./img/menu-b/menu-b-01-sp.png" alt="肉汁あふれる焼き餃子" />
-          </picture>
-        </div>
-        <div class="c-menu-b-card-cnt_desc l-menu-b-card_text">
-          <p>
-            香ばしく焼き上げた皮の中には、あふれんばかりの肉汁がぎっしり。厳選された国産豚とキャベツの旨味が広がる、満足感たっぷりの一品です。一口噛めば、ジュワッとした肉汁が口いっぱいに広がります。
-          </p>
-          <p class="u-mt10">6個入り 580円（税込）</p>
-        </div>
-        <!-- 共有btn -->
-        <a class="c-share-btn c-menu-b-card-cnt_link l-menu-b-card_text" href="#">「#ふくおか餃子FES」で共有</a>
-        <!-- 店舗詳細 -->
-        <div class="c-menu-b-card-cnt_shop l-menu-b-card_text">
-          <p>博多ぎょうざ堂</p>
-          <p class="u-mt10">
-            福岡を代表する老舗餃子専門店。国産豚とキャベツを使用し、ひとつひとつ手包みで仕上げています。外はカリッと、中は肉汁たっぷりの博多スタイルが人気。
-          </p>
-        </div>
+        <?php foreach ($menus as $list): ?>
+          <!-- TODO 画像がなかったらの処理 時間あったら -->
+          <h1 class="c-menu-b-card-cnt_title l-menu-b-card_text">
+            <span><?php echo $list['booth']; ?></span>
+            <?php echo $list['menus_name']; ?>
+          </h1>
+          <div class="c-menu-b-card-cnt_img">
+            <picture>
+              <source media="(min-width: 768px)" srcset="./img/menu-b/<?php echo $list['menu_b_pc_img']; ?>" />
+              <img src="./img/menu-b/<?php echo $list['menu_b_sp_img']; ?>" alt="<?php echo $list['menus_name']; ?>" />
+            </picture>
+          </div>
+          <div class="c-menu-b-card-cnt_desc l-menu-b-card_text">
+            <p>
+              <?php echo $list['body']; ?>
+            </p>
+            <p class="u-mt10"><?php echo $list['amount']; ?>個入り <?php echo $list['price']; ?>円（税込）</p>
+          </div>
+          <!-- 共有btn -->
+          <a class="c-share-btn c-menu-b-card-cnt_link l-menu-b-card_text" href="#">「#ふくおか餃子FES」で共有</a>
+          <!-- 店舗詳細 -->
+          <div class="c-menu-b-card-cnt_shop l-menu-b-card_text">
+            <p><?php echo $list['shops_name']; ?><?php if (!empty($list['kana'])): ?>（<?php echo $list['kana']; ?>）<?php endif; ?></p>
+            <p class="u-mt10">
+              <?php echo $list['description']; ?>
+            </p>
+          </div>
+        <?php endforeach; ?>
       </div>
     </article>
     <!-- メニュー一覧へbtn -->
     <div class="c-btn2 c-btn2--red u-mt40to50">
       <div class="c-btn2_box"></div>
-      <a class="c-btn2_link" href="menu.html">メニュー一覧へ</a>
+      <a class="c-btn2_link" href="menu.php">メニュー一覧へ</a>
     </div>
   </main>
 
