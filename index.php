@@ -1,3 +1,20 @@
+<?php
+
+require_once __DIR__ . '/functions/function.php';
+
+// DBに接続
+try {
+  $db = db_connect();
+
+  $sql = 'SELECT menus.id , menus.name AS menus_name , shops.name AS shops_name, menus.menu_img, menus.amount , menus.price, shops.booth FROM menus INNER JOIN shops ON menus.shop_id = shops.id';
+  $stmt = $db->prepare($sql);
+  $stmt->execute();
+  $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  exit('エラー: ' . $e->getMessage());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -135,65 +152,16 @@
       <div class="l-content-wrap">
         <h2 class="c-sec-title l-sec-title--menu" data-sub-title="Menu">メニュー</h2>
         <ul class="l-menu-list">
-          <li class="c-menu-card c-menu-card--b01">
-            <h3>肉汁あふれる<br class="c-menu-card-break">焼き餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-01.png" alt="肉汁あふれる焼き餃子" />
-            <p class="c-menu-card-price">6個入り&nbsp;580円（税込）</p>
-            <p class="c-menu-card-shopname">博多ぎょうざ堂</p>
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>          
-            <a class="c-button-goto-booth" href="./menu-b-01.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b02">
-            <h3>ふっくら<br class="c-menu-card-break">蒸しあげ餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-02.png" alt="ふっくら蒸しあげ餃子" />
-            <p class="c-menu-card-price">5個入り&nbsp;600円（税込）</p>
-            <p class="c-menu-card-shopname">中華食堂&nbsp;蒸々屋</p>           
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>                     
-            <a class="c-button-goto-booth" href="./menu-b-02.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b03">
-            <h3>中華風スープ餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-03.png" alt="中華風スープ餃子" />
-            <p class="c-menu-card-price">5個入り&nbsp;680円（税込）</p>
-            <p class="c-menu-card-shopname">餃子茶寮&nbsp;彩香</p>           
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            <a class="c-button-goto-booth" href="./menu-b-03.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b04">
-            <h3>カリもち！揚げ餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-04.png" alt="カリもち！揚げ餃子" />
-            <p class="c-menu-card-price">5個入り&nbsp;600円（税込）</p>
-            <p class="c-menu-card-shopname">餃子バル&nbsp;風雷坊</p>
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            <a class="c-button-goto-booth" href="./menu-b-04.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b05">
-            <h3>お口に広がる<br class="c-menu-card-break">地中海の風</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-05.png" alt="お口に広がる地中海の風" />
-            <p class="c-menu-card-price">5個入り&nbsp;720円（税込）</p>
-            <p class="c-menu-card-shopname">Mediterraneo Gyoza</p>
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            <a class="c-button-goto-booth" href="./menu-b-05.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b06">
-            <h3>素材の旨味ひきたつ<br class="c-menu-card-break">水餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-06.png" alt="素材の旨味ひきたつ水餃子" />
-            <p class="c-menu-card-price">6個入り&nbsp;580円（税込）</p>
-            <p class="c-menu-card-shopname">餃子処&nbsp;湯心</p>
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            <a class="c-button-goto-booth" href="./menu-b-06.html">詳細はこちら</a>
-          </li>
-          <li class="c-menu-card c-menu-card--b07">
-            <h3>しびうまラー油餃子</h3>
-            <img class="c-menu-card__img" src="./img/menu/menu-07.png" alt="しびうまラー油餃子" />
-            <p class="c-menu-card-price">6個入り&nbsp;620円（税込）</p>
-            <p class="c-menu-card-shopname">辛味房&nbsp;赤龍</p>
-            
-            <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-            
-            
-            <a class="c-button-goto-booth" href="./menu-b-07.html">詳細はこちら</a>
-          </li>
+          <?php foreach ($menus as $list): ?>
+            <li class="c-menu-card c-menu-card--b01">
+              <h3><?php echo $list['menus_name']; ?></h3>
+              <img class="c-menu-card__img" src="./img/menu/<?php echo $list['menu_img']; ?>" alt="<?php echo $list['menus_name']; ?>">
+              <p class="c-menu-card-price"><?php echo $list['amount']; ?>個入り&nbsp;<?php echo $list['price']; ?>円（税込）</p>
+              <p class="c-menu-card-shopname"><?php echo $list['shops_name']; ?></p>
+              <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
+              <a class="c-button-goto-booth" href="./menu-b.php?id=<?php echo $list['id']; ?>">詳細はこちら</a>
+            </li>
+          <?php endforeach; ?>
         </ul>
         <!-- メニュー一覧btn -->
         <div class="l-btn-layout">
