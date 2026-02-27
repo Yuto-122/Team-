@@ -6,7 +6,7 @@ require_once __DIR__ . '/functions/function.php';
 try {
     $db = db_connect();
 
-    $sql = 'SELECT menus.name AS menus_name , shops.name AS shop_name, menus.menu_img, menus.amount , menus.price, shops.booth FROM menus INNER JOIN shops ON menus.shop_id = shops.id';
+    $sql = 'SELECT menus.id , menus.name AS menus_name , shops.name AS shops_name , menus.menu_img, menus.amount , menus.price, shops.booth FROM menus INNER JOIN shops ON menus.shop_id = shops.id';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -84,102 +84,24 @@ try {
         <!-- menu-card -->
         <div class="menu-wrapper">
             <ul class="l-menu-list l-menu-contents">
-                <li class="c-menu-card c-menu-card--b01">
-                    <?php foreach ($menus as $list): ?>
+                <!-- todo:画像なかった場合の処理余裕あったら書く 詳細はこちら-->
+                <?php foreach ($menus as $list): ?>
+                    <li class="c-menu-card c-menu-card--b01">
                         <h2>
-                            <?php echo $list['name'] ?>
-                            <!-- 肉汁あふれる<br class="c-menu-card-break">焼き餃子 -->
+                            <?php echo $list['menus_name']; ?>
                         </h2>
-                        <img class="c-menu-card__img" src="./img/menu/menu-01.png" alt="肉汁あふれる焼き餃子">
-                        <p class="c-menu-card-boothnum">B-01</p>
-                        <p class="c-menu-card-price">6個入り 580円（税込）</p>
-                        <p class="c-menu-card-shopname">博多ぎょうざ堂</p>
+                        <img class="c-menu-card__img" src="./img/menu/<?php echo $list['menu_img']; ?>" alt="<?php echo $list['menus_name']; ?>">
+                        <p class="c-menu-card-boothnum"><?php echo $list['booth']; ?></p>
+                        <p class="c-menu-card-price"><?php echo $list['amount']; ?>個入り <?php echo $list['price']; ?>円（税込）</p>
+                        <p class="c-menu-card-shopname"><?php echo $list['shops_name']; ?></p>
                         <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
                         <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
                         <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                        <a class="c-button-goto-booth" href="./menu-b-01.html">
+                        <a class="c-button-goto-booth" href="./menu-b.php?id=<?php echo $list['id']; ?>">
                             詳細はこちら
                         </a>
-                    <?php endforeach; ?>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b02">
-                    <h2>
-                        ふっくら<br class="c-menu-card-break">蒸しあげ餃子
-                    </h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-02.png" alt="ふっくら蒸しあげ餃子">
-                    <p class="c-menu-card-boothnum">B-02</p>
-                    <p class="c-menu-card-price">5個入り 600円（税込）</p>
-                    <p class="c-menu-card-shopname">中華食堂 蒸々屋</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-02.html">詳細はこちら</a>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b03">
-                    <h2>中華風スープ餃子</h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-03.png" alt="中華風スープ餃子">
-                    <p class="c-menu-card-boothnum">B-03</p>
-                    <p class="c-menu-card-price">5個入り 680円（税込）</p>
-                    <p class="c-menu-card-shopname">餃子茶寮 彩香</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-03.html">詳細はこちら</a>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b04">
-                    <h2>カリもち！揚げ餃子</h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-04.png" alt="カリもち！揚げ餃子">
-                    <p class="c-menu-card-boothnum">B-04</p>
-                    <p class="c-menu-card-price">5個入り 600円（税込）</p>
-                    <p class="c-menu-card-shopname">餃子バル 風雷坊</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-04.html">詳細はこちら</a>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b05">
-                    <h2>
-                        お口に広がる<br class="c-menu-card-break">地中海の風
-                    </h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-05.png" alt="お口に広がる地中海の風">
-                    <p class="c-menu-card-boothnum">B-05</p>
-                    <p class="c-menu-card-price">5個入り 720円（税込）</p>
-                    <p class="c-menu-card-shopname">Mediterraneo Gyoza</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-05.html">詳細はこちら</a>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b06">
-                    <h2>
-                        素材の旨味ひきたつ<br class="c-menu-card-break">水餃子
-                    </h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-06.png" alt="お口に広がる地中海の風">
-                    <p class="c-menu-card-boothnum">B-06</p>
-                    <p class="c-menu-card-price">6個入り 580円（税込）</p>
-                    <p class="c-menu-card-shopname">餃子処 湯心</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-06.html">詳細はこちら</a>
-                </li>
-
-                <li class="c-menu-card c-menu-card--b07">
-                    <h2>しびうまラー油餃子</h2>
-                    <img class="c-menu-card__img" src="./img/menu/menu-07.png" alt="しびうまラー油餃子">
-                    <p class="c-menu-card-boothnum">B-07</p>
-                    <p class="c-menu-card-price">6個入り 620円（税込）</p>
-                    <p class="c-menu-card-shopname">辛味房 赤龍</p>
-                    <!-- SNSへの共有リンク / アイコンは疑似要素で挿入 -->
-                    <a class="c-share-link" href="#">「#ふくおか餃子FES」で共有</a>
-                    <!-- メニュー詳細ページへのリンク / アイコンは疑似要素で挿入  -->
-                    <a class="c-button-goto-booth" href="./menu-b-07.html">詳細はこちら</a>
-                </li>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </main>
