@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 $db = db_connect();
-$sql = "SELECT * FROM info";
+$sql = "SELECT * FROM info ORDER BY public_date DESC";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
@@ -25,7 +25,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">お知らせDB管理画面</h1>
-        <a href="#">
+        <a href="./support_info_add.php">
             <p>お知らせDBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
@@ -52,7 +52,11 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["public_date"]; ?></td>
                             <td><?php echo $data["update_date"]; ?></td>
                             <td><?php echo $data["created_date"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td>
+                                <button type="button" class="btn btn-primary mx-1">詳細</button>
+                                <button type="button" class="btn btn-secondary mx-1">編集</button>
+                                <button type="button" class="btn btn-danger mx-1">削除</button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
