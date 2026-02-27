@@ -3,14 +3,14 @@ require_once __DIR__ . "/../functions/function.php";
 
 if (empty($_GET)) {
     // GETが無かったら戻す
-    header("location:admin_support_status.php");
+    header("location:admin_user.php");
     exit();
 }
 
-$id = $_GET["id"];
+$id = (int)$_GET["id"];
 
 $db = db_connect();
-$sql = "SELECT * FROM support_status WHERE id=:id";
+$sql = "SELECT * FROM users WHERE id=:id";
 $stmt = $db->prepare($sql);
 $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 $stmt->execute();
@@ -33,13 +33,15 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">対応状況DB - 編集</h1>
-        <form action="support_status_edit_do.php" method="post" class="mb-3">
+        <h1 class="my-5">ユーザーDB - 編集</h1>
+        <form action="user_edit_do.php" method="post" class="mb-3">
             <div class="mb-3">
-                <p>ID</p>
-                <p><?php echo $target["id"] ?></p>
-                <label for="status" class="form-label">ステータス</label>
-                <input type="text" name="status" id="status" class="form-control" value="<?php echo $target["status"] ?>" required>
+                <label for="name" class="form-label">名前</label>
+                <input type="text" name="name" id="name" class="form-control" value="<?php echo $target["name"]; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">パスワード</label>
+                <input type="password" name="password" id="password" class="form-control" value="">
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
