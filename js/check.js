@@ -2,7 +2,7 @@ const kanaArea = document.getElementById("kana");
 const btn = document.querySelector(".c-btn_link");
 
 function kanaCheck(kana) {
-    return (/^[ァ-ン ]*$/).test(kana);
+    return (/^[ァ-ヶー ]*$/).test(kana);
 }
 
 kanaArea.addEventListener("change", (e) => {
