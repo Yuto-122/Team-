@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 $db = db_connect();
-$sql = "SELECT * FROM faq";
+$sql = "SELECT faq.id AS faq_id, faq.question AS faq_question, faq.answer AS faq_answer, faq.create_date AS faq_create_date, faq_category.category AS category FROM faq INNER JOIN faq_category ON faq.type = faq_category.id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
@@ -33,8 +33,8 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <thead class="table-light sticky-top">
                     <tr>
                         <th>id</th>
-                        <th>質問</th>
-                        <th>回答</th>
+                        <th class="w-25">質問</th>
+                        <th class="w-25">回答</th>
                         <th>項目種別</th>
                         <th>登録日時</th>
                         <th>操作</th>
@@ -43,12 +43,15 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($datas as $data): ?>
                         <tr>
-                            <td><?php echo $data["id"]; ?></td>
-                            <td><?php echo $data["question"]; ?></td>
-                            <td><?php echo $data["answer"]; ?></td>
-                            <td><?php echo $data["type"]; ?></td>
-                            <td><?php echo $data["create_date"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><?php echo $data["faq_id"]; ?></td>
+                            <td><?php echo $data["faq_question"]; ?></td>
+                            <td><?php echo $data["faq_answer"]; ?></td>
+                            <td><?php echo $data["category"]; ?></td>
+                            <td><?php echo $data["faq_create_date"]; ?></td>
+                            <td>
+                                <a href="faq_edit.php?id=<?php echo $data["faq_id"]; ?>" class="btn btn-secondary mx-1">編集</a>
+                                <a href="faq_delete.php?id=<?php echo $data["faq_id"]; ?>" class="btn btn-danger mx-1">削除</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
