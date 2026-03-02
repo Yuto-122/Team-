@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . "/../functions/function.php";
+
+// TODO nagata-t:あとで画面全体に追加する
+check_logined();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 

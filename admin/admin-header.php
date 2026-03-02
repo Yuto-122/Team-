@@ -9,10 +9,7 @@
                 <li class="nav-item"><a class="nav-link" href="./logout.php">ログアウト</a></li>
             </ul>
         </div>
-        <?php
-        if (isset($_SESSION["id"])):
-            // $role = get_roles_list();
-        ?>
-            <!-- <p class="text-light"><?php echo $_SESSION["name"]; ?> [ <?php echo $role[$_SESSION["role"]]; ?> ]</p> -->
+        <?php if (!empty($_SESSION)): ?>
+            <span class="text-light">ログイン: <?php echo $_SESSION["name"]; ?></span>
         <?php endif; ?>
     </nav>
