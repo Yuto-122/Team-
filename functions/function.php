@@ -18,3 +18,15 @@ function db_connect(){
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     return $db;
 }
+
+function check_logined()
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($_SESSION["id"])) {
+        header("location:login.php");
+        exit();
+    }
+}
