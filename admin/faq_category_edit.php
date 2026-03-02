@@ -1,0 +1,60 @@
+<?php
+require_once __DIR__ . "/../functions/function.php";
+
+if (empty($_GET)) {
+    // GETが無かったら戻す
+    header("location:admin_faq_category.php");
+    exit();
+}
+
+$id = $_GET["id"];
+
+$db = db_connect();
+$sql = "SELECT * FROM faq_category WHERE id=:id";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+$stmt->execute();
+
+$target = $stmt->fetch(PDO::FETCH_ASSOC);
+
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <title>チーム王将 | 管理者ページ</title>
+</head>
+
+<body>
+    <?php include('admin-header.php');  ?>
+
+    <main role="main" class="container" style="padding:60px 15px 0">
+        <h1 class="my-5">質問カテゴリDB - 編集</h1>
+        <form action="faq_category_edit_do.php" method="post" class="mb-3">
+            <div class="mb-3">
+                <p>ID</p>
+                <p><?php echo $target["id"] ?></p>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">カテゴリ</label>
+                <input type="text" name="category" id="category" class="form-control" value="<?php echo $target["category"] ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="link_id" class="form-label">リンクID</label>
+                <input type="text" name="link_id" id="link_id" class="form-control" value="<?php echo $target["link_id"] ?>" required>
+            </div>
+            <div class="mb-3">
+                <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
+                <input type="submit" value="編集する" class="btn btn-primary">
+                <a href="admin_faq_category.php" class="btn btn-secondary">一覧に戻る</a>
+            </div>
+        </form>
+
+    </main>
+</body>
+
+</html>
