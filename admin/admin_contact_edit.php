@@ -58,7 +58,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-                <a href="admin_contact_edit.do.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">保存する</a>
+                <a href="admin_contact_edit_do.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">保存する</a>
                 <a href="admin_contact.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>

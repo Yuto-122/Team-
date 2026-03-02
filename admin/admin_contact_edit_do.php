@@ -8,7 +8,7 @@ if (!empty($_POST)) {
         $status = $_POST["status"];
         $id = $_POST["id"];
 
-        // 必須入力のデータがあったのでDB登録処理
+        // 必須入力のデータがあったのでDB上書き処理
         try {
             $db = db_connect();
             $sql = "UPDATE contact SET status=:status WHERE id=:id";
@@ -18,11 +18,12 @@ if (!empty($_POST)) {
             $stmt->execute();
 
             // 正常に終わったらadmin_support_status.phpに戻す
-            header("location:admin_support_status.php");
+            header("location:admin_contact.php");
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
+            echo $e ->getMessage();
             header("location:support_status_edit.php");
             exit();
         }
