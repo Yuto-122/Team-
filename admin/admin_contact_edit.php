@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
 
+session_start();
+
 // if (empty($_GET)) {
 //     // GETが無かったら戻す
 //     header("location:admin_contact.php");
@@ -9,15 +11,21 @@ require_once __DIR__ . "/../functions/function.php";
 
 $id = $_GET["id"];
 
-debug_check($id);
 $db = db_connect();
 $sql = "SELECT * FROM contact WHERE id=:id";
+$sql2 = " SELECT id,status FROM support_status";
+
 $stmt = $db->prepare($sql);
-$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+$stmt2 = $db->prepare($sql2);
+
+$stmt -> bindParam(":id",$id,PDO::PARAM_INT);
+
 
 $stmt->execute();
+$stmt2->execute();
 
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
+$staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -37,7 +45,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">お問い合わせDB管理画面</h1>
-        <form action="admin_contact_edit_do.php" method="post" class="mb-3">
+        <form action="admin_contact_edit_do.php?id=<?php echo $data["id"]; ?>" method="post" class="mb-3">
             <div class="mb-3">
                 <p><b>ID</b></p>
                 <p><?php echo $data["id"] ?></p>
@@ -49,17 +57,18 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 <p><?php echo $data["message"] ?></p>
                 <p><b>送信日時</b></p>
                 <p><?php echo $data["receive_date"] ?></p>
-                <input type="radio" id="1" name="status" value="1" checked>
-                <label for="1">未対応</label>
-                <input type="radio" id="2" name="status" value="2">
-                <label for="2">対応中</label>
-                <input type="radio" id="3" name="status" value="3">
-                <label for="3">対応済</label>
+                <p><b>対応状況</b></p>
+                <?php foreach($staData as $status): ?>
+                <input type="radio" id="<?php echo $status["id"]; ?>" name="status" value="<?php echo $status["id"]; ?>" <?php echo $status["id"] === $data["status"]  ? "checked" : "" ?>>
+                <label for="<?php echo $status["id"]; ?>"><?php echo $status["status"]; ?></label>
+                <?php endforeach; ?>
+
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-                <a href="admin_contact_edit_do.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">保存する</a>
-                <a href="admin_contact.php" class="btn btn-secondary">一覧に戻る</a>
+                <input type="hidden" name="date" value="<?php echo $data["update_date"]; ?>">
+                <button type="submit" class="btn btn-primary">保存する</button>
+                <a href="admin_contact_detail.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>
 
