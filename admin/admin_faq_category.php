@@ -25,7 +25,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">質問カテゴリDB管理画面</h1>
-        <a href="#">
+        <a href="faq_category_add.php">
             <p>質問カテゴリDBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
@@ -46,7 +46,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["category"]; ?></td>
                             <td><?php echo $data["link_id"]; ?></td>
                             <td><?php echo $data["create_date"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><a href="faq_category_edit.php?id=<?php echo $data["id"]; ?>" class="btn btn-secondary mx-1">編集</a><a href="faq_category_delete.php?id=<?php echo $data["id"]; ?>" class="btn btn-danger mx-1">削除</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
