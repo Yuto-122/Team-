@@ -83,7 +83,11 @@ try {
           <a class="c-share-btn c-menu-b-card-cnt_link l-menu-b-card_text" href="#">「#ふくおか餃子FES」で共有</a>
           <!-- 店舗詳細 -->
           <div class="c-menu-b-card-cnt_shop l-menu-b-card_text">
-            <p><?php echo $list['shops_name']; ?><?php if (!empty($list['kana'])): ?>（<?php echo $list['kana']; ?>）<?php endif; ?></p>
+            <p><?php echo $list['shops_name']; ?>
+              <?php if (!empty($list['kana'])): ?>
+                （<?php echo $list['kana']; ?>）
+              <?php endif; ?>
+            </p>
             <p class="u-mt10">
               <?php echo $list['description']; ?>
             </p>

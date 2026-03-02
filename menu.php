@@ -14,6 +14,37 @@ try {
     exit('エラー: ' . $e->getMessage());
 }
 
+//boothの連想配列を作る、データを固定で仮実装
+$booth_array = array(
+    'booth1' => array(
+        'coords' => '85,401,191,500',
+        'num' => 1
+    ),
+    'booth2' => array(
+        'coords' => '207,347,322,454',
+        'num' => 2
+    ),
+    'booth3' => array(
+        'coords' => '354,339,466,446',
+        'num' => 3
+    ),
+    'booth4' => array(
+        'coords' => '410,463,533,565',
+        'num' => 4
+    ),
+    'booth5' => array(
+        'coords' => '364,586,473,686',
+        'num' => 5
+    ),
+    'booth6' => array(
+        'coords' => '232,601,332,699',
+        'num' => 6
+    ),
+    'booth7' => array(
+        'coords' => '108,537,220,633',
+        'num' => 7
+    )
+);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -72,13 +103,10 @@ try {
                     <area shape="rect" coords="36,208,90,254" href="./menu-b-07.html" alt="ブース7の詳細ページへとぶ" /> -->
 
                 <!-- PC -->
-                <area shape="rect" coords="85,401,191,500" href="./menu-b-01.html" alt="ブース1の詳細ページへとぶ" />
-                <area shape="rect" coords="207,347,322,454" href="./menu-b-02.html" alt="ブース2の詳細ページへとぶ" />
-                <area shape="rect" coords="354,339,466,446" href="./menu-b-03.html" alt="ブース3の詳細ページへとぶ" />
-                <area shape="rect" coords="410,463,533,565" href="./menu-b-04.html" alt="ブース4の詳細ページへとぶ" />
-                <area shape="rect" coords="364,586,473,686" href="./menu-b-05.html" alt="ブース5の詳細ページへとぶ" />
-                <area shape="rect" coords="232,601,332,699" href="./menu-b-06.html" alt="ブース6の詳細ページへとぶ" />
-                <area shape="rect" coords="108,537,220,633" href="./menu-b-07.html" alt="ース7の詳細ページへとぶ" />
+                <?php foreach ($booth_array as $list): ?>
+                    <area shape="rect" coords="<?php echo $list['coords']; ?>" href="./menu-b.php?id=<?php echo $list['num']; ?>"
+                        alt="ブース<?php echo $list['num']; ?>の詳細ページへとぶ" />
+                <?php endforeach; ?>
             </map>
         </div>
         <!-- menu-card -->
