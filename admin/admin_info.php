@@ -25,8 +25,10 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">お知らせDB管理画面</h1>
-        <a href="./support_info_add.php">
-            <p>お知らせDBの新規登録はこちら</p>
+        <a href="./info_add.php">
+            <button type="button" class="btn btn-primary mx-1 m-1 btn-lg">
+                お知らせDB 新規登録
+            </button>
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -45,17 +47,23 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($datas as $data): ?>
                         <tr>
-                            <td><?php echo $data["id"]; ?></td>
-                            <td><?php echo $data["title"]; ?></td>
-                            <td><?php echo $data["body"]; ?></td>
-                            <td><?php echo $data["info_img"]; ?></td>
-                            <td><?php echo $data["public_date"]; ?></td>
-                            <td><?php echo $data["update_date"]; ?></td>
-                            <td><?php echo $data["created_date"]; ?></td>
+                            <td><?php echo h($data["id"]); ?></td>
+                            <td><?php echo h($data["title"]); ?></td>
+                            <td><?php echo h($data["body"]); ?></td>
+                            <td><?php echo h($data["info_img"]); ?></td>
+                            <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["public_date"]))); ?></td>
+                            <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["update_date"]))); ?></td>
+                            <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["created_date"]))); ?></td>
                             <td>
-                                <button type="button" class="btn btn-primary mx-1">詳細</button>
-                                <button type="button" class="btn btn-secondary mx-1">編集</button>
-                                <button type="button" class="btn btn-danger mx-1">削除</button>
+                                <!-- <a href="">
+                                    <button type="button" class="btn btn-primary mx-1">詳細</button>
+                                </a> -->
+                                <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>">
+                                    <button type="button" class="btn btn-secondary mx-1">編集</button>
+                                </a>
+                                    <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
+                                    <button type="button" class="btn btn-danger mx-1">削除</button>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
