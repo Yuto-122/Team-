@@ -117,7 +117,7 @@ $_SESSION["message"] = $message;
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" readonly><?php echo h($message); ?><?php echo h($message); ?></textarea>
+                <textarea id="message" name="message" readonly><?php echo h($message); ?></textarea>
             </div>
 
             <!-- 確認ボタン -->

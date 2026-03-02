@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 $db = db_connect();
-$sql = "SELECT * FROM contact";
+$sql = "SELECT contact.id AS contact_id,contact.name AS contact_name,contact.kana AS contact_kana,contact.receive_date AS receive_date,contact.update_date AS update_date,support_status.status AS status FROM contact INNER JOIN support_status ON contact.status = support_status.id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
@@ -35,8 +35,6 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>ID</th>
                         <th>名前</th>
                         <th>フリガナ</th>
-                        <th>メールアドレス</th>
-                        <th>本文</th>
                         <th>送信日時</th>
                         <th>更新日時</th>
                         <th>対応状況</th>
@@ -46,15 +44,17 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($datas as $data): ?>
                         <tr>
-                            <td><?php echo $data["id"]; ?></td>
-                            <td><?php echo $data["name"]; ?></td>
-                            <td><?php echo $data["kana"]; ?></td>
-                            <td><?php echo $data["email"]; ?></td>
-                            <td><?php echo $data["message"]; ?></td>
+                            <td><?php echo $data["contact_id"]; ?></td>
+                            <td><?php echo $data["contact_name"]; ?></td>
+                            <td><?php echo $data["contact_kana"]; ?></td>
                             <td><?php echo $data["receive_date"]; ?></td>
                             <td><?php echo $data["update_date"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><a href="admin_contact_detail.php?id=<?php echo $data["contact_id"]; ?>">
+                                <button type="button" class="btn btn-primary mx-1">詳細</button></a>
+                                <a href="admin_contact_edit.php?id=<?php echo $data["contact_id"]; ?>"><button type="button" class="btn btn-secondary mx-1">編集</button></a>
+                                <a href="admin_contact_delete.php?id=<?php echo $data["contact_id"]; ?>"><button type="button" class="btn btn-danger mx-1">削除</button></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
