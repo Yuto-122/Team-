@@ -4,7 +4,7 @@ session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
+<hphp
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
@@ -60,11 +60,11 @@ session_start(); ?>
             <div class="l-hamberger-content">
                 <nav class="c-hambueger__nav">
                     <ul class="c-hambueger__list">
-                        <li class="c-hambueger__list-link-item"><a href="menu.html">メニュー</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="menu.php">メニュー</a></li>
                         <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="news.html">お知らせ</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="faq.html">よくある質問</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="contact.html">お問い合わせ</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="news.php">お知らせ</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="faq.php">よくある質問</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="contact.php">お問い合わせ</a></li>
                     </ul>
                 </nav>
             </div>

@@ -68,7 +68,7 @@ $_SESSION["message"] = $message;
 
 <body class="l-body-sub">
     <header class="l-header" id="pagetop">
-        <div class="c-header__title"><a href="index.html"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
+        <div class="c-header__title"><a href="index.php"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
         <div class="l-header__icons">
             <ul class="l-sns-list">
                 <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
@@ -87,10 +87,10 @@ $_SESSION["message"] = $message;
             <div class="l-hamberger-content">
                 <nav class="c-hambueger__nav">
                     <ul class="c-hambueger__list">
-                        <li class="c-hambueger__list-link-item"><a href="menu.html">メニュー</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="news.html">お知らせ</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="faq.html">よくある質問</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="menu.php">メニュー</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="index.php#top-infomation">開催概要</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="news.php">お知らせ</a></li>
+                        <li class="c-hambueger__list-link-item"><a href="faq.php">よくある質問</a></li>
                         <li class="c-hambueger__list-link-item"><a href="contact.html">お問い合わせ</a></li>
                     </ul>
                 </nav>
