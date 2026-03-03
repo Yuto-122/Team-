@@ -16,7 +16,44 @@
         <div>
       <!-- ここから「本文」-->
       <h1 class="my-5">お知らせ - 新規登録</h1>
-      <form action="info_add_do.php" method="post" class="needs-validation mb-3" novalidate>
+
+    <?php
+    //アップロードの処理
+      $msg = null;
+      $alert = null;
+
+    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
+        $old_name = $_FILES['image']['tmp_name'];
+
+        $new_name = $_FILES['image']['name'];
+        if(move_uploaded_file($old_name, '../img/news/' . $new_name)){
+            $msg = 'アップロードしました。';
+            $alert = 'success';
+        } else {
+            $msg = 'アップロードできませんでした。';
+            $alert = 'danger';
+        }
+
+    }
+      
+    ?>
+
+       
+
+        <form action="info_add.php" method="post" class="needs-validation mb-3" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="form-label d-block mb-3">【任意】 画像は投稿する前にアップロードしてください</label>
+              <input type="file" name="image" class="form-control-file">
+              <input type="submit" value="アップロード" class="btn btn-primary btn-sm">
+            </div>
+        </form>
+
+        <?php if($msg){
+          echo '<div class="alert alert-' . $alert .'" role="arert">'. $msg . '</div>';
+        } 
+        ?>
+
+      <form action="info_add_do.php" method="post" class="needs-validation mb-3" novalidate >
         <div class="mb-3">
           <label for="title" class="form-label">タイトル</label>
           <input type="text" name="title" id="title" class="form-control" required>
@@ -36,6 +73,7 @@
               投稿者を入力してください
             </div>
           </div>
+          
         </div>
         <div class="mb-3">
           <label for="body" class="form-label">本文</label>

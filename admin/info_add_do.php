@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/../functions/function.php';
 
+
 // TODO: データ受け取り
+
+$info_img = $_POST['info_img'];//写真の名前受け取り忘れないで
+
 if (!empty($_POST)) {
     // POST送信されたとき
     if (!empty($_POST['title']) && !empty($_POST['body'])) {
@@ -13,7 +17,6 @@ if (!empty($_POST)) {
         $update_date = empty($_POST['pdate_date']) ? date('Y-m-d') : $_POST['pdate_date'];
         $created_date = empty($_POST['created_date']) ? date('Y-m-d') : $_POST['created_date'];
 
-        var_dump($_POST);
 
         // DBに接続
         try {
@@ -31,6 +34,7 @@ if (!empty($_POST)) {
 
             // トップページへ画面遷移
             header('location:admin_info.php');
+            
             exit();
         } catch (PDOException $e) {
             exit('エラー: '.$e->getMessage());
