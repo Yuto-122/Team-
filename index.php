@@ -246,6 +246,8 @@ try {
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="./js/pagetop-btn.js"></script>
   <script src="./js/humberger-menu.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="./js/animation.js"></script>
 </body>
 
 </html>
