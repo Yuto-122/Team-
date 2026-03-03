@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
 
-if (!empty ($_POST)) {
+if (!empty($_POST)) {
     if (!empty($_POST["name"]) && !empty($_POST["password"])) {
         $name = $_POST["name"];
         $password = $_POST["password"];
@@ -46,13 +46,13 @@ if (!empty ($_POST)) {
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
-            set_admin_system_message("例外が発生しました。<br>" . $e->getMessage(), Msg_Status::Error);
+            set_admin_system_message(Msg_Content::Common_Error . "<br>" . $e->getMessage(), Msg_Status::Error);
             header("location:user_add.php");
             exit();
         }
     }
 }
 
-set_admin_system_message("問題が発生しました", Msg_Status::Error);
+set_admin_system_message(Msg_Content::Common_Error, Msg_Status::Error);
 header("location:admin_user.php");
 exit();
