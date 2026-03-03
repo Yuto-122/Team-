@@ -19,6 +19,7 @@ require_once __DIR__ . "/../functions/function.php";
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <div>
             <h1 class="my-5">管理者ページTOP</h1>
 
