@@ -15,21 +15,19 @@ if (!empty($_POST)) {
 
         $id = (int)$_POST["id"];
 
-        // var_dump($_POST);
-
         // DBに接続
         try {
             $db = db_connect();
             // infoテーブルに1行挿入するSQL
             $sql = 'UPDATE info SET title=:title,body=:body,info_img=:info_img,public_date=:public_date,update_date=:update_date,created_date=:created_date WHERE id=:id';
             $stmt = $db->prepare($sql);
+            
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':body', $body, PDO::PARAM_STR);
             $stmt->bindParam(':info_img', $info_img, PDO::PARAM_STR);
             $stmt->bindParam(':public_date', $public_date, PDO::PARAM_STR);
             $stmt->bindParam(':update_date', $update_date, PDO::PARAM_STR);
             $stmt->bindParam(':created_date', $created_date, PDO::PARAM_STR);
-
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();

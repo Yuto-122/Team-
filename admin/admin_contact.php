@@ -45,8 +45,8 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($datas as $data): ?>
                         <tr>
                             <td><?php echo $data["contact_id"]; ?></td>
-                            <td><?php echo $data["contact_name"]; ?></td>
-                            <td><?php echo $data["contact_kana"]; ?></td>
+                            <td><?php echo h($data["contact_name"]); ?></td>
+                            <td><?php echo h($data["contact_kana"]); ?></td>
                             <td><?php echo $data["receive_date"]; ?></td>
                             <td><?php echo $data["update_date"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>

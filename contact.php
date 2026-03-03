@@ -1,10 +1,10 @@
-<?php 
+<?php
 require_once __DIR__ . "../functions/function.php";
 session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 
-<hphp
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
@@ -34,61 +34,35 @@ session_start(); ?>
     <title>お問い合わせ｜ふくおか餃子FES</title>
 </head>
 <style>
-    textarea{
+    textarea {
         resize: none;
     }
 </style>
 
 <body class="l-body-sub">
-    <header class="l-header" id="pagetop">
-        <div class="c-header__title"><a href="index.html"><img src="./img/logo_line_01.png" alt="ふくおか餃子FES"></a></div>
-        <div class="l-header__icons">
-            <ul class="l-sns-list">
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_x.png" alt="福岡餃子フェス 公式X"></a>
-                </li>
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_instagram.png"
-                            alt="福岡餃子フェス 公式Instagram"></a></li>
-                <li class="c-sns-icon"><a href="#"><img src="./img/sns_icon_line.png" alt="福岡餃子フェス 公式LINE"></a>
-                </li>
-            </ul>
-            <div class="c-header__hamburger-menu">
-                <img src="./img/hamburger_menu_open.png" alt="ハンバーガーメニューアイコン">
-            </div>
-        </div>
-        <!-- 仮ハンバーガーメニュー（各ページへのボタンは位置のみ） -->
-        <div class="c-hambueger">
-            <div class="l-hamberger-content">
-                <nav class="c-hambueger__nav">
-                    <ul class="c-hambueger__list">
-                        <li class="c-hambueger__list-link-item"><a href="menu.php">メニュー</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="index.html#top-infomation">開催概要</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="news.php">お知らせ</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="faq.php">よくある質問</a></li>
-                        <li class="c-hambueger__list-link-item"><a href="contact.php">お問い合わせ</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+    
+    <!-- ヘッダーphp -->
+    <?php include("inc/header.php"); ?>
+
     <main class="l-main-faq-cu">
         <h1 class="c-section-title c-faq-cu" data-sub-title="Contact Us">お問い合わせ</h1>
         <P class="c-describe">お問い合わせは、以下のメールフォームをご利用ください。</P>
         <p class="c-caution">※回答に数日を要する場合がございますこと予めご了承ください。</p>
-       
+
         <form class="l-form" action="confirm.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" placeholder="餃子 太郎" value="<?php echo !empty($_SESSION["name"]) ? h($_SESSION["name"]) : ""; ?>" required><br>
+                <input type="text" id="name" name="name" placeholder="餃子 太郎" value="<?php echo !empty(h($_SESSION["name"])) ? h($_SESSION["name"]) : ""; ?>" required><br>
                 <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" value="<?php echo !empty($_SESSION["kana"]) ? h($_SESSION["kana"]) : ""; ?>" required><br>
+                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" value="<?php echo !empty(h($_SESSION["kana"])) ? h($_SESSION["kana"]) : ""; ?>" required><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" value="<?php echo !empty($_SESSION["email"]) ? h($_SESSION["email"]) : ""; ?>"><br>
+                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" value="<?php echo !empty(h($_SESSION["email"])) ? h($_SESSION["email"]) : ""; ?>"><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" required><?php echo !empty($_SESSION["message"]) ? h($_SESSION["message"]) : ""; ?></textarea>
+                <textarea id="message" name="message" required><?php echo !empty(h($_SESSION["message"])) ? h($_SESSION["message"]) : ""; ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
@@ -97,56 +71,21 @@ session_start(); ?>
             </div>
         </form>
     </main>
-    <footer class="l-footer">
-        <div class="l-footer__title">
-            <img src="./img/logo_01.png" alt="ふくおか餃子FES">
-            <dl class="l-footer__relevant-parties-list">
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">主催</dt>
-                    <dd class="c-footer__details">ふくおか餃子FES実行委員会</dd>
-                </div>
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">協賛</dt>
-                    <dd class="c-footer__details">九州餃子部</dd>
-                </div>
-                <div class="c-footer__relevant-parties-list-item">
-                    <dt class="c-footer__term">制作協力</dt>
-                    <dd class="c-footer__details">創造社リカレントスクール&nbsp;福岡校</dd>
-                </div>
-            </dl>
-        </div>
-        <div class="l-footer__info">
-            <div class="l-footer__contact">
-                <p class="c-footer__contact-item">ふくおか餃子FES実行委員会</p>
-                <p class="c-footer__contact-item"><a href="tel:000-0000-0000">(tel:)&nbsp;000-0000-0000</a></p>
-                <p class="c-footer__contact-item">xxxxxxxxxxx@xxx.com</p>
-            </div>
-            <ul class="l-sns-list l-sns-list--footer">
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_x.png"
-                            alt="福岡餃子フェス 公式X"></a>
-                </li>
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_instagram.png"
-                            alt="福岡餃子フェス 公式Instagram"></a>
-                </li>
-                <li class="c-sns-icon c-sns-icon--footer"><a href="#"><img src="./img/sns_icon_line.png"
-                            alt="福岡餃子フェス 公式LINE"></a>
-                </li>
-            </ul>
-        </div>
-        <a href="./privacy.html" class="c-privacy">個人情報保護方針</a>
-        <small class="c-copyright">&copy;Copyright&nbsp;2025&nbsp;ふくおか餃子FES実行委員会</small>
-    </footer>
+
+    <!-- フッターphp -->
+    <?php include("inc/footer.php"); ?>
+
     <!-- トップに戻るボタン -->
     <div id="page-top">
         <a href="#pagetop" class="c-pagetop-btn c-pagetop-btn-position"><img src="./img/top.svg" alt="トップへ戻る"></a>
     </div>
     <script src="./js/humberger-menu.js"></script>
-     <!-- js -->
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./js/pagetop-btn.js"></script>
-  <script src="./js/check.js"></script>
+    <!-- js -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/pagetop-btn.js"></script>
+    <script src="./js/check.js"></script>
 
 </body>
 
