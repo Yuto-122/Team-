@@ -30,3 +30,33 @@ function check_logined()
         exit();
     }
 }
+
+// Admin内のシステムメッセージの種類
+enum Msg_Status
+{
+    case Success;
+    case Warning;
+    case Error;
+}
+
+// Admin内のシステムメッセージを登録
+function set_admin_system_message($msg, $msg_status)
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $_SESSION["msg"] = $msg;
+    $_SESSION["msg_status"] = $msg_status;
+}
+
+// Admin内のシステムメッセージを削除
+function unset_admin_system_message()
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    unset($_SESSION["msg"]);
+    unset($_SESSION["msg_status"]);
+}
