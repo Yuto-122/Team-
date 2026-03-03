@@ -9,7 +9,6 @@ if (empty($_GET)) {
 
 $id = $_GET["id"];
 
-debug_check($id);
 $db = db_connect();
 $sql = "SELECT * FROM contact WHERE id=:id";
 $stmt = $db->prepare($sql);
@@ -41,9 +40,9 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 <p><b>ID</b></p>
                 <p><?php echo $data["id"] ?></p>
                 <p><b>名前(フリガナ)</b></p>
-                <p><?php echo $data["name"] ?><?php echo "（" . $data["kana"] . "）" ?></p>
+                <p><?php echo h($data["name"]) ?><?php echo "（" . h($data["kana"]) . "）" ?></p>
                 <p><b>メールアドレス</b></p>
-                <p><?php echo $data["email"] ?></p>
+                <p><?php echo h($data["email"]) ?></p>
                 <p><b>お問い合わせ内容</b></p>
                 <p><?php echo $data["message"] ?></p>
                 <p><b>送信日時</b></p>

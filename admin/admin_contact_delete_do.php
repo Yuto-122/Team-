@@ -9,7 +9,6 @@ if (empty($_GET)) {
 
 $id = $_GET["id"];
 
-debug_check($id);
 try{
 $db = db_connect();
 $sql = "DELETE FROM contact WHERE id=:id";
