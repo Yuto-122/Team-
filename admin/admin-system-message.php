@@ -12,13 +12,13 @@ if (!isset($_SESSION["msg"]) || !isset($_SESSION["msg_status"])) {
 
 $border_color = "";
 
-$status = Msg_Status::Success;
+$status = MsgStatus::SUCCESS;
 $status = $_SESSION["msg_status"];
 
 $msg_bg_color = match ($status) {
-    Msg_Status::Success => "bg-success-subtle",
-    Msg_Status::Warning => "bg-warning-subtle",
-    Msg_Status::Error => "bg-danger-subtle",
+    MsgStatus::SUCCESS => "bg-success-subtle",
+    MsgStatus::WARNING => "bg-warning-subtle",
+    MsgStatus::ERROR => "bg-danger-subtle",
 };
 ?>
 

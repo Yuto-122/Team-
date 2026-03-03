@@ -12,7 +12,7 @@ if (!empty($_POST)) {
         // ユーザー名の書式チェック（半角英数4文字以上）
         if (!preg_match("/^[a-zA-Z0-9_-]{4,}$/", $name)) {
             // 上記に満たさないnameだった場合
-            set_admin_system_message(Msg_Content::USER_PREG_MATCH->value, Msg_Status::Warning);
+            set_admin_system_message(MsgContent::USER_PREG_MATCH->value, MsgStatus::WARNING);
             header("location:user_edit.php?id=" . $id);
             exit();
         }
@@ -34,7 +34,7 @@ if (!empty($_POST)) {
 
             if ($result[0] !== 0) {
                 // 0でない(1)時はすでにユーザー名が登録されている状態
-                set_admin_system_message(Msg_Content::COMMON_USED->value . $name, Msg_Status::Warning);
+                set_admin_system_message(MsgContent::COMMON_USED->value . $name, MsgStatus::WARNING);
                 header("location:user_edit.php?id=" . $id);
                 exit();
             }
@@ -56,19 +56,19 @@ if (!empty($_POST)) {
             }
             $stmt_2->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt_2->execute();
-            set_admin_system_message(Msg_Content::USER_EDIT->value . $name, Msg_Status::Success);
+            set_admin_system_message(MsgContent::USER_EDIT->value . $name, MsgStatus::SUCCESS);
             header("location:admin_user.php");
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
-            set_admin_system_message(Msg_Content::COMMON_EXCEPTION->value . $e->getMessage(), Msg_Status::Error);
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
             header("location:user_edit.php?id=" . $id);
             exit();
         }
     }
 }
 
-set_admin_system_message(Msg_Content::COMMON_ERROR->value, Msg_Status::Error);
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_user.php");
 exit();

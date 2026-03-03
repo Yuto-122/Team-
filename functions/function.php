@@ -34,15 +34,15 @@ function check_logined()
 }
 
 // Admin内のシステムメッセージの種類
-enum Msg_Status
+enum MsgStatus
 {
-    case Success;
-    case Warning;
-    case Error;
+    case SUCCESS;
+    case WARNING;
+    case ERROR;
 }
 
 // メッセージ本文
-enum Msg_Content: string
+enum MsgContent: string
 {
     // 共通文言
     case COMMON_ERROR = "問題が発生しました。<br>";
