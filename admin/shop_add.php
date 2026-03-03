@@ -24,6 +24,7 @@
             </div>
             <div class="mb-3">
                 <label for="booth" class="form-label">ブース番号(例：B-01)</label>
+                <p>※半角で登録してください</p>
                 <input type="text" name="booth" id="booth" class="form-control" value="" required>
             </div>
             <div class="mb-3">

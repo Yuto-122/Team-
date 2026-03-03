@@ -40,21 +40,6 @@ try {
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">店舗DB編集画面</h1>
         <div class="mb-3">
-            <p><b>ID</b></p>
-            <p><?php echo $data["id"]; ?></p>
-            <p><b>店舗名</b></p>
-            <p><?php echo $data["name"]; ?></p>
-            <p><b>読み仮名</b></p>
-
-            <p><b>ブース番号</b></p>
-            <p><?php echo $data["booth"]; ?></p>
-            <p><b>店舗説明</b></p>
-            <p><?php echo $data["description"]; ?></p>
-            <p><b>更新日時</b></p>
-            <p><?php echo $data["update_date"]; ?></p>
-            <p><b>作成日時</b></p>
-            <p><?php echo $data["created_date"]; ?></p>
-
             <form action="shop_edit_do.php" method="post" class="mb-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">店舗名</label>
@@ -72,14 +57,15 @@ try {
                     <label for="description" class="form-label">店舗説明</label>
                     <input type="text" name="description" id="description" class="form-control" value="<?php echo $data["description"]; ?>">
                 </div>
+                <div class="mb-3">
+                    <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
+                    <button type="submit" class="btn btn-primary">更新</button>
+                    <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
+                </div>
             </form>
         </div>
-        <div class="mb-3">
-            <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-            <button type="submit" class="btn btn-primary">登録</button>
-            <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
-        </div>
-        </form>
+
+
 
     </main>
 </body>
