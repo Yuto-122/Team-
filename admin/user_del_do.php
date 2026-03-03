@@ -11,17 +11,17 @@ if (!empty($_POST)) {
             $stmt = $db->prepare($sql);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
-            set_admin_system_message("ユーザーを削除しました。", Msg_Status::Success);
+            set_admin_system_message(Msg_Content::USER_DELETE->value, Msg_Status::Success);
             header("location:admin_user.php");
             exit();
         } catch (PDOException $e) {
-            set_admin_system_message("例外が発生しました。<br>" . $e->getMessage(), Msg_Status::Error);
-            header("location:user_del.php?id=" . $id);
+            set_admin_system_message(Msg_Content::COMMON_EXCEPTION->value . $e->getMessage(), Msg_Status::Error);
+            header("location:user_delete.php?id=" . $id);
             exit();
         }
     }
 }
 
-set_admin_system_message("問題が発生しました。", Msg_Status::Error);
+set_admin_system_message(Msg_Content::COMMON_ERROR, Msg_Status::Error);
 header("location:admin_user.php");
 exit();

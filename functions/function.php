@@ -45,11 +45,14 @@ enum Msg_Status
 enum Msg_Content: string
 {
     // 共通文言
-    case Common_Error = "問題が発生しました。";
-    case Common_Exception = "例外が発生しました。";
-    case Common_Used = "すでに使用されています。";
+    case COMMON_ERROR = "問題が発生しました。<br>";
+    case COMMON_EXCEPTION = "例外が発生しました。<br>";
+    case COMMON_USED = "すでに使用されています。<br>";
 
-    // ユーザー
+    case USER_PREG_MATCH = "ユーザー名の書式は 半角英数4文字以上 にしてください";
+    case USER_ADD = "ユーザーを追加しました。<br>ユーザー名: ";
+    case USER_DELETE = "ユーザーを削除しました。";
+    case USER_EDIT = "ユーザーを編集しました。<br>ユーザー名: ";
 }
 
 // Admin内のシステムメッセージを登録
