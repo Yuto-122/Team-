@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
 
-if (!empty ($_POST)) {
+if (!empty($_POST)) {
     if (!empty($_POST["name"]) && !empty($_POST["password"])) {
         $name = $_POST["name"];
         $password = $_POST["password"];
@@ -9,7 +9,7 @@ if (!empty ($_POST)) {
         // ユーザー名の書式チェック（半角英数4文字以上）
         if (!preg_match("/^[a-zA-Z0-9_-]{4,}$/", $name)) {
             // 上記に満たさないnameだった場合
-            set_admin_system_message("ユーザー名の書式は 半角英数4文字以上 にしてください", Msg_Status::Warning);
+            set_admin_system_message(MsgContent::USER_PREG_MATCH->value, MsgStatus::WARNING);
             header("location:user_add.php");
             exit();
         }
@@ -28,7 +28,7 @@ if (!empty ($_POST)) {
 
             if ($result[0] !== 0) {
                 // 0でない(1)時はすでにユーザー名が登録されている状態
-                set_admin_system_message("すでに使用されているユーザー名です。", Msg_Status::Warning);
+                set_admin_system_message(MsgContent::COMMON_USED->value . $name, MsgStatus::WARNING);
                 header("location:user_add.php");
                 exit();
             }
@@ -41,18 +41,18 @@ if (!empty ($_POST)) {
             $stmt_2->bindParam(":name", $name, PDO::PARAM_STR);
             $stmt_2->bindParam(":password", $password_h, PDO::PARAM_STR);
             $stmt_2->execute();
-            set_admin_system_message("ユーザーを追加しました。<br>ユーザー名: " . $name, Msg_Status::Success);
+            set_admin_system_message(MsgContent::USER_ADD->value . $name, MsgStatus::SUCCESS);
             header("location:admin_user.php");
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
-            set_admin_system_message("例外が発生しました。<br>" . $e->getMessage(), Msg_Status::Error);
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
             header("location:user_add.php");
             exit();
         }
     }
 }
 
-set_admin_system_message("問題が発生しました", Msg_Status::Error);
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_user.php");
 exit();

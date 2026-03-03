@@ -38,10 +38,10 @@ try {
         <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">ユーザーDB - 削除確認</h1>
         <p>ユーザー「<?php echo $target["name"]; ?>」を削除してよろしいですか？</p>
-        <p><a href="admin_user.php" class="btn btn-primary">ユーザー一覧に戻る</a></p>
         <form action="user_del_do.php" method="post">
             <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
             <input type="submit" value="削除" class="btn btn-danger">
+            <a href="admin_user.php" class="btn btn-secondary">一覧に戻る</a>
         </form>
     </main>
 </body>

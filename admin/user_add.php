@@ -25,6 +25,7 @@
             </div>
             <div class="mb-3">
                 <input type="submit" value="登録する" class="btn btn-primary">
+                <a href="admin_user.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>
 

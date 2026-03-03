@@ -47,6 +47,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
                 <input type="submit" value="編集する" class="btn btn-primary">
+                <a href="admin_user.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>
 
