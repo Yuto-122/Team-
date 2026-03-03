@@ -60,7 +60,7 @@ try {
         </div>
         <div class="mb-3">
             <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-            <a href="admin_shop_edit.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">編集</a>
+            <a href="shop_edit.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">編集</a>
             <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
         </div>
         </form>
