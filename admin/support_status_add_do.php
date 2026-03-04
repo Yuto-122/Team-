@@ -20,7 +20,7 @@ if (!empty($_POST)) {
             exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
-            set_admin_system_message(MsgContent::COMMON_ERROR->value . $e->getMessage(), MsgStatus::ERROR);
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
             header("location:support_status_add.php");
             exit();
         }

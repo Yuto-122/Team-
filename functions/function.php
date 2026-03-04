@@ -49,7 +49,7 @@ enum MsgContent: string
     case COMMON_EXCEPTION = "例外が発生しました。<br>";
     case COMMON_USED = "すでに使用されています。<br>";
 
-    case USER_PREG_MATCH = "ユーザー名の書式は 半角英数4文字以上 にしてください";
+    case USER_PREG_MATCH = "ユーザー名は 半角英数4文字以上 にしてください";
     case USER_ADD = "ユーザーを追加しました。<br>ユーザー名: ";
     case USER_DELETE = "ユーザーを削除しました。";
     case USER_EDIT = "ユーザーを編集しました。<br>ユーザー名: ";
@@ -66,6 +66,11 @@ enum MsgContent: string
 
     case CONTACT_EDIT = "お問い合わせのステータスを変更しました。<br>ID: ";
     case CONTACT_DELETE = "お問い合わせを削除しました。<br>ID: ";
+
+    case SHOP_ADD = "店舗情報を追加しました。<br>店舗名: ";
+    case SHOP_EDIT = "店舗情報を変種しました。<br>店舗名: ";
+    case SHOP_USED_BOOTH = "そのブースは登録済みです<br>ブース名: ";
+    case SHOP_PREG_MATCH = "読み仮名は 全角ひらがなカタカナ を使用してください";
 }
 
 // Admin内のシステムメッセージを登録

@@ -12,6 +12,7 @@
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="mt-5">店舗DB - 新規登録</h1>
         <p>※読み仮名以外は入力必須です</p>
         <form action="shop_add_do.php" method="post" class="mb-3">
