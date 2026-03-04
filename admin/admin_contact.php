@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 $db = db_connect();
 $sql = "SELECT contact.id AS contact_id,contact.name AS contact_name,contact.kana AS contact_kana,contact.receive_date AS receive_date,contact.update_date AS update_date,support_status.status AS status FROM contact INNER JOIN support_status ON contact.status = support_status.id";

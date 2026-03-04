@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す

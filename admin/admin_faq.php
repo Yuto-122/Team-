@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 $db = db_connect();
 $sql = "SELECT faq.id AS faq_id, faq.question AS faq_question, faq.answer AS faq_answer, faq.create_date AS faq_create_date, faq_category.category AS category FROM faq INNER JOIN faq_category ON faq.type = faq_category.id";

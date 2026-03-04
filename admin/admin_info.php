@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 $db = db_connect();
 $sql = "SELECT * FROM info ORDER BY public_date DESC";
@@ -61,7 +62,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>">
                                     <button type="button" class="btn btn-secondary mx-1">編集</button>
                                 </a>
-                                    <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
+                                <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
                                     <button type="button" class="btn btn-danger mx-1">削除</button>
                                 </a>
                             </td>

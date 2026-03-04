@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 $db = db_connect();
 $sql = " SELECT id,name FROM shops";

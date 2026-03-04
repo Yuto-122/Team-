@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["category"]) && !empty($_POST["link_id"])  && !empty($_POST["id"])) {
