@@ -11,13 +11,18 @@ if (!empty($_POST)) {
             $stmt = $db->prepare($sql);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
-        } catch (PDOException $e) {
-            // TODO nagata-t: エラーの挙動は後で考える（admin_faqに戻すで良い気がする）
+
+            set_admin_system_message(MsgContent::FAQ_DELETE->value . $question, MsgStatus::SUCCESS);
             header("location:admin_faq.php");
+            exit();
+        } catch (PDOException $e) {
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            header("location:faq_delete.php?id=" . $id);
             exit();
         }
     }
 }
 
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_faq.php");
 exit();

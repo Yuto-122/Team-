@@ -17,14 +17,19 @@ if (!empty($_POST)) {
             $stmt->bindParam(":answer", $answer, PDO::PARAM_STR);
             $stmt->bindParam(":type", $type, PDO::PARAM_INT);
             $stmt->execute();
+
+            set_admin_system_message(MsgContent::FAQ_ADD->value . $question, MsgStatus::SUCCESS);
+            header("location:admin_faq.php");
+            exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
-            // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
             header("location:faq_add.php");
             exit();
         }
     }
 }
 
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_faq.php");
 exit();

@@ -59,6 +59,10 @@ enum MsgContent: string
 
     case FAQ_CATEGORY_ADD = "質問カテゴリを追加しました。<br>質問カテゴリ名: ";
     case FAQ_CATEGORY_EDIT = "質問カテゴリを修正しました。<br>質問カテゴリ名: ";
+
+    case FAQ_ADD = "FAQを追加しました。<br>質問: ";
+    case FAQ_DELETE = "FAQを削除しました。";
+    case FAQ_EDIT = "FAQを編集しました。<br>質問: ";
 }
 
 // Admin内のシステムメッセージを登録
