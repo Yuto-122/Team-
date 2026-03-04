@@ -38,7 +38,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">お知らせ DB - 編集</h1>
         
-        <form action="info_edit_do.php" method="post" class="needs-validation mb-3" novalidate>
+        <form action="info_edit_do.php" method="post" class="needs-validation mb-3" novalidate enctype="multipart/form-data">
         <div class="mb-3">
           <label for="title" class="form-label">タイトル</label>
           <input type="text" name="title" id="title" class="form-control" value="<?php echo h($target["title"]); ?>" required>
@@ -52,8 +52,8 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
             <input type="date" name="date" id="date" class="form-control" value="<?php echo h(date('Y-m-d', strtotime($target["update_date"]))); ?>">
           </div>
           <div class="col">
-            <label for="author" class="form-label">お知らせ画像名</label>
-            <input type="text" name="info_img" id="info_img" class="form-control">
+            <label for="author" class="form-label">画像変更登録</label>
+            <input type="file" name="info_img" id="info_img" class="form-control">
             <div class="invalid-feedback">
               投稿者を入力してください
             </div>
