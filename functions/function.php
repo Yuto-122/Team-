@@ -109,3 +109,30 @@ function set_error_log($msg)
     // 追記モードでエラー文をログファイルに書き込む
     file_put_contents(__DIR__ . "/../log/error.txt", $err_msg, FILE_APPEND);
 }
+
+// ソートパラメータ取得処理
+function get_sort_params($sortable, $sort, $dir, $default_sort = "id", $default_dir = "asc")
+{
+    if (!isset($sortable[$sort])) {
+        $sort = $default_sort;
+    }
+
+    if ($dir !== "asc" && $dir !== "desc") {
+        $dir = $default_dir;
+    }
+
+    return [
+        "sort" => $sort,
+        "dir" => $dir,
+        "order_by" => $sortable[$sort] . " " . strtoupper($dir),
+    ];
+}
+
+// ソート切り替え処理
+function next_sort_dir($current_sort, $clicked_sort, $current_dir)
+{
+    if ($current_sort === $clicked_sort) {
+        return $current_dir === "asc" ? "desc" : "asc";
+    }
+    return "asc";
+}
