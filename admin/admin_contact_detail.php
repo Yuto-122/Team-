@@ -39,28 +39,28 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">お問い合わせDB管理画面</h1>
-            <div class="mb-3">
-                <p><b>ID</b></p>
-                <p><?php echo $data["contact_id"] ?></p>
-                <p><b>名前(フリガナ)</b></p>
-                <p><?php echo h($data["contact_name"]) ?><?php echo "（" . h($data["contact_kana"]) . "）" ?></p>
-                <p><b>メールアドレス</b></p>
-                <p><?php echo h($data["email"]) ?></p>
-                <p><b>お問い合わせ内容</b></p>
-                <p><?php echo h($data["message"]) ?></p>
-                <p><b>送信日時</b></p>
-                <p><?php echo $data["receive_date"] ?></p>
-                <p><b>対応状況</b></p>
-                <p><?php echo $data["status_name"]; ?></p>
-                
-            </div>
-            <div class="mb-3">
-                <input type="hidden" name="id" value="<?php echo $data["contact_id"]; ?>">
-                <a href="admin_contact_edit.php?id=<?php echo $data["contact_id"] ?>" class="btn btn-primary">ステータス変更</a>
-                <a href="#" class="btn btn-danger">回答する</a>
-                <a href="admin_contact.php" class="btn btn-secondary">一覧に戻る</a>
-            </div>
+        <div class="mb-3">
+            <p><b>ID</b></p>
+            <p><?php echo $data["contact_id"] ?></p>
+            <p><b>名前(フリガナ)</b></p>
+            <p><?php echo h($data["contact_name"]) ?><?php echo "（" . h($data["contact_kana"]) . "）" ?></p>
+            <p><b>メールアドレス</b></p>
+            <p><?php echo h($data["email"]) ?></p>
+            <p><b>お問い合わせ内容</b></p>
+            <p><?php echo h($data["message"]) ?></p>
+            <p><b>送信日時</b></p>
+            <p><?php echo $data["receive_date"] ?></p>
+            <p><b>対応状況</b></p>
+            <p><?php echo $data["status_name"]; ?></p>
+        </div>
+        <div class="mb-3">
+            <input type="hidden" name="id" value="<?php echo $data["contact_id"]; ?>">
+            <a href="admin_contact_edit.php?id=<?php echo $data["contact_id"] ?>" class="btn btn-primary">ステータス変更</a>
+            <a href="#" class="btn btn-danger">回答する</a>
+            <a href="admin_contact.php" class="btn btn-secondary">一覧に戻る</a>
+        </div>
         </form>
 
     </main>

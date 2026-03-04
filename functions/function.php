@@ -63,6 +63,9 @@ enum MsgContent: string
     case FAQ_ADD = "FAQを追加しました。<br>質問: ";
     case FAQ_DELETE = "FAQを削除しました。";
     case FAQ_EDIT = "FAQを編集しました。<br>質問: ";
+
+    case CONTACT_EDIT = "お問い合わせのステータスを変更しました。<br>ID: ";
+    case CONTACT_DELETE = "お問い合わせを削除しました。<br>ID: ";
 }
 
 // Admin内のシステムメッセージを登録

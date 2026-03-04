@@ -39,6 +39,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">お問い合わせDB管理画面</h1>
         <div class="mb-3">
             <p><b>ID</b></p>
