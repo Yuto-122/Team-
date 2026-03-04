@@ -41,7 +41,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         <h1 class="my-5">メニューDB管理画面</h1>
         <div class="mb-3">
             <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3">
-                <p><b><?php echo $data["shop_name"]?></b></p>
+                <p><b><?php echo $data["shop_name"] ?></b></p>
                 <label for="menu" class="form-lebel mt-3"><b>商品名</b></label>
                 <input type="text" name="menu" id="menu" class="form-control" value="<?php echo $data["menu_name"] ?>">
                 <label for="body" class="form-lebel mt-3"><b>商品詳細</b></label>
@@ -54,7 +54,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["menu_id"] ?>">
-                    <button type="submit" class="btn btn-primary mt-4">保存する</button>
+                    <button type="submit" class="btn btn-primary mt-4">登録</button>
                     <a href="menu_detail.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-success mt-4">一つ戻る</a>
                     <a href="admin_menu.php" class="btn btn-secondary mt-4">一覧に戻る</a>
                 </div>

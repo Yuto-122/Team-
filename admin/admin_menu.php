@@ -18,16 +18,16 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | メニューDB管理画面</title>
+    <title>チーム王将 | メニュー管理画面</title>
 </head>
 
 <body>
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">メニューDB管理画面</h1>
+        <h1 class="my-5">メニュー管理画面</h1>
         <a href="./menu_add.php">
-            <p>メニューDBの新規登録はこちら</p>
+            <p>メニューの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -46,7 +46,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["menu_name"]; ?></td>
                             <td><?php echo $data["shop_kana"] == "" ? $data["shop_name"] : $data["shop_name"] . "（" . $data["shop_kana"] . "）"; ?></td>
                             <td><a href="menu_detail.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-primary">詳細</a>
-                            <a href="menu_edit.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-secondary">編集</a>
+                                <a href="menu_edit.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-success">編集</a>
                                 <a href="menu_delete.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-danger">削除</a>
                         </tr>
                     <?php endforeach; ?>
