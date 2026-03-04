@@ -30,7 +30,7 @@ $shops = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="my-5">メニュー - 新規登録</h1>
         <div>
       <!-- ここから「本文」-->
-      <form action="menu_add_do.php" method="post" class="needs-validation mb-3" novalidate>
+      <form action="menu_add_do.php" method="post" class="needs-validation mb-3" novalidate enctype="multipart/form-data">
         <div class="mb-3">
           <label for="shop" class="form-label">店舗</label><br>
           <select name="shop" id="shop">
@@ -56,8 +56,15 @@ $shops = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="text" name="price" id="price" class="form-control">
           </div>
           <div class="mb-3 row">
-            <label for="image" class="form-label">商品画像</label>
-            <input type="text" name="menu_img" id="menu_img" class="form-control">
+            <label for="image" class="form-label">PC用 商品画像</label>
+            <input type="file" name="menu_img" id="menu_img" class="form-control">
+            <div class="invalid-feedback">
+              投稿者を入力してください
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="image" class="form-label">スマートフォン用 商品画像</label>
+            <input type="file" name="menu_img" id="menu_img" class="form-control">
             <div class="invalid-feedback">
               投稿者を入力してください
             </div>
