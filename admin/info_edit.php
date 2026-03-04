@@ -17,7 +17,7 @@ $stmt->execute();
 
 $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// var_dump($target);
+var_dump($target);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
     <?php 
-    include('admin-header.php');  
+    // include('admin-header.php');  
     ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
@@ -53,6 +53,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
           </div>
           <div class="col">
             <label for="author" class="form-label">画像変更登録</label>
+            <input type="hidden" name="info_img" id="info_img" class="form-control" value="<?php echo h($target["info_img"]); ?>">
             <input type="file" name="info_img" id="info_img" class="form-control">
             <div class="invalid-feedback">
               投稿者を入力してください
