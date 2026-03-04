@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["menu"]) && !empty($_POST["body"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["id"])) {
@@ -20,8 +21,8 @@ if (!empty($_POST)) {
             $stmt->bindParam(":name", $name, PDO::PARAM_STR);
             $stmt->bindParam(":body", $body, PDO::PARAM_STR);
             $stmt->bindParam(":amount", $amount, PDO::PARAM_STR);
-            $stmt->bindParam(":price" , $price, PDO::PARAM_STR);
-            $stmt->bindParam("menu_img" , $menu_img, PDO::PARAM_STR);
+            $stmt->bindParam(":price", $price, PDO::PARAM_STR);
+            $stmt->bindParam("menu_img", $menu_img, PDO::PARAM_STR);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();

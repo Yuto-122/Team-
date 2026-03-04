@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 $db = db_connect();
 $sql = "SELECT * FROM info ORDER BY public_date DESC";

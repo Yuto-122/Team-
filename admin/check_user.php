@@ -38,6 +38,6 @@ if (!empty($_POST)) {
     }
 }
 
-set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+set_admin_system_message(MsgContent::LOGIN_FAILD->value, MsgStatus::ERROR);
 header("location:login.php");
 exit();

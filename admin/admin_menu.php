@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 $db = db_connect();
 // TODO nagata: 結合で取得したけどDB管理的に微妙だったら通常に戻す

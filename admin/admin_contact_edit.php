@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 // if (empty($_GET)) {
 //     // GETが無かったら戻す
