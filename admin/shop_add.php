@@ -12,7 +12,8 @@
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">店舗DB - 新規登録</h1>
+        <h1 class="mt-5">店舗DB - 新規登録</h1>
+        <p>※読み仮名以外は入力必須です</p>
         <form action="shop_add_do.php" method="post" class="mb-3">
             <div class="mb-3">
                 <label for="name" class="form-label">店舗名</label>
@@ -33,6 +34,7 @@
             </div>
             <div class="mb-3">
                 <input type="submit" value="登録する" class="btn btn-primary">
+                <a href="admin_shop.php" class="btn btn-secondary">戻る</a>
             </div>
         </form>
 
