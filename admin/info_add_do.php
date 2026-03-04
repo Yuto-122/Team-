@@ -3,8 +3,17 @@ require_once __DIR__ . '/../functions/function.php';
 
 
 // TODO: データ受け取り
+// var_dump($_POST);
 
-$info_img = $_POST['info_img'];//写真の名前受け取り忘れないで
+$info_img = $_FILES['info_img']['name'];//写真の名前受け取り忘れないで
+
+// 画像ファイルの処理 一時保存場所のパス +++
+$tmp_name_img = $_FILES ["info_img"]['tmp_name'];
+// 保存先のパス +++
+$save_path = '../img/news/' . $_FILES['info_img']['name'];
+//　画像の移動 +++
+move_uploaded_file($tmp_name_img, $save_path);
+
 
 if (!empty($_POST)) {
     // POST送信されたとき
@@ -34,7 +43,7 @@ if (!empty($_POST)) {
 
             // トップページへ画面遷移
             header('location:admin_info.php');
-            
+            // echo "デバッグ: IDの中身は「" . $info_img . "」です。";//エラー確認用
             exit();
         } catch (PDOException $e) {
             exit('エラー: '.$e->getMessage());
