@@ -16,14 +16,19 @@ if (!empty($_POST)) {
             $stmt->bindParam(":status", $status, PDO::PARAM_STR);
             $stmt->bindParam(":id", $id, PDO::PARAM_STR);
             $stmt->execute();
+
+            set_admin_system_message(MsgContent::SUPPORT_STATUS_EDIT->value . $status, MsgStatus::SUCCESS);
+            header("location:admin_support_status.php");
+            exit();
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
-            // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
-            header("location:support_status_edit.php");
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            header("location:support_status_edit.php?id=" . $id);
             exit();
         }
     }
 }
 
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_support_status.php");
 exit();

@@ -35,6 +35,7 @@ try {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php'); ?>
         <h1 class="my-5">質問回答DB - 削除確認</h1>
         <p>質問「<?php echo $target["question"]; ?>」を削除してよろしいですか？</p>
         <form action="faq_delete_do.php" method="post">
