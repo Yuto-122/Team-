@@ -53,6 +53,9 @@ enum MsgContent: string
     case USER_ADD = "ユーザーを追加しました。<br>ユーザー名: ";
     case USER_DELETE = "ユーザーを削除しました。";
     case USER_EDIT = "ユーザーを編集しました。<br>ユーザー名: ";
+
+    case SUPPORT_STATUS_ADD = "対応状況ステータスを追加しました。<br>ステータス名: ";
+    case SUPPORT_STATUS_EDIT = "対応状況ステータスを編集しました。<br>ステータス名: ";
 }
 
 // Admin内のシステムメッセージを登録
