@@ -94,3 +94,15 @@ function unset_admin_system_message()
     unset($_SESSION["msg"]);
     unset($_SESSION["msg_status"]);
 }
+
+// ログファイルにメッセージを追記
+function set_error_log($msg)
+{
+    http_response_code(500);
+    date_default_timezone_set("Asia/Tokyo");
+    //呼び出し元のファイル情報を取得
+    $associative_array = debug_backtrace();
+    $err_msg = "[" . date('Y-m-d H:i:s') . "]" . "[" . $associative_array[0]["file"] . "]" . $msg . "\n";
+    // 追記モードでエラー文をログファイルに書き込む
+    file_put_contents(__DIR__ . "/../log/error.txt", $err_msg, FILE_APPEND);
+}

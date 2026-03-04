@@ -50,6 +50,7 @@ if (!empty($_POST)) {
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
             header("location:shop_add.php");
             exit();
         }
