@@ -4,13 +4,28 @@ check_logined();
 
 try {
     $db = db_connect();
-    $sql = "SELECT id,name,kana,booth FROM shops";
+
+    $sortable = [
+        "id" => "id",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "id",
+        $_GET["dir"] ?? "asc"
+    );
+
+    $sql = "SELECT id,name,kana,booth FROM shops
+            ORDER BY " . $sort_params["order_by"];
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
     $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    exit('エラー: ' . $e->getMessage());
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
 }
 ?>
 
@@ -37,7 +52,9 @@ try {
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>id</th>
+                        <th>
+                            <a href="?sort=id&dir=<?php echo next_sort_dir($sort_params['sort'], 'id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th>店舗名</th>
                         <th>読み仮名</th>
                         <th>ブース番号</th>

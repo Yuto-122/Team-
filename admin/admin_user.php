@@ -2,12 +2,31 @@
 require_once __DIR__ . "/../functions/function.php";
 check_logined();
 
-$db = db_connect();
-$sql = "SELECT * FROM users";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sortable = [
+        "id" => "id",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "id",
+        $_GET["dir"] ?? "asc"
+    );
+
+    $sql = "SELECT * FROM users
+            ORDER BY " . $sort_params["order_by"];
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
+}
 
 ?>
 
@@ -33,8 +52,10 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="table-responsive">
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
-                    <tr class="table-primary">
-                        <th>ID</th>
+                    <tr>
+                        <th>
+                            <a href="?sort=id&dir=<?php echo next_sort_dir($sort_params['sort'], 'id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th>ユーザー名</th>
                         <th>登録日時</th>
                         <th>操作</th>

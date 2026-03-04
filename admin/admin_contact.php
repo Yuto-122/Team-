@@ -2,12 +2,35 @@
 require_once __DIR__ . "/../functions/function.php";
 check_logined();
 
-$db = db_connect();
-$sql = "SELECT contact.id AS contact_id,contact.name AS contact_name,contact.kana AS contact_kana,contact.receive_date AS receive_date,contact.update_date AS update_date,support_status.status AS status FROM contact INNER JOIN support_status ON contact.status = support_status.id";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sortable = [
+        "contact_id" => "contact.id",
+        "receive_date" => "contact.receive_date",
+        "status" => "support_status.status",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "contact_id",
+        $_GET["dir"] ?? "asc",
+        "contact_id"
+    );
+
+    $sql = "SELECT contact.id AS contact_id,contact.name AS contact_name,contact.kana AS contact_kana,contact.receive_date AS receive_date,contact.update_date AS update_date,support_status.status AS status 
+            FROM contact INNER JOIN support_status ON contact.status = support_status.id
+            ORDER BY " . $sort_params["order_by"];
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
+}
 
 ?>
 
@@ -31,12 +54,18 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>ID</th>
+                        <th>
+                            <a href="?sort=contact_id&dir=<?php echo next_sort_dir($sort_params['sort'], 'contact_id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th>名前</th>
                         <th>フリガナ</th>
-                        <th>送信日時</th>
+                        <th>
+                            <a href="?sort=receive_date&dir=<?php echo next_sort_dir($sort_params['sort'], 'receive_date', $sort_params['dir']); ?>">送信時間</a>
+                        </th>
                         <th>更新日時</th>
-                        <th>対応状況</th>
+                        <th>
+                            <a href="?sort=status&dir=<?php echo next_sort_dir($sort_params['sort'], 'status', $sort_params['dir']); ?>">対応状況</a>
+                        </th>
                         <th>操作</th>
                     </tr>
                 </thead>
