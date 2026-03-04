@@ -63,6 +63,7 @@ if (!empty($_POST)) {
             // 失敗したら入力画面へ戻す
             // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
             set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
             header("location:user_edit.php?id=" . $id);
             exit();
         }
