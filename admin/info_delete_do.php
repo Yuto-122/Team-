@@ -7,6 +7,20 @@ if (!empty($_POST)) {
 
         try {
             $db = db_connect();
+
+
+            //画像削除分　+++
+            $sql02 = "SELECT * FROM info WHERE id=:id";
+            $stmt02 = $db->prepare($sql02);
+            $stmt02->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt02->execute();
+            $result = $stmt02->fetch(PDO::FETCH_ASSOC);
+
+            $file_path = '../img/news/'. $result['info_img'];
+            //  var_dump($file_path);
+            unlink($file_path); 
+
+
             $sql = "DELETE FROM info WHERE id=:id";
             $stmt = $db->prepare($sql);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
