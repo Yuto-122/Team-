@@ -25,11 +25,9 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">お知らせDB管理画面</h1>
+        <h1 class="my-5">お知らせ管理画面</h1>
         <a href="./info_add.php">
-            <button type="button" class="btn btn-primary mx-1 m-1 btn-lg">
-                お知らせDB 新規登録
-            </button>
+            お知らせの新規登録はこちら
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -60,7 +58,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button type="button" class="btn btn-primary mx-1">詳細</button>
                                 </a> -->
                                 <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>">
-                                    <button type="button" class="btn btn-secondary mx-1">編集</button>
+                                    <button type="button" class="btn btn-success mx-1">編集</button>
                                 </a>
                                 <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
                                     <button type="button" class="btn btn-danger mx-1">削除</button>
