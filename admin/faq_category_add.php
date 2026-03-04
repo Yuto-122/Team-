@@ -12,6 +12,7 @@
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">質問種別DB - 新規登録</h1>
         <form action="faq_category_add_do.php" method="post" class="mb-3">
             <div class="mb-3">
@@ -24,6 +25,7 @@
             </div>
             <div class="mb-3">
                 <input type="submit" value="登録する" class="btn btn-primary">
+                <a href="admin_faq_category.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>
 

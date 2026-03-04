@@ -45,7 +45,7 @@ enum MsgStatus
 enum MsgContent: string
 {
     // 共通文言
-    case COMMON_ERROR = "問題が発生しました。<br>";
+    case COMMON_ERROR = "問題が発生しました。";
     case COMMON_EXCEPTION = "例外が発生しました。<br>";
     case COMMON_USED = "すでに使用されています。<br>";
 
@@ -56,6 +56,9 @@ enum MsgContent: string
 
     case SUPPORT_STATUS_ADD = "対応状況ステータスを追加しました。<br>ステータス名: ";
     case SUPPORT_STATUS_EDIT = "対応状況ステータスを編集しました。<br>ステータス名: ";
+
+    case FAQ_CATEGORY_ADD = "質問カテゴリを追加しました。<br>質問カテゴリ名: ";
+    case FAQ_CATEGORY_EDIT = "質問カテゴリを修正しました。<br>質問カテゴリ名: ";
 }
 
 // Admin内のシステムメッセージを登録

@@ -33,6 +33,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">質問カテゴリDB - 編集</h1>
         <form action="faq_category_edit_do.php" method="post" class="mb-3">
             <div class="mb-3">
