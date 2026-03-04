@@ -24,6 +24,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">お問い合わせDB管理画面</h1>
         <a href="#">
             <p>お問い合わせDBの新規登録はこちら</p>
@@ -51,7 +52,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["update_date"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>
                             <td><a href="admin_contact_detail.php?id=<?php echo $data["contact_id"]; ?>">
-                                <button type="button" class="btn btn-primary mx-1">詳細</button></a>
+                                    <button type="button" class="btn btn-primary mx-1">詳細</button></a>
                                 <a href="admin_contact_edit.php?id=<?php echo $data["contact_id"]; ?>"><button type="button" class="btn btn-secondary mx-1">編集</button></a>
                                 <a href="admin_contact_delete.php?id=<?php echo $data["contact_id"]; ?>"><button type="button" class="btn btn-danger mx-1">削除</button></a>
                             </td>

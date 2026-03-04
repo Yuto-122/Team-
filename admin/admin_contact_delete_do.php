@@ -9,18 +9,25 @@ if (empty($_GET)) {
 
 $id = $_GET["id"];
 
-try{
-$db = db_connect();
-$sql = "DELETE FROM contact WHERE id=:id";
-$stmt = $db->prepare($sql);
-$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+try {
+    $db = db_connect();
+    $sql = "DELETE FROM contact WHERE id=:id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
-$stmt->execute();
+    $stmt->execute();
 
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
-}catch(PDOException $e){
-    echo $e -> getMessage();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    set_admin_system_message(MsgContent::CONTACT_DELETE->value . $id, MsgStatus::SUCCESS);
+    header('location:admin_contact.php');
+    exit();
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    header('location:admin_contact_edit.php?id=' . $id);
+    exit();
 }
-header("location: admin_contact.php");
+
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+header("location:admin_contact.php");
 exit();
-?>

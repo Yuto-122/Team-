@@ -18,7 +18,7 @@ $sql2 = " SELECT id,status FROM support_status";
 $stmt = $db->prepare($sql);
 $stmt2 = $db->prepare($sql2);
 
-$stmt -> bindParam(":id",$id,PDO::PARAM_INT);
+$stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
 
 $stmt->execute();
@@ -44,6 +44,7 @@ $staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">お問い合わせDB管理画面</h1>
         <form action="admin_contact_edit_do.php?id=<?php echo $data["id"]; ?>" method="post" class="mb-3">
             <div class="mb-3">
@@ -58,9 +59,9 @@ $staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                 <p><b>送信日時</b></p>
                 <p><?php echo $data["receive_date"] ?></p>
                 <p><b>対応状況</b></p>
-                <?php foreach($staData as $status): ?>
-                <input type="radio" id="<?php echo $status["id"]; ?>" name="status" value="<?php echo $status["id"]; ?>" <?php echo $status["id"] === $data["status"]  ? "checked" : "" ?>>
-                <label for="<?php echo $status["id"]; ?>"><?php echo $status["status"]; ?></label>
+                <?php foreach ($staData as $status): ?>
+                    <input type="radio" id="<?php echo $status["id"]; ?>" name="status" value="<?php echo $status["id"]; ?>" <?php echo $status["id"] === $data["status"]  ? "checked" : "" ?>>
+                    <label for="<?php echo $status["id"]; ?>"><?php echo $status["status"]; ?></label>
                 <?php endforeach; ?>
 
             </div>

@@ -16,13 +16,18 @@ if (!empty($_POST)) {
             $stmt->bindParam(":status", $status, PDO::PARAM_STR);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
+
+            set_admin_system_message(MsgContent::CONTACT_EDIT->value . $id . " status: " . $status, MsgStatus::SUCCESS);
+            header('location:admin_contact.php');
+            exit();
         } catch (PDOException $e) {
-            // 失敗したら入力画面へ戻す
-            // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
-            echo $e->getMessage();
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            header('location:admin_contact_edit.php?id=' . $id);
+            exit();
         }
     }
 }
-// 正常に終わったらadmin_contact.phpに戻す
+
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_contact.php");
 exit();
