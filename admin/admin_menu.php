@@ -46,6 +46,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $data["menu_name"]; ?></td>
                             <td><?php echo $data["shop_kana"] == "" ? $data["shop_name"] : $data["shop_name"] . "（" . $data["shop_kana"] . "）"; ?></td>
                             <td><a href="menu_detail.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-primary">詳細</a>
+                            <a href="menu_edit.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-secondary">編集</a>
                                 <a href="menu_delete.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-danger">削除</a>
                         </tr>
                     <?php endforeach; ?>
