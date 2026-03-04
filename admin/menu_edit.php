@@ -41,7 +41,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         <h1 class="my-5">メニューDB管理画面</h1>
         <div class="mb-3">
             <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3">
-                <p><b><?php echo $data["shop_name"]?></b></p>
+                <p><b><?php echo $data["shop_name"] ?></b></p>
                 <label for="menu" class="form-lebel mt-3"><b>商品名</b></label>
                 <input type="text" name="menu" id="menu" class="form-control" value="<?php echo $data["menu_name"] ?>">
                 <label for="body" class="form-lebel mt-3"><b>商品詳細</b></label>
@@ -51,6 +51,29 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 <label for="price" class="form-lebel mt-3"><b>商品価格</b></label>
                 <input type="text" name="price" id="price" class="form-control" value="<?php echo $data["menu_price"] ?>">
                 <!-- 商品画像アップロード -->
+                <div class="mb-3 row">
+                    <label for="menu_img" class="form-label mt-3">商品画像</label>
+                    <input type="file" name="menu_img" id="menu_img">
+                    <div class="invalid-feedback">
+                        投稿者を入力してください
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="image_pc" class="form-label mt-3">PC用 商品画像</label>
+                            <input type="file" name="menu_img_pc" id="menu_img_pc" class="form-control">
+                            <div class="invalid-feedback">
+                                投稿者を入力してください
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="image_sp" class="form-label mt-3">スマートフォン用 商品画像</label>
+                            <input type="file" name="menu_img_sp" id="menu_img_sp" class="form-control">
+                            <div class="invalid-feedback">
+                                投稿者を入力してください
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["menu_id"] ?>">
