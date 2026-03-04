@@ -2,7 +2,6 @@
 // セッションの開始
 session_start();
 require_once __DIR__ . "/../functions/function.php";
-check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["name"] && !empty($_POST["password"]))) {
@@ -39,6 +38,6 @@ if (!empty($_POST)) {
     }
 }
 
-set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+set_admin_system_message(MsgContent::LOGIN_FAILD->value, MsgStatus::ERROR);
 header("location:login.php");
 exit();

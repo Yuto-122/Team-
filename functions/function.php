@@ -73,6 +73,7 @@ enum MsgContent: string
     case SHOP_PREG_MATCH = "読み仮名は 全角ひらがなカタカナ を使用してください";
 
     case LOGOUT = "ログアウトしました。";
+    case LOGIN_FAILD = "ログイン失敗しました。";
 }
 
 // Admin内のシステムメッセージを登録
