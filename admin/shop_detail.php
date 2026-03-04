@@ -7,7 +7,7 @@ if (empty($_GET)) {
     exit();
 }
 
-$id = $_GET["id"];
+$id = (int)$_GET["id"];
 
 // DB接続
 try {
