@@ -26,7 +26,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">メニューDB管理画面</h1>
-        <a href="#">
+        <a href="./menu_add.php">
             <p>メニューDBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
