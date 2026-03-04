@@ -2,12 +2,37 @@
 require_once __DIR__ . "/../functions/function.php";
 check_logined();
 
-$db = db_connect();
-$sql = "SELECT faq.id AS faq_id, faq.question AS faq_question, faq.answer AS faq_answer, faq.create_date AS faq_create_date, faq_category.category AS category FROM faq INNER JOIN faq_category ON faq.type = faq_category.id";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sortable = [
+        "faq_id" => "faq.id",
+        "category" => "faq_category.category",
+        "faq_create_date" => "faq.create_date",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "faq_id",
+        $_GET["dir"] ?? "asc",
+        "faq_id"
+    );
+
+    $sql = "SELECT faq.id AS faq_id, faq.question AS faq_question, faq.answer AS faq_answer, faq.create_date AS faq_create_date, faq_category.category AS category
+        FROM faq
+        INNER JOIN faq_category ON faq.type = faq_category.id
+        ORDER BY " . $sort_params["order_by"];
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
+}
 
 ?>
 
@@ -34,11 +59,17 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>id</th>
+                        <th>
+                            <a href="?sort=faq_id&dir=<?php echo next_sort_dir($sort_params['sort'], 'faq_id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th class="w-25">質問</th>
                         <th class="w-25">回答</th>
-                        <th>項目種別</th>
-                        <th>登録日時</th>
+                        <th>
+                            <a href="?sort=category&dir=<?php echo next_sort_dir($sort_params['sort'], 'category', $sort_params['dir']); ?>">項目種別</a>
+                        </th>
+                        <th>
+                            <a href="?sort=faq_create_date&dir=<?php echo next_sort_dir($sort_params['sort'], 'faq_create_date', $sort_params['dir']); ?>">登録日時</a>
+                        </th>
                         <th>操作</th>
                     </tr>
                 </thead>

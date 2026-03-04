@@ -2,12 +2,34 @@
 require_once __DIR__ . "/../functions/function.php";
 check_logined();
 
-$db = db_connect();
-$sql = "SELECT * FROM info ORDER BY public_date DESC";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sortable = [
+        "id" => "id",
+        "public_date" => "public_date",
+        "update_date" => "update_date",
+        "created_date" => "created_date",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "id",
+        $_GET["dir"] ?? "asc"
+    );
+
+    $sql = "SELECT * FROM info
+            ORDER BY " . $sort_params["order_by"];
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
+}
 
 ?>
 
@@ -33,13 +55,21 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>id</th>
+                        <th>
+                            <a href="?sort=id&dir=<?php echo next_sort_dir($sort_params['sort'], 'id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th>タイトル</th>
                         <th>本文</th>
                         <th>お知らせ画像名</th>
-                        <th>公開日時</th>
-                        <th>更新日時</th>
-                        <th>登録日時</th>
+                        <th>
+                            <a href="?sort=public_date&dir=<?php echo next_sort_dir($sort_params['sort'], 'public_date', $sort_params['dir']); ?>">公開日時</a>
+                        </th>
+                        <th>
+                            <a href="?sort=update_date&dir=<?php echo next_sort_dir($sort_params['sort'], 'update_date', $sort_params['dir']); ?>">更新日時</a>
+                        </th>
+                        <th>
+                            <a href="?sort=created_date&dir=<?php echo next_sort_dir($sort_params['sort'], 'created_date', $sort_params['dir']); ?>">登録日時</a>
+                        </th>
                         <th>操作</th>
                     </tr>
                 </thead>

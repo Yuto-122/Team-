@@ -2,13 +2,35 @@
 require_once __DIR__ . "/../functions/function.php";
 check_logined();
 
-$db = db_connect();
-// TODO nagata: 結合で取得したけどDB管理的に微妙だったら通常に戻す
-$sql = "SELECT menus.id AS menu_id, menus.name AS menu_name, shops.name AS shop_name,shops.kana AS shop_kana FROM menus INNER JOIN shops ON menus.shop_id = shops.id";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sortable = [
+        "menu_id" => "menus.id",
+    ];
+
+    $sort_params = get_sort_params(
+        $sortable,
+        $_GET["sort"] ?? "menu_id",
+        $_GET["dir"] ?? "asc",
+        "menu_id"
+    );
+
+    $sql = "SELECT menus.id AS menu_id, menus.name AS menu_name, shops.name AS shop_name, shops.kana AS shop_kana 
+        FROM menus 
+        INNER JOIN shops ON menus.shop_id = shops.id
+        ORDER BY " . $sort_params["order_by"];
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:index.php");
+    exit();
+}
 
 ?>
 
@@ -34,7 +56,9 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="table table-hover align-middle">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>id</th>
+                        <th>
+                            <a href="?sort=faq_id&dir=<?php echo next_sort_dir($sort_params['sort'], 'menu_id', $sort_params['dir']); ?>">id</a>
+                        </th>
                         <th>商品名</th>
                         <th>店舗名</th>
                         <th>操作</th>
