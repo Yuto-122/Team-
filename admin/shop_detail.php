@@ -42,7 +42,7 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">店舗DB詳細画面</h1>
+        <h1 class="my-5">店舗詳細画面</h1>
         <div class="mb-3">
             <p><b>ID</b></p>
             <p><?php echo $data["id"]; ?></p>
@@ -61,7 +61,7 @@ try {
         </div>
         <div class="mb-3">
             <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-            <a href="shop_edit.php?id=<?php echo $data["id"] ?>" class="btn btn-primary">編集</a>
+            <a href="shop_edit.php?id=<?php echo $data["id"] ?>" class="btn btn-success">編集</a>
             <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
         </div>
         </form>
