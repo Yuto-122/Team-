@@ -28,9 +28,9 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">店舗DB管理画面</h1>
+        <h1 class="my-5">店舗管理画面</h1>
         <a href="shop_add.php">
-            <p>店舗DBの新規登録はこちら</p>
+            <p>店舗の新規登録はこちら</p>
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -51,7 +51,7 @@ try {
                             <td><?php echo $data["kana"]; ?></td>
                             <td><?php echo $data["booth"]; ?></td>
                             <td><a href="shop_detail.php?id=<?php echo $data["id"]; ?>" class="btn btn-primary mx-1">詳細</a>
-                                <a href="shop_edit.php?id=<?php echo $data["id"]; ?>" class="btn btn-secondary mx-1">編集</a>
+                                <a href="shop_edit.php?id=<?php echo $data["id"]; ?>" class="btn btn-success mx-1">編集</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
