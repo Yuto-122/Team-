@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -41,7 +42,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         <h1 class="my-5">メニューDB管理画面</h1>
         <div class="mb-3">
             <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3">
-                <p><b><?php echo $data["shop_name"]?></b></p>
+                <p><b><?php echo $data["shop_name"] ?></b></p>
                 <label for="menu" class="form-lebel mt-3"><b>商品名</b></label>
                 <input type="text" name="menu" id="menu" class="form-control" value="<?php echo $data["menu_name"] ?>">
                 <label for="body" class="form-lebel mt-3"><b>商品詳細</b></label>

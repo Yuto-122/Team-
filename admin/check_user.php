@@ -2,6 +2,7 @@
 // セッションの開始
 session_start();
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["name"] && !empty($_POST["password"]))) {

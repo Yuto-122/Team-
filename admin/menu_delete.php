@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -39,26 +40,26 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">メニューDB管理画面</h1>
-            <div class="mb-3">
-                <p><b>店舗名</b></p>
-                <p><?php echo $data["shop_name"] . "（店舗ID:" . $data["menu_id"] . "）" ?></p>
-                <p><b>商品名</b></p>
-                <p><?php echo h($data["menu_name"]) ?></p>
-                <p><b>商品詳細</b></p>
-                <p><?php echo h($data["menu_body"]) ?></p>
-                <p><b>内容個数</b></p>
-                <p><?php echo h($data["menu_amount"]) . "個" ?></p>
-                <p><b>商品価格</b></p>
-                <p><?php echo $data["menu_price"] . "円" ?></p>
-                <p><b>商品画像</b></p>
-                <p><?php echo $data["menu_img"]; ?></p>
-                
-            </div>
-            <div class="mb-3">
-                <input type="hidden" name="id" value="<?php echo $data["menu_id"]; ?>">
-                <a href="menu_delete_confirm.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-danger">削除</a>
-                <a href="admin_menu.php" class="btn btn-secondary">一覧に戻る</a>
-            </div>
+        <div class="mb-3">
+            <p><b>店舗名</b></p>
+            <p><?php echo $data["shop_name"] . "（店舗ID:" . $data["menu_id"] . "）" ?></p>
+            <p><b>商品名</b></p>
+            <p><?php echo h($data["menu_name"]) ?></p>
+            <p><b>商品詳細</b></p>
+            <p><?php echo h($data["menu_body"]) ?></p>
+            <p><b>内容個数</b></p>
+            <p><?php echo h($data["menu_amount"]) . "個" ?></p>
+            <p><b>商品価格</b></p>
+            <p><?php echo $data["menu_price"] . "円" ?></p>
+            <p><b>商品画像</b></p>
+            <p><?php echo $data["menu_img"]; ?></p>
+
+        </div>
+        <div class="mb-3">
+            <input type="hidden" name="id" value="<?php echo $data["menu_id"]; ?>">
+            <a href="menu_delete_confirm.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-danger">削除</a>
+            <a href="admin_menu.php" class="btn btn-secondary">一覧に戻る</a>
+        </div>
         </form>
 
     </main>
