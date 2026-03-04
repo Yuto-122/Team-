@@ -27,7 +27,7 @@ function check_logined()
         session_start();
     }
 
-    if (!isset($_SESSION["id"])) {
+    if (!isset($_SESSION["admin_session_id"])) {
         header("location:login.php");
         exit();
     }
@@ -71,6 +71,8 @@ enum MsgContent: string
     case SHOP_EDIT = "店舗情報を変種しました。<br>店舗名: ";
     case SHOP_USED_BOOTH = "そのブースは登録済みです<br>ブース名: ";
     case SHOP_PREG_MATCH = "読み仮名は 全角ひらがなカタカナ を使用してください";
+
+    case LOGOUT = "ログアウトしました。";
 }
 
 // Admin内のシステムメッセージを登録

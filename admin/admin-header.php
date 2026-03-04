@@ -14,7 +14,7 @@
                 <a class="nav-link" href="./logout.php">ログアウト</a></li>
             </ul>
         </div>
-        <?php if (isset($_SESSION["name"])): ?>
-            <span class="text-light">ログイン: <?php echo $_SESSION["name"]; ?></span>
+        <?php if (isset($_SESSION["admin_user_name"])): ?>
+            <span class="text-light">ログイン: <?php echo $_SESSION["admin_user_name"]; ?></span>
         <?php endif; ?>
     </nav>
