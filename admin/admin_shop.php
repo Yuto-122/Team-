@@ -1,13 +1,16 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
 
-$db = db_connect();
-$sql = "SELECT id,name,kana,booth FROM shops";
-$stmt = $db->prepare($sql);
-$stmt->execute();
+try {
+    $db = db_connect();
+    $sql = "SELECT id,name,kana,booth FROM shops";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
 
-$datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    exit('エラー: ' . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>

@@ -59,7 +59,7 @@ try {
                 </div>
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-                    <button type="submit" class="btn btn-primary">更新</button>
+                    <button type="submit" class="btn btn-primary">登録する</button>
                     <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
                 </div>
             </form>

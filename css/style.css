@@ -1163,6 +1163,20 @@ a.c-share-btn::after {
     padding-top: clamp(20px, 5.915px + 3.756vw, 60px);
 }
 
+/* js用のcss */
+.view-slide{
+    opacity: 0;
+    transform: translate(-50%,0);
+    transition: 2s;
+}
+.view-slide.is-show{
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+
+
+
 @media (min-width: 768px) {
     /* ベース
 ------------------------------ */
@@ -1317,10 +1331,6 @@ a.c-share-btn::after {
 
     /* faq.html
 ------------------------------ */
-    .c-faq-cu {
-        /* margin-left: clamp(40px, 16.667vw, calc((100vw - 960px) / 2)); */
-    }
-
     .l-section-list {
         display: flex;
         justify-content: flex-start;

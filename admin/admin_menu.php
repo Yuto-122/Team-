@@ -3,7 +3,7 @@ require_once __DIR__ . "/../functions/function.php";
 
 $db = db_connect();
 // TODO nagata: 結合で取得したけどDB管理的に微妙だったら通常に戻す
-$sql = "SELECT menus.id AS menu_id, menus.name AS menu_name, shops.name AS shop_name FROM menus INNER JOIN shops ON menus.shop_id = shops.id";
+$sql = "SELECT menus.id AS menu_id, menus.name AS menu_name, shops.name AS shop_name,shops.kana AS shop_kana FROM menus INNER JOIN shops ON menus.shop_id = shops.id";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
@@ -26,7 +26,7 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">メニューDB管理画面</h1>
-        <a href="#">
+        <a href="./menu_add.php">
             <p>メニューDBの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
@@ -44,8 +44,9 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo $data["menu_id"]; ?></td>
                             <td><?php echo $data["menu_name"]; ?></td>
-                            <td><?php echo $data["shop_name"]; ?></td>
-                            <td><button type="button" class="btn btn-primary mx-1">詳細</button><button type="button" class="btn btn-secondary mx-1">編集</button><button type="button" class="btn btn-danger mx-1">削除</button></td>
+                            <td><?php echo $data["shop_kana"] == "" ? $data["shop_name"] : $data["shop_name"] . "（" . $data["shop_kana"] . "）"; ?></td>
+                            <td><a href="menu_detail.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-primary">詳細</a>
+                                <a href="menu_delete.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-danger">削除</a>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
