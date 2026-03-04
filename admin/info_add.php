@@ -18,42 +18,43 @@
       <h1 class="my-5">お知らせ - 新規登録</h1>
 
     <?php
-    //アップロードの処理
-      $msg = null;
-      $alert = null;
+    // //アップロードの処理
+    //   $msg = null;
+    //   $alert = null;
 
-    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
-        $old_name = $_FILES['image']['tmp_name'];
+    // if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
+    //     $old_name = $_FILES['image']['tmp_name'];
 
-        $new_name = $_FILES['image']['name'];
-        if(move_uploaded_file($old_name, '../img/news/' . $new_name)){
-            $msg = 'アップロードしました。';
-            $alert = 'success';
-        } else {
-            $msg = 'アップロードできませんでした。';
-            $alert = 'danger';
-        }
+    //     $new_name = $_FILES['image']['name'];
+    //     if(move_uploaded_file($old_name, '../img/news/' . $new_name)){
+    //         $msg = 'アップロードしました。';
+    //         $alert = 'success';
+    //     } else {
+    //         $msg = 'アップロードできませんでした。';
+    //         $alert = 'danger';
+    //     }
 
-    }
+    // }
       
     ?>
 
        
 
-        <form action="info_add.php" method="post" class="needs-validation mb-3" enctype="multipart/form-data">
+        <!-- <form action="info_add.php" method="post" class="needs-validation mb-3" enctype="multipart/form-data">
             <div class="mb-3">
               <label class="form-label d-block mb-3">【任意】 画像は投稿する前にアップロードしてください</label>
-              <input type="file" name="image" class="form-control-file">
-              <input type="submit" value="アップロード" class="btn btn-primary btn-sm">
+              <input type="file" name="image"  class="form-control-file">
+              <input type="submit" id="select_img" value="アップロード" class="btn btn-primary btn-sm">
             </div>
-        </form>
+        </form> -->
 
-        <?php if($msg){
-          echo '<div class="alert alert-' . $alert .'" role="arert">'. $msg . '</div>';
-        } 
+        <?php 
+        // if($msg){
+        //   echo '<div class="alert alert-' . $alert .'" role="arert">'. $msg . '</div>';
+        // } 
         ?>
 
-      <form action="info_add_do.php" method="post" class="needs-validation mb-3" novalidate >
+      <form action="info_add_do.php" method="post" class="needs-validation mb-3" novalidate enctype="multipart/form-data">
         <div class="mb-3">
           <label for="title" class="form-label">タイトル</label>
           <input type="text" name="title" id="title" class="form-control" required>
@@ -68,7 +69,7 @@
           </div>
           <div class="col">
             <label for="author" class="form-label">お知らせ画像名</label>
-            <input type="text" name="info_img" id="info_img" class="form-control">
+            <input type="file" name="info_img" id="info_img" class="form-control">
             <div class="invalid-feedback">
               投稿者を入力してください
             </div>
@@ -90,6 +91,19 @@
     </div>
 
     </main>
+
+    <!-- 画像ファイル名を送信するために上の -->
+  <script>
+  const selectIimg = document.getElementById('select_img');
+  const infoImg = document.getElementById('info_img');
+  // ファイルが選択された時に実行
+  selectIimg.addEventListener('click', (event) => {
+    const files = event.target.files; // 選択されたファイルリストを取得
+     infoImg.value = files[0].name;
+    }
+  );
+</script>
+
 
     <script>
     (() => {
