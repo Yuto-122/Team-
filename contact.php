@@ -52,17 +52,17 @@ session_start(); ?>
         <form class="l-form" action="confirm.php" method="post">
             <div class="l-form-main">
                 <label class="c-label" for="name"><span class="c-required">必須</span>お名前</label><br>
-                <input type="text" id="name" name="name" placeholder="餃子 太郎" value="<?php echo !empty(h($_SESSION["name"])) ? h($_SESSION["name"]) : ""; ?>" required><br>
+                <input type="text" id="name" name="name" placeholder="餃子 太郎" value="<?php echo !empty($_SESSION["name"]) ? h($_SESSION["name"]) : ""; ?>" required><br>
                 <label class="c-label" for="kana"><span class="c-required">必須</span>フリガナ</label><br>
-                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" value="<?php echo !empty(h($_SESSION["kana"])) ? h($_SESSION["kana"]) : ""; ?>" required><br>
+                <input type="text" id="kana" name="kana" placeholder="ギョウザ タロウ" value="<?php echo !empty($_SESSION["kana"]) ? h($_SESSION["kana"]) : ""; ?>" required><br>
 
                 <!-- メールアドレス -->
                 <label class="c-label" for="email"><span class="c-required">必須</span>メールアドレス</label><br>
-                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" value="<?php echo !empty(h($_SESSION["email"])) ? h($_SESSION["email"]) : ""; ?>"><br>
+                <input type="email" id="email" name="email" placeholder="tarogyouza@xxxx.ne.jp" value="<?php echo !empty($_SESSION["email"]) ? h($_SESSION["email"]) : ""; ?>"><br>
 
                 <!-- 問い合わせ内容 -->
                 <label class="c-message" for="message"><span class="c-required">必須</span>お問い合わせ内容</label><br>
-                <textarea id="message" name="message" required><?php echo !empty(h($_SESSION["message"])) ? h($_SESSION["message"]) : ""; ?></textarea>
+                <textarea id="message" name="message" required><?php echo !empty($_SESSION["message"]) ? h($_SESSION["message"]) : ""; ?></textarea>
             </div>
 
             <!-- 確認ボタン -->
