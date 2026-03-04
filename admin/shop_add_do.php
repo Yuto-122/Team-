@@ -12,8 +12,8 @@ if (!empty($_POST)) {
             // 店舗名の読み仮名チェック（全角かなカナ1文字以上）
             if (!preg_match("/^[ぁ-んァ-ヴ¥s¥x20 ]{1,}$/", $kana)) {
                 // 上記に満たさないkanaだった場合
-                header("location:shop_add.php");
-                exit();
+                //header("location:shop_add.php");
+                exit('読み仮名エラー');
             }
         }
 
