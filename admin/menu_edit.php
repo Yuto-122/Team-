@@ -39,6 +39,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">メニューDB管理画面</h1>
         <div class="mb-3">
             <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3" enctype="multipart/form-data">

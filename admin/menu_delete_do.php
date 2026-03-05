@@ -4,7 +4,8 @@ check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
-    header("location:admin_contact.php");
+    set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+    header("location:admin_menu.php");
     exit();
 }
 
@@ -19,8 +20,16 @@ try {
     $stmt->execute();
 
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    set_admin_system_message(MsgContent::MENU_DELETE->value . $name, MsgStatus::SUCCESS);
+    header('location:admin_menu.php');
+    exit();
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
+    header("location:menu_delete.php?id=" . $id);
+    exit();
 }
-header("location: admin_menu.php");
+
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+header("location:admin_menu.php");
 exit();

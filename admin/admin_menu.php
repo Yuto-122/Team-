@@ -48,6 +48,7 @@ try {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php');  ?>
         <h1 class="my-5">メニュー管理画面</h1>
         <a href="./menu_add.php">
             <p>メニューの新規登録はこちら</p>
