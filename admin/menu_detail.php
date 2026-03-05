@@ -35,6 +35,12 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <title>チーム王将 | 管理者ページ</title>
 </head>
 
+<style>
+    .imgFlex{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
 <body>
     <?php include('admin-header.php');  ?>
 
@@ -52,10 +58,21 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
             <p><b>商品価格</b></p>
             <p><?php echo $data["menu_price"] . "円" ?></p>
             <p><b>商品画像</b></p>
-            <div class="row">
-                <div class="col">
-                    <img src="../img/menu/<?php echo $data["menu_img"] ?>" alt="<?php echo $data["menu_img"] ?>">
-                    <p>画像先：<?php echo "C:/xampp/htdocs/gyoza-fes_c/img/menu/" . $data["menu_img"] ?></p>
+            <div class="imgFlex">
+                <div class="flexItem">
+                    <p style="text-align: center;"><b>元画像</b></p>
+                    <img style="height: 300px;" src="../img/menu/<?php echo $data["menu_img"] ?>" alt="<?php echo $data["menu_img"] ?>">
+                    <p>画像先：<?php echo "img/menu/" . $data["menu_img"] ?></p>
+                </div>
+                <div class="flexItem">
+                    <p style="text-align: center;"><b>PC用画像</b></p>
+                    <img style="height: 300px;" src="../img/menu-b/<?php echo $data["pc_img"] ?>" alt="<?php echo $data["pc_img"] ?>">
+                    <p>画像先：<?php echo "img/menu-b/" . $data["pc_img"] ?></p>
+                </div>
+                <div class="flexItem">
+                    <p style="text-align: center;"><b>SP用画像</b></p>
+                    <img style="height: 300px;" src="../img/menu-b/<?php echo $data["sp_img"] ?>" alt="<?php echo $data["sp_img"] ?>">
+                    <p>画像先：<?php echo "img/menu-b/" . $data["sp_img"] ?></p>
                 </div>
             </div>
 

@@ -1,15 +1,15 @@
 <?php
 require_once __DIR__ . '/../functions/function.php';
 
-var_dump($_FILES);
-var_dump($_POST);
+// var_dump($_FILES);
+// var_dump($_POST);
 
 // 注意 $_POSTできたファイル名 +++
 $info_img = $_POST['info_img'];
 
 
 // 再び画像がアップロードされたときだけの処理
-if (isset($_FILES['info_img']) && $_FILES['info_img']['error'] === UPLOAD_ERR_OK) {
+if ($_FILES['info_img']['error'] === UPLOAD_ERR_OK) {
 // 注意 $_FILES できた 写真の名前
 $info_img_edit = $_FILES['info_img']['name'];
 // 画像ファイルの処理 一時保存場所のパス
@@ -74,8 +74,8 @@ if (!empty($_POST)) {
             // トップページへ画面遷移
             header('location:admin_info.php');
 
-            echo "デバッグ: new_nameの中身は「" . $new_name . "」です。";
-            echo "デバッグ: info_imgの中身は「" . $info_img . "」です。";//エラー確認用
+            // echo "デバッグ: new_nameの中身は「" . $new_name . "」です。";
+            // echo "デバッグ: info_imgの中身は「" . $info_img . "」です。";//エラー確認用
             exit();
             
         } catch (PDOException $e) {
