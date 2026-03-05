@@ -5,6 +5,11 @@ session_start();
 debug_check($_POST);
 debug_check($_FILES);
 
+$menu_img = $_POST["menu_img"];
+$menu_img_pc = $_POST["menu_img_pc"];
+$menu_img_sp = $_POST["menu_img_sp"];
+
+if ($_FILES["menu_img"]["error"] == 0 && $_FILES["menu_img_pc"]["error"] == 0 && $_FILES["menu_img_sp"]["error"] == 0) {
 //画像と画像名を受け取り
 $menu_img = $_FILES["menu_img"]["name"];
 $tmp_img_name = $_FILES["menu_img"]["tmp_name"];
@@ -32,23 +37,21 @@ $path_sp = $file_path_sp["extension"];
 
 //受け取りデータと拡張子を繋げて画像名にする
 $upload_img = $img_date . "." . $path;
-$upload_img_pc = $img_date_pc . "." . $path_pc;
-$upload_img_sp = $img_date_sp . "." .$path_sp;
+$upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
+$upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
 
 //画像名を変更してimgフォルダへ移動
 rename($tmp_img_name,"../img/menu/" . $upload_img);
 rename($tmp_imgPc_name,"../img/menu-b/" .$upload_img_pc);
 rename($tmp_imgSp_name,"../img/menu-b/" .$upload_img_sp);
+}
 
 if (!empty($_POST)) {
-    if (!empty($_POST["menu"]) && !empty($_POST["body"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["menu_img"]) && !empty($_POST["menu_img_pc"]) && !empty($_POST["menu_img_sp"]) && !empty($_POST["id"])) {
+    if (!empty($_POST["menu"]) && !empty($_POST["body"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["id"])) {
         $name = $_POST["menu"];
         $body = $_POST["body"];
         $amount = $_POST["amount"];
         $price = $_POST["price"];
-        $menu_img = $_POST["menu_img"];
-        $menu_img_pc = $_POST["menu_img_pc"];
-        $menu_img_sp = $_POST["menu_img_sp"];
         $id = $_POST["id"];
 
         // 必須入力のデータがあったのでDB上書き処理
@@ -61,9 +64,25 @@ if (!empty($_POST)) {
             $stmt->bindParam(":body", $body, PDO::PARAM_STR);
             $stmt->bindParam(":amount", $amount, PDO::PARAM_STR);
             $stmt->bindParam(":price", $price, PDO::PARAM_STR);
-            $stmt->bindParam(":menu_img", $menu_img, PDO::PARAM_STR);
-            $stmt->bindParam(":menu_b_pc_img", $menu_img_pc, PDO::PARAM_STR);
-            $stmt->bindParam(":menu_b_sp_img", $menu_img_sp, PDO::PARAM_STR);
+            if ($_FILES["menu_img"]["error"] === 0) {
+                $stmt->bindParam(":menu_img", $upload_img, PDO::PARAM_STR);
+                $old_img = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu/" . $menu_img;
+                unlink($old_img);
+            } else {
+                $stmt->bindParam(":menu_img", $menu_img, PDO::PARAM_STR);
+            }
+            if ($_FILES["menu_img_pc"]["error"] && $_FILES["menu_img_sp"]["error"] === 0) {
+                $stmt->bindParam(":menu_b_pc_img", $upload_img_pc, PDO::PARAM_STR);
+                $stmt->bindParam(":menu_b_sp_img", $upload_img_sp, PDO::PARAM_STR);
+
+                $old_img_pc = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu-b/" . $menu_img_pc;
+                $old_img_sp = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu-b/" . $menu_img_sp;
+                unlink($old_img_pc);
+                unlink($old_img_sp);
+            }else{
+                $stmt->bindParam(":menu_b_pc_img",$menu_img_pc,PDO::PARAM_STR);
+                $stmt->bindParam(":menu_b_sp_img",$menu_img_sp,PDO::PARAM_STR);
+            }
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();

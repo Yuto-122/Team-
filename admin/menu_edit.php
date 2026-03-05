@@ -12,7 +12,7 @@ if (empty($_GET)) {
 $id = $_GET["id"];
 
 $db = db_connect();
-$sql = "SELECT menus.id AS menu_id, menus.name AS menu_name,menus.body AS menu_body,menus.amount AS menu_amount,menus.price AS menu_price,menus.menu_img AS menu_img, shops.name AS shop_name FROM menus INNER JOIN shops ON menus.shop_id = shops.id WHERE menus.id = :id";
+$sql = "SELECT menus.id AS menu_id, menus.name AS menu_name,menus.body AS menu_body,menus.amount AS menu_amount,menus.price AS menu_price,menus.menu_img AS menu_img,menus.menu_b_pc_img AS menu_img_pc,menus.menu_b_sp_img AS menu_img_sp, shops.name AS shop_name FROM menus INNER JOIN shops ON menus.shop_id = shops.id WHERE menus.id = :id";
 
 $stmt = $db->prepare($sql);
 
@@ -40,7 +40,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <main role="main" class="container" style="padding:60px 15px 0">
         <h1 class="my-5">メニューDB管理画面</h1>
         <div class="mb-3">
-            <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3">
+            <form action="menu_edit_do.php?id=<?php echo $data["menu_id"] ?>" method="post" class="needs-validation mb-3" enctype="multipart/form-data">
                 <p><b><?php echo $data["shop_name"] ?></b></p>
                 <label for="menu" class="form-lebel mt-3"><b>商品名</b></label>
                 <input type="text" name="menu" id="menu" class="form-control" value="<?php echo $data["menu_name"] ?>">
@@ -54,6 +54,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div class="mb-3 row">
                     <label for="menu_img" class="form-label mt-3">商品画像</label>
                     <input type="file" name="menu_img" id="menu_img">
+                    <input type="hidden" name="menu_img" id="menu_img" value="<?php echo $data["menu_img"] ?>">
                     <div class="invalid-feedback">
                         投稿者を入力してください
                     </div>
@@ -61,6 +62,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                         <div class="col">
                             <label for="image_pc" class="form-label mt-3">PC用 商品画像</label>
                             <input type="file" name="menu_img_pc" id="menu_img_pc" class="form-control">
+                            <input type="hidden" name="menu_img_pc" id="menu_img_pc" value="<?php echo $data["menu_img_pc"] ?>">
                             <div class="invalid-feedback">
                                 投稿者を入力してください
                             </div>
@@ -68,6 +70,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
                         <div class="col">
                             <label for="image_sp" class="form-label mt-3">スマートフォン用 商品画像</label>
                             <input type="file" name="menu_img_sp" id="menu_img_sp" class="form-control">
+                            <input type="hidden" name="menu_img_sp" id="menu_img_sp" value="<?php echo $data["menu_img_sp"] ?>">
                             <div class="invalid-feedback">
                                 投稿者を入力してください
                             </div>
