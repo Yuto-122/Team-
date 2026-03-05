@@ -9,7 +9,7 @@ $menu_img = $_POST["menu_img"];
 $menu_img_pc = $_POST["menu_img_pc"];
 $menu_img_sp = $_POST["menu_img_sp"];
 
-if ($_FILES["menu_img"]["error"] == 0 && $_FILES["menu_img_pc"]["error"] == 0 && $_FILES["menu_img_sp"]["error"] == 0) {
+if (isset($_FILES["menu_img"]) && isset($_FILES["menu_img_pc"]) && isset($_FILES["menu_img_sp"]) && $_FILES["menu_img"]["error"] == 0 && $_FILES["menu_img_pc"]["error"] == 0 && $_FILES["menu_img_sp"]["error"] == 0) {
 //画像と画像名を受け取り
 $menu_img = $_FILES["menu_img"]["name"];
 $tmp_img_name = $_FILES["menu_img"]["tmp_name"];
@@ -40,6 +40,9 @@ $upload_img = $img_date . "." . $path;
 $upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
 $upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
 
+echo $upload_img_pc;
+echo $upload_img_sp;
+
 //画像名を変更してimgフォルダへ移動
 rename($tmp_img_name,"../img/menu/" . $upload_img);
 rename($tmp_imgPc_name,"../img/menu-b/" .$upload_img_pc);
@@ -62,23 +65,23 @@ if (!empty($_POST)) {
 
             $stmt->bindParam(":name", $name, PDO::PARAM_STR);
             $stmt->bindParam(":body", $body, PDO::PARAM_STR);
-            $stmt->bindParam(":amount", $amount, PDO::PARAM_STR);
-            $stmt->bindParam(":price", $price, PDO::PARAM_STR);
+            $stmt->bindParam(":amount", $amount, PDO::PARAM_INT);
+            $stmt->bindParam(":price", $price, PDO::PARAM_INT);
             if ($_FILES["menu_img"]["error"] === 0) {
                 $stmt->bindParam(":menu_img", $upload_img, PDO::PARAM_STR);
                 $old_img = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu/" . $menu_img;
-                unlink($old_img);
+                //unlink($old_img);
             } else {
                 $stmt->bindParam(":menu_img", $menu_img, PDO::PARAM_STR);
             }
-            if ($_FILES["menu_img_pc"]["error"] && $_FILES["menu_img_sp"]["error"] === 0) {
+            if ($_FILES["menu_img_pc"]["error"] === 0 && $_FILES["menu_img_sp"]["error"] === 0) {
                 $stmt->bindParam(":menu_b_pc_img", $upload_img_pc, PDO::PARAM_STR);
                 $stmt->bindParam(":menu_b_sp_img", $upload_img_sp, PDO::PARAM_STR);
 
-                $old_img_pc = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu-b/" . $menu_img_pc;
-                $old_img_sp = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu-b/" . $menu_img_sp;
-                unlink($old_img_pc);
-                unlink($old_img_sp);
+                $old_img_pc = __DIR__ . "/../img/menu-b/" . $menu_img_pc;
+                $old_img_sp = __DIR__ . "/../img/menu-b/" . $menu_img_sp;
+                //unlink($old_img_pc);
+                //unlink($old_img_sp);
             }else{
                 $stmt->bindParam(":menu_b_pc_img",$menu_img_pc,PDO::PARAM_STR);
                 $stmt->bindParam(":menu_b_sp_img",$menu_img_sp,PDO::PARAM_STR);
