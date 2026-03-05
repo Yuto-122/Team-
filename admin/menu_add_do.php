@@ -30,7 +30,7 @@ $path_sp = $file_path_sp["extension"];
 //受け取りデータと拡張子を繋げて画像名にする
 $upload_img = $img_date . "." . $path;
 $upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
-$upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
+$upload_img_sp = $img_date_sp . "-sp" . "." . $path_sp;
 
 //画像名を変更してimgフォルダへ移動
 rename($tmp_img_name, "../img/menu/" . $upload_img);
@@ -69,14 +69,18 @@ if (!empty($_POST)) {
             $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             debug_check($menus);
+            set_admin_system_message(MsgContent::MENU_ADD->value . $name, MsgStatus::SUCCESS);
+            header('location:admin_menu.php');
+            exit();
         } catch (PDOException $e) {
-            // 失敗したら入力画面へ戻す
-            //TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
-            header("location:shop_add.php");
-            exit('エラー: ' . $e->getMessage());
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
+            header("location:menu_add.php");
+            exit();
         }
     }
 }
 
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
 header("location:admin_menu.php");
 exit();
