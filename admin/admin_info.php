@@ -47,6 +47,7 @@ try {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php'); ?>
         <h1 class="my-5">お知らせ管理画面</h1>
         <a href="./info_add.php">
             お知らせの新規登録はこちら
