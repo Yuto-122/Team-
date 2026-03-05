@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -80,7 +81,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["menu_id"] ?>">
-                    <button type="submit" class="btn btn-primary mt-4">保存する</button>
+                    <button type="submit" class="btn btn-primary mt-4">登録</button>
                     <a href="menu_detail.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-success mt-4">一つ戻る</a>
                     <a href="admin_menu.php" class="btn btn-secondary mt-4">一覧に戻る</a>
                 </div>

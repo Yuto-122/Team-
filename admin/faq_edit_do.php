@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["question"])  && !empty($_POST["answer"]) && !empty($_POST["type"]) && !empty($_POST["id"])) {
@@ -27,6 +28,7 @@ if (!empty($_POST)) {
         } catch (PDOException $e) {
             // 失敗したら入力画面へ戻す
             set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
             header("location:faq_edit.php?id=" . $id);
             exit();
         }

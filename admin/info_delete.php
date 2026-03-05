@@ -34,19 +34,20 @@ try {
 
 <body>
     <?php
-     include('admin-header.php'); 
-      ?>
-    
+    include('admin-header.php');
+    ?>
+
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">お知らせ DB - 削除確認</h1>
+        <h1 class="my-5">お知らせ - 削除確認</h1>
         <p>タイトル ：「<?php echo h($target["title"]); ?>」</p>
         <p>本文：「<?php echo h($target["body"]); ?>」</p>
         <p>を削除してよろしいですか？</p>
-        <p><a href="info_delete_do.php" class="btn btn-primary">お知らせ 一覧に戻る</a></p>
+
         <form action="info_delete_do.php" method="post">
             <input type="hidden" name="id" value="<?php echo h($target["id"]); ?>">
             <input type="submit" value="削除" class="btn btn-danger">
+            <a href="info_delete_do.php" class="btn btn-secondary">一覧に戻る</a>
         </form>
     </main>
 </body>

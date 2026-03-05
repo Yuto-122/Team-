@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -34,7 +35,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">質問カテゴリDB - 編集</h1>
+        <h1 class="my-5">質問カテゴリ - 編集</h1>
         <form action="faq_category_edit_do.php" method="post" class="mb-3">
             <div class="mb-3">
                 <p>ID</p>
@@ -50,7 +51,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
-                <input type="submit" value="編集する" class="btn btn-primary">
+                <input type="submit" value="編集" class="btn btn-success">
                 <a href="admin_faq_category.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>

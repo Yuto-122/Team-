@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -7,7 +8,7 @@ if (empty($_GET)) {
     exit();
 }
 
-$id = $_GET["id"];
+$id = (int)$_GET["id"];
 
 // DB接続
 try {
@@ -38,7 +39,8 @@ try {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">店舗DB編集画面</h1>
+        <?php include('admin-system-message.php');  ?>
+        <h1 class="my-5">店舗情報 - 編集</h1>
         <div class="mb-3">
             <form action="shop_edit_do.php" method="post" class="mb-3">
                 <div class="mb-3">
@@ -59,7 +61,7 @@ try {
                 </div>
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
-                    <button type="submit" class="btn btn-primary">登録する</button>
+                    <button type="submit" class="btn btn-primary">登録</button>
                     <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
                 </div>
             </form>

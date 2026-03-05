@@ -3,7 +3,17 @@ require_once __DIR__ . '/functions/function.php';
 
 try {
     $db = db_connect();
-    $stmt = $db->prepare("SELECT * FROM faq_category");
+    // faqの中で使用されているカテゴリ情報だけ取得（カテゴリだけ増えても問題ないように）
+    // 「その他」は必ず下に来るように優先度を下げる
+    $stmt = $db->prepare("SELECT * FROM faq_category 
+                            WHERE id IN ( 
+                                SELECT DISTINCT type FROM faq
+                            ) 
+                            ORDER BY 
+                                CASE 
+                                    WHEN category = 'その他' THEN 1
+                                    ELSE 0
+                                END");
     $stmt->execute();
     $faq_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

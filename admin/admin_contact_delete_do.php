@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -24,6 +25,7 @@ try {
     exit();
 } catch (PDOException $e) {
     set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+    set_error_log($e->getMessage());
     header('location:admin_contact_edit.php?id=' . $id);
     exit();
 }

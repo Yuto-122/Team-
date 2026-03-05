@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 if (empty($_GET)) {
     // GETが無かったら戻す
@@ -44,7 +45,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
-        <h1 class="my-5">メニューDB管理画面</h1>
+        <h1 class="my-5">メニュー管理画面</h1>
         <div class="mb-3">
             <p><b>店舗名</b></p>
             <p><?php echo $data["shop_name"] . "（店舗ID:" . $data["menu_id"] . "）" ?></p>
@@ -78,7 +79,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="mb-3">
             <input type="hidden" name="id" value="<?php echo $data["menu_id"]; ?>">
-            <a href="menu_edit.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-primary">編集</a>
+            <a href="menu_edit.php?id=<?php echo $data["menu_id"] ?>" class="btn btn-success">編集</a>
             <a href="admin_menu.php" class="btn btn-secondary">一覧に戻る</a>
         </div>
         </form>
