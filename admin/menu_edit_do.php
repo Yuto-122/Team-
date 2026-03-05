@@ -9,6 +9,10 @@ $menu_img = $_POST["menu_img"];
 $menu_img_pc = $_POST["menu_img_pc"];
 $menu_img_sp = $_POST["menu_img_sp"];
 
+$menu_img_old = $_POST["menu_img"];
+$menu_img_pc_old = $_POST["menu_img_pc"];
+$menu_img_sp_old = $_POST["menu_img_sp"];
+
 if (isset($_FILES["menu_img"]) && isset($_FILES["menu_img_pc"]) && isset($_FILES["menu_img_sp"]) && $_FILES["menu_img"]["error"] == 0 && $_FILES["menu_img_pc"]["error"] == 0 && $_FILES["menu_img_sp"]["error"] == 0) {
 //画像と画像名を受け取り
 $menu_img = $_FILES["menu_img"]["name"];
@@ -69,8 +73,8 @@ if (!empty($_POST)) {
             $stmt->bindParam(":price", $price, PDO::PARAM_INT);
             if ($_FILES["menu_img"]["error"] === 0) {
                 $stmt->bindParam(":menu_img", $upload_img, PDO::PARAM_STR);
-                $old_img = $_SERVER["DOCUMENT_ROOT"] . "/gyoza-fes_c/img/menu/" . $menu_img;
-                //unlink($old_img);
+                $old_img = __DIR__ . "/../img/menu/" . $menu_img_old;
+                unlink($old_img);
             } else {
                 $stmt->bindParam(":menu_img", $menu_img, PDO::PARAM_STR);
             }
@@ -78,10 +82,10 @@ if (!empty($_POST)) {
                 $stmt->bindParam(":menu_b_pc_img", $upload_img_pc, PDO::PARAM_STR);
                 $stmt->bindParam(":menu_b_sp_img", $upload_img_sp, PDO::PARAM_STR);
 
-                $old_img_pc = __DIR__ . "/../img/menu-b/" . $menu_img_pc;
-                $old_img_sp = __DIR__ . "/../img/menu-b/" . $menu_img_sp;
-                //unlink($old_img_pc);
-                //unlink($old_img_sp);
+                $old_img_pc = __DIR__ . "/../img/menu-b/" . $menu_img_pc_old;
+                $old_img_sp = __DIR__ . "/../img/menu-b/" . $menu_img_sp_old;
+                unlink($old_img_pc);
+                unlink($old_img_sp);
             }else{
                 $stmt->bindParam(":menu_b_pc_img",$menu_img_pc,PDO::PARAM_STR);
                 $stmt->bindParam(":menu_b_sp_img",$menu_img_sp,PDO::PARAM_STR);
@@ -97,5 +101,5 @@ if (!empty($_POST)) {
     }
 }
 // 正常に終わったらadmin_contact.phpに戻す
-// header("location: admin_menu.php");
-// exit();
+header("location: admin_menu.php");
+exit();
