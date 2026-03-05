@@ -17,7 +17,7 @@ $stmt->execute();
 
 $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
-var_dump($target);
+// var_dump($target);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ var_dump($target);
 
 <body>
   <?php
-  // include('admin-header.php');  
+  include('admin-header.php');  
   ?>
 
   <main role="main" class="container" style="padding:60px 15px 0">
