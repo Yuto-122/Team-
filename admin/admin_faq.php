@@ -43,7 +43,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | 質問回答DB管理画面</title>
+    <title>チーム王将 | FAQ管理画面</title>
 </head>
 
 <body>
@@ -51,9 +51,9 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php'); ?>
-        <h1 class="my-5">質問回答DB管理画面</h1>
+        <h1 class="my-5">FAQ管理画面</h1>
         <a href="faq_add.php">
-            <p>質問回答DBの新規登録はこちら</p>
+            <p>FAQの新規登録はこちら</p>
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -82,7 +82,7 @@ try {
                             <td><?php echo $data["category"]; ?></td>
                             <td><?php echo $data["faq_create_date"]; ?></td>
                             <td>
-                                <a href="faq_edit.php?id=<?php echo $data["faq_id"]; ?>" class="btn btn-secondary mx-1">編集</a>
+                                <a href="faq_edit.php?id=<?php echo $data["faq_id"]; ?>" class="btn btn-success mx-1">編集</a>
                                 <a href="faq_delete.php?id=<?php echo $data["faq_id"]; ?>" class="btn btn-danger mx-1">削除</a>
                             </td>
                         </tr>

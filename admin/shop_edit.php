@@ -8,7 +8,7 @@ if (empty($_GET)) {
     exit();
 }
 
-$id = $_GET["id"];
+$id = (int)$_GET["id"];
 
 // DB接続
 try {
@@ -40,7 +40,7 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">店舗編集画面</h1>
+        <h1 class="my-5">店舗情報 - 編集</h1>
         <div class="mb-3">
             <form action="shop_edit_do.php" method="post" class="mb-3">
                 <div class="mb-3">
