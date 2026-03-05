@@ -35,7 +35,7 @@ if (!empty($_POST)) {
             if ($result[0] !== 0) {
                 // 重複するデータがあれば登録できない
                 set_admin_system_message(MsgContent::SHOP_USED_BOOTH->value . $booth, MsgStatus::WARNING);
-                header("location:shop_add.php");
+                header("location:shop_edit.php");
                 exit();
             }
 
