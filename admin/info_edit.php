@@ -32,10 +32,11 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
   <?php
-  include('admin-header.php');  
+  include('admin-header.php');
   ?>
 
   <main role="main" class="container" style="padding:60px 15px 0">
+    <?php include('admin-system-message.php'); ?>
     <h1 class="my-5">お知らせ - 編集</h1>
 
     <form action="info_edit_do.php" method="post" class="needs-validation mb-3" novalidate enctype="multipart/form-data">

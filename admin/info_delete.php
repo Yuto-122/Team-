@@ -39,6 +39,7 @@ try {
 
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php'); ?>
         <h1 class="my-5">お知らせ - 削除確認</h1>
         <p>タイトル ：「<?php echo h($target["title"]); ?>」</p>
         <p>本文：「<?php echo h($target["body"]); ?>」</p>
