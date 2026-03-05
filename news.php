@@ -75,7 +75,7 @@ try {
                             <img class="c-news-item__img" src="./img/news/<?php echo h($news['info_img']) ?>" alt="">
                             <?php endif; ?>
                             <p class="c-news-item__text">
-                                <?php echo str_replace(['&lt;br&gt;', '&lt;br /&gt;'], '<br>', h($news['body'])); ?>
+                                <?php echo str_replace(['&lt;br&gt;', '&lt;br /&gt;'], '<br>', nl2br(h($news['body']))); ?>
                             </p>   
                         </div>
                     </details>
