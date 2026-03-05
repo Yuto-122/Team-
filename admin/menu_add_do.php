@@ -41,12 +41,16 @@ rename($tmp_imgSp_name, "../img/menu-b/" . $upload_img_sp);
 if (!empty($_POST)) {
     if (!empty($_POST["name"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["body"]) && !empty($_POST["shop"])) {
         $name = $_POST["name"];
-        $amount = $_POST["amount"];
-        $price = $_POST["price"];
+        $amount = (int)$_POST["amount"];
+        $price = (int)$_POST["price"];
         $body = $_POST["body"];
         $shop = $_POST["shop"];
-
-        debug_check($name);
+      
+            if ($price <= 0 || $amount <= 0) {
+                set_admin_system_message(MsgContent::SHOP_PREG_MATCH->value, MsgStatus::WARNING);
+                header("location:menu_add.php");
+                exit();
+            }
 
         try {
             $db = db_connect();
@@ -67,8 +71,7 @@ if (!empty($_POST)) {
             $stmt->execute();
 
             $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            debug_check($menus);
+            
             set_admin_system_message(MsgContent::MENU_ADD->value . $name, MsgStatus::SUCCESS);
             header('location:admin_menu.php');
             exit();
