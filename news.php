@@ -3,7 +3,7 @@ require_once __DIR__ . '/functions/function.php';
 
 try {
     $db = db_connect();
-    $stmt = $db->prepare("SELECT * FROM info ORDER BY public_date DESC");
+    $stmt = $db->prepare("SELECT * FROM info  WHERE public_date < now() ORDER BY public_date DESC");
     $stmt->execute();
     $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
