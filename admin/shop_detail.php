@@ -19,9 +19,6 @@ try {
     $stmt->execute();
 
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // 結果セットを連想配列の形で取得
-    $target = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     exit('エラー: ' . $e->getMessage());
 }
@@ -65,7 +62,6 @@ try {
             <a href="shop_edit.php?id=<?php echo $data["id"] ?>" class="btn btn-success">編集</a>
             <a href="admin_shop.php" class="btn btn-secondary">一覧に戻る</a>
         </div>
-        </form>
 
     </main>
 </body>

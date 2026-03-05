@@ -43,10 +43,11 @@ try {
         <p>タイトル ：「<?php echo h($target["title"]); ?>」</p>
         <p>本文：「<?php echo h($target["body"]); ?>」</p>
         <p>を削除してよろしいですか？</p>
-        <p><a href="info_delete_do.php" class="btn btn-secondary">一覧に戻る</a></p>
+
         <form action="info_delete_do.php" method="post">
             <input type="hidden" name="id" value="<?php echo h($target["id"]); ?>">
             <input type="submit" value="削除" class="btn btn-danger">
+            <a href="info_delete_do.php" class="btn btn-secondary">一覧に戻る</a>
         </form>
     </main>
 </body>

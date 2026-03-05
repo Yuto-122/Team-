@@ -68,7 +68,7 @@ enum MsgContent: string
     case CONTACT_DELETE = "お問い合わせを削除しました。<br>ID: ";
 
     case SHOP_ADD = "店舗情報を追加しました。<br>店舗名: ";
-    case SHOP_EDIT = "店舗情報を変種しました。<br>店舗名: ";
+    case SHOP_EDIT = "店舗情報を編集しました。<br>店舗名: ";
     case SHOP_USED_BOOTH = "そのブースは登録済みです<br>ブース名: ";
     case SHOP_PREG_MATCH = "読み仮名は 全角ひらがなカタカナ を使用してください";
 

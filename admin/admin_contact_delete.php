@@ -41,7 +41,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">お問い合わせDB管理画面</h1>
+        <h1 class="my-5">お問い合わせ - 削除</h1>
         <div class="mb-3">
             <p><b>ID</b></p>
             <p><?php echo $data["contact_id"] ?></p>
@@ -59,7 +59,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="mb-3">
             <input type="hidden" name="id" value="<?php echo $data["contact_id"]; ?>">
-            <a href="admin_contact_delete_confirm.php?id=<?php echo $data["contact_id"] ?>" class="btn btn-danger">削除する</a>
+            <a href="admin_contact_delete_confirm.php?id=<?php echo $data["contact_id"] ?>" class="btn btn-danger">削除</a>
             <a href="admin_contact.php" class="btn btn-secondary">一覧に戻る</a>
         </div>
         </form>
