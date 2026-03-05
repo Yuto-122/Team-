@@ -37,9 +37,8 @@ if (!empty($_POST)) {
         $title = $_POST['title'];
         $body = $_POST['body'];
         // 日付けが空文字だったら当日のデータ、空文字じゃなかったら送信されたデータを代入
-        $public_date = empty($_POST['public_date']) ? date('Y-m-d') : $_POST['public_date'];
+        $public_date = empty($_POST['date']) ? date('Y-m-d') : $_POST['date'];
         $update_date = empty($_POST['pdate_date']) ? date('Y-m-d') : $_POST['pdate_date'];
-        $created_date = empty($_POST['created_date']) ? date('Y-m-d') : $_POST['created_date'];
 
         $id = (int)$_POST["id"];
 
@@ -47,7 +46,7 @@ if (!empty($_POST)) {
         try {
             $db = db_connect();
             // infoテーブルに1行挿入するSQL
-            $sql = 'UPDATE info SET title=:title,body=:body,info_img=:info_img,public_date=:public_date,update_date=:update_date,created_date=:created_date WHERE id=:id';
+            $sql = 'UPDATE info SET title=:title,body=:body,info_img=:info_img,public_date=:public_date,update_date=now() WHERE id=:id';
             $stmt = $db->prepare($sql);
             
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
@@ -68,8 +67,6 @@ if (!empty($_POST)) {
             // var_dump($_SERVER['DOCUMENT_ROOT']);
             
             $stmt->bindParam(':public_date', $public_date, PDO::PARAM_STR);
-            $stmt->bindParam(':update_date', $update_date, PDO::PARAM_STR);
-            $stmt->bindParam(':created_date', $created_date, PDO::PARAM_STR);
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();

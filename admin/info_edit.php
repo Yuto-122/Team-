@@ -48,7 +48,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
       </div>
       <div class="mb-3 row">
         <div class="col">
-          <label for="date" class="form-label">登録日</label>
+          <label for="date" class="form-label">公開日</label>
           <input type="date" name="date" id="date" class="form-control" value="<?php echo h(date('Y-m-d', strtotime($target["update_date"]))); ?>">
         </div>
         <div class="col">
