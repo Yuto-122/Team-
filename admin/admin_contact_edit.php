@@ -70,6 +70,7 @@ $staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                 <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
                 <input type="hidden" name="date" value="<?php echo $data["update_date"]; ?>">
                 <button type="submit" class="btn btn-primary">登録</button>
+                <a href="admin_contact_detail.php?id=<?php echo $data["id"] ?>" class="btn btn-success">一つ戻る</a>
                 <a href="admin_contact_detail.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>

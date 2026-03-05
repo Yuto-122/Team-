@@ -40,6 +40,15 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
         display: flex;
         justify-content: space-between;
     }
+    .flexItem p, p:last-child{
+        text-align: center;
+    }
+    img {
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        height: 300px;
+    }
+
 </style>
 
 <body>
@@ -62,19 +71,19 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
             <p><b>商品画像</b></p>
             <div class="imgFlex">
                 <div class="flexItem">
-                    <p style="text-align: center;"><b>元画像</b></p>
-                    <img style="height: 300px;" src="../img/menu/<?php echo $data["menu_img"] ?>" alt="<?php echo $data["menu_img"] ?>">
-                    <p>画像先：<?php echo "img/menu/" . $data["menu_img"] ?></p>
+                    <p><b>元画像</b></p>
+                    <img src="../img/menu/<?php echo $data["menu_img"] ?>" alt="<?php echo $data["menu_img"] ?>">
+                    <p><b>画像先：<?php echo "img/menu/" . $data["menu_img"] ?></b></p>
                 </div>
                 <div class="flexItem">
-                    <p style="text-align: center;"><b>PC用画像</b></p>
-                    <img style="height: 300px;" src="../img/menu-b/<?php echo $data["pc_img"] ?>" alt="<?php echo $data["pc_img"] ?>">
-                    <p>画像先：<?php echo "img/menu-b/" . $data["pc_img"] ?></p>
+                    <p><b>PC用画像</b></p>
+                    <img src="../img/menu-b/<?php echo $data["pc_img"] ?>" alt="<?php echo $data["pc_img"] ?>">
+                    <p><b>画像先：<?php echo "img/menu-b/" . $data["pc_img"] ?></b></p>
                 </div>
                 <div class="flexItem">
-                    <p style="text-align: center;"><b>SP用画像</b></p>
-                    <img style="height: 300px;" src="../img/menu-b/<?php echo $data["sp_img"] ?>" alt="<?php echo $data["sp_img"] ?>">
-                    <p>画像先：<?php echo "img/menu-b/" . $data["sp_img"] ?></p>
+                    <p><b>SP用画像</b></p>
+                    <img src="../img/menu-b/<?php echo $data["sp_img"] ?>" alt="<?php echo $data["sp_img"] ?>">
+                    <p><b>画像先：<?php echo "img/menu-b/" . $data["sp_img"] ?></b></p>
                 </div>
             </div>
 
