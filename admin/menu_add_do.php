@@ -29,8 +29,8 @@ $path_sp = $file_path_sp["extension"];
 
 //受け取りデータと拡張子を繋げて画像名にする
 $upload_img = $img_date . "." . $path;
-$upload_img_pc = $img_date_pc . "." . $path_pc;
-$upload_img_sp = $img_date_sp . "." . $path_sp;
+$upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
+$upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
 
 //画像名を変更してimgフォルダへ移動
 rename($tmp_img_name, "../img/menu/" . $upload_img);
