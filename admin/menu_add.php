@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 $db = db_connect();
 $sql = " SELECT id,name FROM shops";
@@ -85,7 +86,8 @@ $shops = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
               </div>
               <div class="mb-3">
-                <input type="submit" value="投稿する" class="btn btn-primary">
+                <input type="submit" value="登録" class="btn btn-primary">
+                <a href="admin_menu.php" class="btn btn-secondary">一覧に戻る</a>
               </div>
             </div>
       </form>

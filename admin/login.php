@@ -3,7 +3,7 @@ require_once __DIR__ . "/../functions/function.php";
 
 session_start();
 
-if (isset($_SESSION["id"])) {
+if (isset($_SESSION["admin_session_id"])) {
     header("location:index.php");
     exit();
 }
@@ -23,6 +23,7 @@ if (isset($_SESSION["id"])) {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php') ?>
         <h1 class="my-5 text-center">ログイン</h1>
         <form action="check_user.php" method="post">
             <div class="row justify-content-center">

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (empty($_GET)) {
     header("location:admin_faq.php");
@@ -36,12 +37,12 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php'); ?>
-        <h1 class="my-5">質問回答DB - 削除確認</h1>
+        <h1 class="my-5">FAQ - 削除確認</h1>
         <p>質問「<?php echo $target["question"]; ?>」を削除してよろしいですか？</p>
         <form action="faq_delete_do.php" method="post">
             <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
             <input type="submit" value="削除" class="btn btn-danger">
-            <a href="admin_faq.php" class="btn btn-primary">FAQ一覧に戻る</a>
+            <a href="admin_faq.php" class="btn btn-secondary">一覧に戻る</a>
         </form>
     </main>
 </body>

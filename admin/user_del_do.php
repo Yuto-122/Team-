@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 if (!empty($_POST)) {
     if (!empty($_POST["id"])) {
@@ -16,6 +17,7 @@ if (!empty($_POST)) {
             exit();
         } catch (PDOException $e) {
             set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
             header("location:user_delete.php?id=" . $id);
             exit();
         }

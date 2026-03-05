@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../functions/function.php";
+check_logined();
 
 //画像と画像名を受け取り
 $menu_img = $_FILES["menu_img"]["name"];
@@ -32,15 +33,15 @@ $upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
 $upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
 
 //画像名を変更してimgフォルダへ移動
-rename($tmp_img_name,"../img/menu/" . $upload_img);
-rename($tmp_imgPc_name,"../img/menu-b/" .$upload_img_pc);
-rename($tmp_imgSp_name,"../img/menu-b/" .$upload_img_sp);
+rename($tmp_img_name, "../img/menu/" . $upload_img);
+rename($tmp_imgPc_name, "../img/menu-b/" . $upload_img_pc);
+rename($tmp_imgSp_name, "../img/menu-b/" . $upload_img_sp);
 
 
 if (!empty($_POST)) {
-    if (!empty($_POST["name"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["body"]) &&!empty($_POST["shop"])) {
+    if (!empty($_POST["name"]) && !empty($_POST["amount"]) && !empty($_POST["price"]) && !empty($_POST["body"]) && !empty($_POST["shop"])) {
         $name = $_POST["name"];
-        $amount =$_POST["amount"];
+        $amount = $_POST["amount"];
         $price = $_POST["price"];
         $body = $_POST["body"];
         $shop = $_POST["shop"];

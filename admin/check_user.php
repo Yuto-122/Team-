@@ -22,16 +22,22 @@ if (!empty($_POST)) {
                 // パスワードの検証
                 if (password_verify($password, $result["password"])) {
                     // セッションIDを取得して保存
-                    $_SESSION["id"] = session_id();
-                    $_SESSION["name"] = $result["name"];
+                    $_SESSION["admin_session_id"] = session_id();
+                    $_SESSION["admin_user_name"] = $result["name"];
+
                     header("location:index.php");
                     exit();
                 }
             }
         } catch (PDOException $e) {
-            exit("エラー: " . $e->getMessage());
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
+            header("location:login.php");
+            exit();
         }
     }
 }
+
+set_admin_system_message(MsgContent::LOGIN_FAILD->value, MsgStatus::ERROR);
 header("location:login.php");
 exit();

@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../functions/function.php";
 
 session_start();
+check_logined();
 
 // if (empty($_GET)) {
 //     // GETが無かったら戻す
@@ -45,7 +46,7 @@ $staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">お問い合わせDB管理画面</h1>
+        <h1 class="my-5">問い合わせ - 編集</h1>
         <form action="admin_contact_edit_do.php?id=<?php echo $data["id"]; ?>" method="post" class="mb-3">
             <div class="mb-3">
                 <p><b>ID</b></p>
@@ -68,7 +69,7 @@ $staData = $stmt2->fetchAll(PDO::FETCH_ASSOC);
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">
                 <input type="hidden" name="date" value="<?php echo $data["update_date"]; ?>">
-                <button type="submit" class="btn btn-primary">保存する</button>
+                <button type="submit" class="btn btn-primary">登録</button>
                 <a href="admin_contact_detail.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>
