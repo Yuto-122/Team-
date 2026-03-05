@@ -27,12 +27,12 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <title>チーム王将 | 管理者ページ</title>
+  <title>チーム王将 | お知らせ - 編集</title>
 </head>
 
 <body>
   <?php
-  include('admin-header.php');  
+  include('admin-header.php');
   ?>
 
   <main role="main" class="container" style="padding:60px 15px 0">
@@ -71,10 +71,11 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
       <div class="mb-3">
         <input type="hidden" name="id" value="<?php echo h($target["id"]); ?>">
         <input type="submit" value="登録" class="btn btn-primary">
+        <a href="info_delete_do.php" class="btn btn-secondary">一覧に戻る</a>
       </div>
     </form>
 
-    <p><a href="info_delete_do.php" class="btn btn-secondary">一覧に戻る</a></p>
+
   </main>
 </body>
 

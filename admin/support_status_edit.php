@@ -27,7 +27,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | 管理者ページ</title>
+    <title>チーム王将 | ステータス名 - 編集</title>
 </head>
 
 <body>
@@ -35,17 +35,17 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">対応状況DB - 編集</h1>
+        <h1 class="my-5">ステータス名 - 編集</h1>
         <form action="support_status_edit_do.php" method="post" class="mb-3">
             <div class="mb-3">
                 <p>ID</p>
                 <p><?php echo $target["id"] ?></p>
-                <label for="status" class="form-label">ステータス</label>
+                <label for="status" class="form-label">ステータス名</label>
                 <input type="text" name="status" id="status" class="form-control" value="<?php echo $target["status"] ?>" required>
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
-                <input type="submit" value="編集する" class="btn btn-primary">
+                <input type="submit" value="登録" class="btn btn-primary">
                 <a href="admin_support_status.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>

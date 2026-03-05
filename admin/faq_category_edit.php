@@ -27,7 +27,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | 管理者ページ</title>
+    <title>チーム王将 | 質問カテゴリ - 編集</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@ $target = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="mb-3">
                 <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
-                <input type="submit" value="編集" class="btn btn-success">
+                <input type="submit" value="登録" class="btn btn-primary">
                 <a href="admin_faq_category.php" class="btn btn-secondary">一覧に戻る</a>
             </div>
         </form>

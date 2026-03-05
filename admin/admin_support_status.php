@@ -37,7 +37,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | 対応状況DB管理画面</title>
+    <title>チーム王将 | ステータス管理画面</title>
 </head>
 
 <body>
@@ -45,9 +45,9 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">対応状況DB管理画面</h1>
+        <h1 class="my-5">問い合わせステータス管理画面</h1>
         <a href="support_status_add.php">
-            <p>対応状況DBの新規登録はこちら</p>
+            <p>ステータス名の新規登録はこちら</p>
         </a>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -56,7 +56,7 @@ try {
                         <th>
                             <a href="?sort=id&dir=<?php echo next_sort_dir($sort_params['sort'], 'id', $sort_params['dir']); ?>">id</a>
                         </th>
-                        <th>ステータス</th>
+                        <th>ステータス名</th>
                         <th>登録日時</th>
                         <th>操作</th>
                     </tr>
@@ -67,7 +67,7 @@ try {
                             <td><?php echo $data["id"]; ?></td>
                             <td><?php echo $data["status"]; ?></td>
                             <td><?php echo $data["create_date"]; ?></td>
-                            <td><a href="support_status_edit.php?id=<?php echo $data["id"]; ?>" class="btn btn-secondary mx-1">編集</a></td>
+                            <td><a href="support_status_edit.php?id=<?php echo $data["id"]; ?>" class="btn btn-success mx-1">編集</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

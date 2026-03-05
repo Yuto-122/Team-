@@ -48,12 +48,12 @@ check_logined();
                     <p class="mb-1">問い合わせ一覧、問い合わせ詳細、ステータス変更、問い合わせ削除</p>
                 </a>
                 <a href="admin_support_status.php" class="list-group-item list-group-item-action">
-                    <p class="mb-1 fs-5 fw-bold">問い合わせステータス追加</p>
-                    <p class="mb-1">問い合わせステータスの追加が可能です</p>
+                    <p class="mb-1 fs-5 fw-bold">問い合わせステータス名管理</p>
+                    <p class="mb-1">問い合わせステータス名の登録、編集が可能です</p>
                 </a>
                 <a href="admin_user.php" class="list-group-item list-group-item-action">
                     <p class="mb-1 fs-5 fw-bold">管理者一覧</p>
-                    <p class="mb-1">管理者情報の追加、編集、削除ができます</p>
+                    <p class="mb-1">管理者情報の登録、編集、削除ができます</p>
                 </a>
             </div>
         </div>

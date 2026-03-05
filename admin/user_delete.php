@@ -29,7 +29,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title>チーム王将 | 管理者ページ</title>
+    <title>チーム王将 | ユーザー - 削除確認</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@ try {
 
     <main role="main" class="container" style="padding:60px 15px 0">
         <?php include('admin-system-message.php');  ?>
-        <h1 class="my-5">ユーザーDB - 削除確認</h1>
+        <h1 class="my-5">ユーザー - 削除確認</h1>
         <p>ユーザー「<?php echo $target["name"]; ?>」を削除してよろしいですか？</p>
         <form action="user_del_do.php" method="post">
             <input type="hidden" name="id" value="<?php echo $target["id"]; ?>">
