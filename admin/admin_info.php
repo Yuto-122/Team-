@@ -79,7 +79,7 @@ try {
                         <tr>
                             <td><?php echo h($data["id"]); ?></td>
                             <td><?php echo h($data["title"]); ?></td>
-                            <td><?php echo h($data["body"]); ?></td>
+                            <td><?php echo nl2br(h($data["body"])); ?></td>
                             <td><?php echo h($data["info_img"]); ?></td>
                             <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["public_date"]))); ?></td>
                             <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["update_date"]))); ?></td>
