@@ -59,14 +59,14 @@ if (!empty($_POST)) {
             // 画像を更新したら$new_nameに
             if ($_FILES['info_img']['error'] == 0){
             $stmt->bindParam(':info_img', $new_name, PDO::PARAM_STR);
-            //前の画像を
-            unlink($file_path);
+            
+            //更新された古い画像を削除
+            $del_file = $_SERVER['DOCUMENT_ROOT'] . '/Team-/img/news/' . $info_img;
+            unlink($del_file);
             }
-echo "ここ". $_FILES['info_img']['error'];
+            // echo $del_file;
+            // var_dump($_SERVER['DOCUMENT_ROOT']);
             
-            
-            
-
             $stmt->bindParam(':public_date', $public_date, PDO::PARAM_STR);
             $stmt->bindParam(':update_date', $update_date, PDO::PARAM_STR);
             $stmt->bindParam(':created_date', $created_date, PDO::PARAM_STR);
