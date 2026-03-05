@@ -87,12 +87,8 @@ try {
                                 <!-- <a href="">
                                     <button type="button" class="btn btn-primary mx-1">詳細</button>
                                 </a> -->
-                                <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>">
-                                    <button type="button" class="btn btn-success mx-1">編集</button>
-                                </a>
-                                <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
-                                    <button type="button" class="btn btn-danger mx-1">削除</button>
-                                </a>
+                                <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>" class="btn btn-success mx-1">編集</a>
+                                <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>" class="btn btn-danger mx-1">削除</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
