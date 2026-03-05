@@ -5,10 +5,10 @@ require_once __DIR__ . '/../functions/function.php';
 // TODO: データ受け取り
 // var_dump($_POST);
 
-$info_img = $_FILES['info_img']['name'];//写真の名前受け取り忘れないで
+$info_img = $_FILES['info_img']['name']; //写真の名前受け取り忘れないで
 
 // 画像ファイルの処理 一時保存場所のパス +++
-$tmp_name_img = $_FILES ["info_img"]['tmp_name'];
+$tmp_name_img = $_FILES["info_img"]['tmp_name'];
 
 
 //画像を移動する処理
@@ -54,14 +54,19 @@ if (!empty($_POST)) {
             $stmt->execute();
 
             // トップページへ画面遷移
+            set_admin_system_message(MsgContent::INFO_ADD->value . $title, MsgStatus::SUCCESS);
             header('location:admin_info.php');
-
-            // echo "デバッグ: IDの中身は「" . $info_img . "」です。";//エラー確認用
             exit();
         } catch (PDOException $e) {
-            exit('エラー: '.$e->getMessage());
+            // 失敗したら入力画面へ戻す
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
+            header("location:info_add.php");
+            exit();
         }
     }
 }
 
-
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+header("location:admin_info.php");
+exit();

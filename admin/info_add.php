@@ -13,6 +13,7 @@
 
   <main role="main" class="container" style="padding:60px 15px 0">
     <!-- ここから「本文」-->
+    <?php include('admin-system-message.php'); ?>
     <h1 class="my-5">お知らせ - 新規登録</h1>
 
     <?php

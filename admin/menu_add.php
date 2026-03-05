@@ -21,13 +21,14 @@ $shops = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <title>チーム王将 | 管理者ページ</title>
+  <title>チーム王将 | メニュー - 新規登録</title>
 </head>
 
 <body>
   <?php include('admin-header.php');  ?>
 
   <main role="main" class="container" style="padding:60px 15px 0">
+    <?php include('admin-system-message.php');  ?>
     <h1 class="my-5">メニュー - 新規登録</h1>
     <div>
       <!-- ここから「本文」-->

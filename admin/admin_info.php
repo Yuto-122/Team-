@@ -47,6 +47,7 @@ try {
     <?php include('admin-header.php');  ?>
 
     <main role="main" class="container" style="padding:60px 15px 0">
+        <?php include('admin-system-message.php'); ?>
         <h1 class="my-5">お知らせ管理画面</h1>
         <a href="./info_add.php">
             お知らせの新規登録はこちら
@@ -78,7 +79,7 @@ try {
                         <tr>
                             <td><?php echo h($data["id"]); ?></td>
                             <td><?php echo h($data["title"]); ?></td>
-                            <td><?php echo h($data["body"]); ?></td>
+                            <td><?php echo nl2br(h($data["body"])); ?></td>
                             <td><?php echo h($data["info_img"]); ?></td>
                             <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["public_date"]))); ?></td>
                             <td><?php echo h(date('Y年n月j日 H:i:s', strtotime($data["update_date"]))); ?></td>
@@ -87,12 +88,8 @@ try {
                                 <!-- <a href="">
                                     <button type="button" class="btn btn-primary mx-1">詳細</button>
                                 </a> -->
-                                <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>">
-                                    <button type="button" class="btn btn-success mx-1">編集</button>
-                                </a>
-                                <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>">
-                                    <button type="button" class="btn btn-danger mx-1">削除</button>
-                                </a>
+                                <a href="./info_edit.php?id=<?php echo h($data["id"]); ?>" class="btn btn-success mx-1">編集</a>
+                                <a href="./info_delete.php?id=<?php echo h($data["id"]); ?>" class="btn btn-danger mx-1">削除</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

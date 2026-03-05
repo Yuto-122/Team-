@@ -45,7 +45,7 @@ try {
             <form action="shop_edit_do.php" method="post" class="mb-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">店舗名</label>
-                    <input type="text" name="name" id="name" class="form-control" value="<?php echo $data["name"]; ?>">
+                    <input type="text" name="name" id="name" class="form-control" value="<?php echo $data["name"]; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="kana" class="form-label">読み仮名</label>
@@ -53,11 +53,11 @@ try {
                 </div>
                 <div class="mb-3">
                     <label for="booth" class="form-label">ブース番号</label>
-                    <input type="text" name="booth" id="booth" class="form-control" value="<?php echo $data["booth"]; ?>">
+                    <input type="text" name="booth" id="booth" class="form-control" value="<?php echo $data["booth"]; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">店舗説明</label>
-                    <input type="text" name="description" id="description" class="form-control" value="<?php echo $data["description"]; ?>">
+                    <input type="text" name="description" id="description" class="form-control" value="<?php echo $data["description"]; ?>" required>
                 </div>
                 <div class="mb-3">
                     <input type="hidden" name="id" value="<?php echo $data["id"]; ?>">

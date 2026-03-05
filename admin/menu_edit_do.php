@@ -14,43 +14,43 @@ $menu_img_pc_old = $_POST["menu_img_pc"];
 $menu_img_sp_old = $_POST["menu_img_sp"];
 
 if (isset($_FILES["menu_img"]) && isset($_FILES["menu_img_pc"]) && isset($_FILES["menu_img_sp"]) && $_FILES["menu_img"]["error"] == 0 && $_FILES["menu_img_pc"]["error"] == 0 && $_FILES["menu_img_sp"]["error"] == 0) {
-//画像と画像名を受け取り
-$menu_img = $_FILES["menu_img"]["name"];
-$tmp_img_name = $_FILES["menu_img"]["tmp_name"];
-//pc用画像と画像名受け取り
-$menu_img_pc = $_FILES["menu_img_pc"]["name"];
-$tmp_imgPc_name = $_FILES["menu_img_pc"]["tmp_name"];
-//sp用画像と画像名受け取り
-$menu_img_sp = $_FILES["menu_img_sp"]["name"];
-$tmp_imgSp_name = $_FILES["menu_img_sp"]["tmp_name"];
+    //画像と画像名を受け取り
+    $menu_img = $_FILES["menu_img"]["name"];
+    $tmp_img_name = $_FILES["menu_img"]["tmp_name"];
+    //pc用画像と画像名受け取り
+    $menu_img_pc = $_FILES["menu_img_pc"]["name"];
+    $tmp_imgPc_name = $_FILES["menu_img_pc"]["tmp_name"];
+    //sp用画像と画像名受け取り
+    $menu_img_sp = $_FILES["menu_img_sp"]["name"];
+    $tmp_imgSp_name = $_FILES["menu_img_sp"]["tmp_name"];
 
-//受け取りデータの取得
-$img_date = date("Y-m-d_His");
-$img_date_pc = date("Y-m-d_His");
-$img_date_sp =  date("Y-m-d_His");
+    //受け取りデータの取得
+    $img_date = date("Y-m-d_His");
+    $img_date_pc = date("Y-m-d_His");
+    $img_date_sp =  date("Y-m-d_His");
 
-//画像の形式を取得
-$file_path = pathinfo($menu_img);
-$file_path_pc = pathinfo($menu_img_pc);
-$file_path_sp = pathinfo($menu_img_sp);
+    //画像の形式を取得
+    $file_path = pathinfo($menu_img);
+    $file_path_pc = pathinfo($menu_img_pc);
+    $file_path_sp = pathinfo($menu_img_sp);
 
-//拡張子を取得
-$path = $file_path["extension"];
-$path_pc = $file_path_pc["extension"];
-$path_sp = $file_path_sp["extension"];
+    //拡張子を取得
+    $path = $file_path["extension"];
+    $path_pc = $file_path_pc["extension"];
+    $path_sp = $file_path_sp["extension"];
 
-//受け取りデータと拡張子を繋げて画像名にする
-$upload_img = $img_date . "." . $path;
-$upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
-$upload_img_sp = $img_date_sp . "-sp" . "." .$path_sp;
+    //受け取りデータと拡張子を繋げて画像名にする
+    $upload_img = $img_date . "." . $path;
+    $upload_img_pc = $img_date_pc . "-pc" . "." . $path_pc;
+    $upload_img_sp = $img_date_sp . "-sp" . "." . $path_sp;
 
-echo $upload_img_pc;
-echo $upload_img_sp;
+    echo $upload_img_pc;
+    echo $upload_img_sp;
 
-//画像名を変更してimgフォルダへ移動
-rename($tmp_img_name,"../img/menu/" . $upload_img);
-rename($tmp_imgPc_name,"../img/menu-b/" .$upload_img_pc);
-rename($tmp_imgSp_name,"../img/menu-b/" .$upload_img_sp);
+    //画像名を変更してimgフォルダへ移動
+    rename($tmp_img_name, "../img/menu/" . $upload_img);
+    rename($tmp_imgPc_name, "../img/menu-b/" . $upload_img_pc);
+    rename($tmp_imgSp_name, "../img/menu-b/" . $upload_img_sp);
 }
 
 if (!empty($_POST)) {
@@ -86,20 +86,25 @@ if (!empty($_POST)) {
                 $old_img_sp = __DIR__ . "/../img/menu-b/" . $menu_img_sp_old;
                 unlink($old_img_pc);
                 unlink($old_img_sp);
-            }else{
-                $stmt->bindParam(":menu_b_pc_img",$menu_img_pc,PDO::PARAM_STR);
-                $stmt->bindParam(":menu_b_sp_img",$menu_img_sp,PDO::PARAM_STR);
+            } else {
+                $stmt->bindParam(":menu_b_pc_img", $menu_img_pc, PDO::PARAM_STR);
+                $stmt->bindParam(":menu_b_sp_img", $menu_img_sp, PDO::PARAM_STR);
             }
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();
+            set_admin_system_message(MsgContent::MENU_EDIT->value . $name, MsgStatus::SUCCESS);
+            header('location:admin_menu.php');
+            exit();
         } catch (PDOException $e) {
-            // 失敗したら入力画面へ戻す
-            // TODO nagata-t: エラーメッセージを入れるか検討（余裕があったら）
-            echo $e->getMessage();
+            set_admin_system_message(MsgContent::COMMON_EXCEPTION->value . $e->getMessage(), MsgStatus::ERROR);
+            set_error_log($e->getMessage());
+            header("location:menu_edit.php?id=" . $id);
+            exit();
         }
     }
 }
-// 正常に終わったらadmin_contact.phpに戻す
-header("location: admin_menu.php");
+
+set_admin_system_message(MsgContent::COMMON_ERROR->value, MsgStatus::ERROR);
+header("location:admin_menu.php");
 exit();

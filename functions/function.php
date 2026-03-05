@@ -74,6 +74,14 @@ enum MsgContent: string
 
     case LOGOUT = "ログアウトしました。";
     case LOGIN_FAILD = "ログイン失敗しました。";
+
+    case INFO_ADD = "お知らせを追加しました。<br>タイトル: ";
+    case INFO_EDIT = "お知らせを編集しました。<br>タイトル: ";
+    case INFO_DELETE = "お知らせを削除しました。 ";
+
+    case MENU_ADD = "メニューを追加しました。<br>メニュー: ";
+    case MENU_EDIT = "メニューを編集しました。<br>メニュー: ";
+    case MENU_DELETE = "メニューを削除しました。 ";
 }
 
 // Admin内のシステムメッセージを登録
