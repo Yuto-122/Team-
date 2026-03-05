@@ -101,5 +101,5 @@ if (!empty($_POST)) {
     }
 }
 // 正常に終わったらadmin_contact.phpに戻す
-// header("location: admin_menu.php");
-// exit();
+header("location: admin_menu.php");
+exit();
